@@ -10,6 +10,9 @@
 
 const express = require("express");
 const { ApolloServer, gql } = require("apollo-server-express");
+const mongoose = require("mongoose");
+require("dotenv").config({ path: "../.env" });
+const connectDB = require("./db/db");
 
 
 // Define your GraphQL schema
@@ -40,7 +43,7 @@ async function startServer() {
       await server.start();
       server.applyMiddleware({ app });
   
-      const PORT =  4000;
+      const PORT = process.env.PORT || 4000;
       app.listen(PORT, () => {
         console.log(`FoodWise Server started at http://localhost:${PORT}`);
         console.log(
@@ -51,5 +54,5 @@ async function startServer() {
       console.error("Error starting the server:", error);
     }
   }
-
+  connectDB();
   startServer().catch((error) => console.error(error));
