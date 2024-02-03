@@ -1,0 +1,41 @@
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 2nd Feb 2024
+    Application : FoodWise
+    ----------------------------------------------------
+*/
+
+const { gql } = require('apollo-server-express');
+
+const userSchema = gql`
+type User {
+    _id: ID!  
+    email: String!
+    password: String
+    employeeType: String!
+    currentStatus: Boolean
+  }
+
+ 
+
+  type Mutation {
+    createUser(
+        email: String!
+        password: String
+        employeeType: String!
+        currentStatus: Boolean
+    ): User,
+    
+  }
+  
+  
+
+  
+
+  
+
+`;
+
+module.exports = employeeSchema;
