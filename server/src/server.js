@@ -13,26 +13,14 @@ const { ApolloServer, gql } = require("apollo-server-express");
 const mongoose = require("mongoose");
 require("dotenv").config({ path: "../.env" });
 const connectDB = require("./db/db");
+const userSchema = require("./schemas/userSchema");
+const userResolvers = require("./resolvers/userResolvers");
 
-
-// Define your GraphQL schema
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-// Define your resolvers
-const resolvers = {
-  Query: {
-    hello: () => "Hello, FoodWise!",
-  },
-};
 
 // Create an Apollo Server instance
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  typeDefs: userSchema,
+  resolvers: userResolvers,
   playground: true,
 });
 
