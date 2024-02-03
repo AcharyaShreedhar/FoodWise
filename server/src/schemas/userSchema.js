@@ -14,12 +14,15 @@ type User {
     _id: ID!  
     email: String!
     password: String!
+    salt:String
     userType: String!
     userStatus: Boolean
   }
 
   type Query {
     users: [User]!
+    # Query to log in a user
+    loginUser(email: String!, password: String!): User
     
   }
 
@@ -27,6 +30,7 @@ type User {
     createUser(
         email: String!
         password: String!
+        salt:String
         userType: String!
         userStatus: Boolean
     ): User,
