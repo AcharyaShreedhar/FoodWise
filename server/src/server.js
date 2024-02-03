@@ -14,7 +14,7 @@ const mongoose = require("mongoose");
 require("dotenv").config({ path: "../.env" });
 const connectDB = require("./db/db");
 const userSchema = require("./schemas/userSchema");
-const userResolvers = require("./resolvers/userResolvers");
+const userResolvers = require("./resolvers/userResolver");
 
 
 // Create an Apollo Server instance

@@ -13,29 +13,25 @@ const userSchema = gql`
 type User {
     _id: ID!  
     email: String!
-    password: String
-    employeeType: String!
-    currentStatus: Boolean
+    password: String!
+    userType: String!
+    userStatus: Boolean
   }
 
- 
+  type Query {
+    users: [User]!
+    
+  }
 
   type Mutation {
     createUser(
         email: String!
-        password: String
-        employeeType: String!
-        currentStatus: Boolean
+        password: String!
+        userType: String!
+        userStatus: Boolean
     ): User,
     
   }
-  
-  
-
-  
-
-  
-
 `;
 
-module.exports = employeeSchema;
+module.exports = userSchema;
