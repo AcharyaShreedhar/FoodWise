@@ -19,10 +19,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  salt: {
+    type: String,
+  },
   
   userType: {
     type: String,
-    enum: ['Admin','Staff', 'User', 'Doner', 'Receiver'],
+    enum: ['Admin','Staff', 'User', 'Donor', 'Receiver'],
     required: true,
   },
   userStatus: {
