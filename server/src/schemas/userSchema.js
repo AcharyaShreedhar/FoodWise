@@ -33,7 +33,13 @@ type User {
         salt:String
         userType: String!
         userStatus: Boolean
-    ): User,
+    ): User
+    initiatePasswordReset(email: String!): Boolean
+    completePasswordReset(
+      email: String!
+      newPassword: String!
+      resetToken: String!
+    ): Boolean
     
   }
 `;

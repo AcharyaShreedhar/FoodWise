@@ -10,6 +10,47 @@
 
 const User = require("../models/User");
 const crypto = require("crypto");
+const nodemailer = require("nodemailer");
+
+// Function to generate a random token for password reset
+const generateResetToken = () => {
+  return crypto.randomBytes(20).toString("hex");
+};
+
+// Function to hash the new password with the salt
+const hashNewPassword = (password, salt) => {
+  const hash = crypto.createHmac("sha256", salt);
+  hash.update(password);
+  return hash.digest("hex");
+};
+
+// Function to send email
+const sendResetTokenByEmail = (email, resetToken) => {
+  // Replace the following with your email service provider's SMTP settings
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "spacharya2537@gmail.com",
+      pass: "gayj mzph inyi pehu",
+    },
+  });
+
+  const mailOptions = {
+    from: "spacharya2537@gmail.com",
+    to: email,
+    subject: "Password Reset",
+    text: `Your password reset token is: ${resetToken}`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending email:", error);
+      throw new Error(`Failed to send password reset email: ${error.message}`);
+    } else {
+      console.log("Email sent:", info.response);
+    }
+  });
+};
 
 // Function to generate a random salt
 const generateSalt = (length = 16) => {
@@ -27,21 +68,14 @@ const hashPassword = (password, salt) => {
 };
 
 const verifyPassword = (enteredPassword, storedHash, storedSalt) => {
-   
+  if (!storedSalt) {
+    throw new Error("Stored salt is missing. Unable to verify password.");
+  }
+  const enteredHash = hashPassword(enteredPassword, storedSalt);
+  const isValid = enteredHash === storedHash;
 
-    if (!storedSalt) {
-        throw new Error('Stored salt is missing. Unable to verify password.');
-    }
-    const enteredHash = hashPassword(enteredPassword, storedSalt);
-    const isValid = enteredHash === storedHash;
-
-    return isValid;
+  return isValid;
 };
-
-
-
-
-
 
 const userResolvers = {
   Mutation: {
@@ -68,6 +102,69 @@ const userResolvers = {
       } catch (error) {
         console.error("Error creating user account:", error);
         throw new Error(`Failed to create user account: ${error.message}`);
+      }
+    },
+    // Resolver for initiating password reset
+    initiatePasswordReset: async (_, { email }) => {
+      try {
+        // Find the user by email in the database
+        const user = await User.findOne({ email });
+
+        if (!user) {
+          throw new Error(
+            "User not found. Please check your email or register for an account."
+          );
+        }
+
+        // Generate a reset token, update the user's resetToken and resetTokenExpiry fields, and save the user
+        const resetToken = generateResetToken();
+        user.resetToken = resetToken;
+        user.resetTokenExpiry = Date.now() + 3600000; // Token expires in 1 hour
+        await user.save();
+
+        // Send the reset token to the user via email
+        sendResetTokenByEmail(email, resetToken);
+
+        return true; // Indicates success
+      } catch (error) {
+        console.error("Error initiating password reset:", error);
+        throw new Error(`Failed to initiate password reset: ${error.message}`);
+      }
+    },
+
+    // Resolver for completing password reset
+    completePasswordReset: async (_, { email, resetToken, newPassword }) => {
+      try {
+        // Find the user by email and reset token in the database
+        const user = await User.findOne({
+          email,
+          resetToken,
+          resetTokenExpiry: { $gt: Date.now() }, // Ensure the token is still valid
+        });
+
+        if (!user) {
+          throw new Error(
+            "Invalid or expired reset token. Please initiate the reset process again."
+          );
+        }
+
+        // Hash the new password with a new salt
+        const newSalt = generateSalt();
+        const newHashedPassword = hashNewPassword(newPassword, newSalt);
+
+        // Update the user's password, salt, resetToken, and resetTokenExpiry
+        user.password = newHashedPassword;
+        user.salt = newSalt;
+        user.resetToken = null;
+        user.resetTokenExpiry = null;
+
+        // Save the updated user to the database
+        await user.save();
+
+        return true; // Indicates success
+      } catch (error) {
+        console.error("Error completing password reset:", error);
+        throw new Error(`Failed to complete password reset: ${error.message}`);
       }
     },
   },
