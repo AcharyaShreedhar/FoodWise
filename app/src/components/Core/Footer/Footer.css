@@ -1,0 +1,24 @@
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 4th Feb 2024
+    Application : FoodWise
+    ----------------------------------------------------
+*/
+
+.footer {
+    width: 100%;
+    display: flex;
+    background-color: #4bacec;
+    color: black;
+    padding: 15px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0; 
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 1.1rem;
+  }
