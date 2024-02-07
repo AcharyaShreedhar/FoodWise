@@ -18,9 +18,9 @@ const Hero = () => {
         <img src={heroImage} alt="heroImage logo" className="hero-image" />
         <div className="text-content">
           <h1 className="hero-heading">Welcome to FoodWise</h1>
-          <p className="hero-description">sign up to create your account</p>
+          <a href="/signup" className="hero-description">sign up to create your account</a>
           <p className="hero-description">or</p>
-          <a href="/employees" className="btn btn-primary">
+          <a href="/" className="btn btn-primary">
             Login
           </a>
         </div>
