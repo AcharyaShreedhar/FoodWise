@@ -8,10 +8,12 @@
 */
 
 import React from "react";
+import Hero from "../../components/Core/Hero/Hero";
 
 const HomeContainer = () => {
   return (
     <div>
+        <Hero />
       Home Container
     </div>
   );
