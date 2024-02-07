@@ -1,15 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 6th Feb 2024
+    Application : FoodWise
+    ----------------------------------------------------
+*/
 
-function App() {
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Core/Header/Header";
+import Footer from "./components/Core/Footer/Footer";
+import HomeContainer from "./containers/HomeContainer/HomeContainer";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Smart Food Management System (FoodWise)</h1>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<HomeContainer />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
-}
+};
 
 export default App;
