@@ -45,19 +45,16 @@ class DashBoardChart extends Component {
         },
       ],
       donationChartOptions: {
-        chart: {
-          id: "donation-chart",
-        },
-        xaxis: {
-          categories: ["Charities A", "Charities B", "Charities C", "Charities D", "Charities E"],
-        },
+
+
+        labels: ["Charities A", "Charities B", "Charities C", "Charities D", "Charities E"],
+
       },
-      donationSeries: [
-        {
-          name: "Donation Amount ($)",
-          data: [3000, 2500, 4000, 3200, 2800],
-        },
-      ],
+      donationSeries:
+
+        [3000, 2500, 4000, 3200, 2800],
+
+
       areaChartOptions: {
         chart: {
           id: "area-chart",
@@ -102,23 +99,21 @@ class DashBoardChart extends Component {
               height={320}
             />
           </Col>
+          <Col className="p-5">
+              <h3>Inventory Composition</h3>
+              <Chart options={this.state.radialBarChartOptions}
+                series={this.state.radialBarSeries} type="radialBar" width={500} height={320} />
+            </Col>
           <Row>
             <Col className="p-5">
               <h3>Inventory Growth</h3>
               <Chart options={this.state.areaChartOptions}
-               series={this.state.areaSeries} type="area" width={500} height={320} />
+                series={this.state.areaSeries} type="area" width={500} height={320} />
             </Col>
             <Col className="p-5">
               <h3>Inventory Distribution</h3>
               <Chart options={this.state.pieChartOptions}
-               series={this.state.pieSeries} type="pie" width={500} height={320} />
-            </Col>
-          </Row>
-          <Row>
-            <Col className="p-5">
-              <h3>Inventory Composition</h3>
-              <Chart options={this.state.radialBarChartOptions}
-               series={this.state.radialBarSeries} type="radialBar" width={500} height={320} />
+                series={this.state.pieSeries} type="pie" width={500} height={320} />
             </Col>
           </Row>
         </Row>
