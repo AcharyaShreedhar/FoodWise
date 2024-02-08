@@ -6,3 +6,6 @@
     Application : FoodWise
     ----------------------------------------------------
 */
+.dashboard-chart .chart {
+    border-top: 1px solid darkcyan;
+}
