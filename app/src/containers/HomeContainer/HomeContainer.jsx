@@ -9,12 +9,13 @@
 
 import React from "react";
 import Hero from "../../components/Core/Hero/Hero";
+import DashBoardChart from "../../components/Core/Chart/DashboardChart";
 
 const HomeContainer = () => {
   return (
     <div>
         <Hero />
-      Home Container
+        <DashBoardChart />
     </div>
   );
 };
