@@ -6,3 +6,16 @@
     Application : FoodWise
     ----------------------------------------------------
 */
+
+import React from 'react';
+import './Snackbar.css';
+
+const Snackbar =({message,sucess,show})=>{
+    return (
+        <div className = {`snackbar ${success ? 'success' : 'error'} ${show ? 'show' :''}`}>
+            {message}
+        </div>
+    );
+};
+
+export default Snackbar;
