@@ -16,6 +16,8 @@
     "graphql": "^16.8.1",
     "graphql-playground-middleware-express": "^1.7.23",
     "mongodb": "^6.3.0",
-    "mongoose": "^8.1.1"
+    "mongoose": "^8.1.1",
+    "node": "^21.6.1",
+    "nodemailer": "^6.9.9"
   }
 }
