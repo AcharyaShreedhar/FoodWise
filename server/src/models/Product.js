@@ -22,8 +22,12 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  productQuantity: {
+  productSalePrice: {
     type: String,
+    required: true,
+  },
+  productQuantity: {
+    type: Number,
     required: true,
   },
   productStatus: {
