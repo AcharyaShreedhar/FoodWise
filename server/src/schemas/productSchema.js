@@ -10,37 +10,38 @@
 const { gql } = require('apollo-server-express');
 
 const productSchema = gql`
-type User {
-    _id: ID!  
-    productName: String!
-    productDescription: String!
-    productImage:String!
-    productPrice:String!
-    productSalePrice:String!
-    ProductQuantity:Int!
-    productStatus:Boolean
-    productNotes:String
-    productExpiry:Date!
-   
-  }
-
-  type Query {
-  }
-
-  type Mutation {
-    createProduct(
+    type Product {
+        _id: ID!  
         productName: String!
         productDescription: String!
         productImage:String!
         productPrice:String!
         productSalePrice:String!
-        ProductQuantity:Int!
+        productQuantity:Int!
         productStatus:Boolean
         productNotes:String
-        productExpiry:Date!
-    ): Product,
+        productExpiry:String!
+   
+     }
+
+    type Query {
+        dummyQuery: Boolean # Placeholder field to satisfy the requirement
+        }
+
+    type Mutation {
+        createProduct(
+            productName: String!
+            productDescription: String!
+            productImage:String!
+            productPrice:String!
+            productSalePrice:String!
+            productQuantity:Int!
+            productStatus:Boolean
+            productNotes:String
+            productExpiry:String!
+        ): Product,
     
-  }
+    }
 `;
 
 module.exports = productSchema;
