@@ -2,44 +2,43 @@
     ---------------------------------------------------
     Author      : Shree Dhar Acharya
     StudentId   : 8899288
-    Date        : 2nd Feb 2024
+    Date        : 12th Feb 2024
     Application : FoodWise
     ----------------------------------------------------
 */
 
+const mongoose = require("mongoose");
 
-const mongoose = require('mongoose');
-
-const userSchema = new mongoose.Schema({
-  email: {
+const productSchema = new mongoose.Schema({
+  productName: {
     type: String,
     required: true,
   },
-  password: {
+  productDescription: {
     type: String,
     required: true,
   },
-  salt: {
+  productPrice: {
     type: String,
-  },
-  
-  userType: {
-    type: String,
-    enum: ['Admin','Staff', 'User', 'Donor', 'Receiver'],
     required: true,
   },
-  userStatus: {
+  productQuantity: {
+    type: String,
+    required: true,
+  },
+  productStatus: {
     type: Boolean,
     default: false,
   },
-  resetToken: {
+  productNotes: {
     type: String,
+    required: true,
   },
-  resetTokenExpiry: {
+  productExpiry: {
     type: Date,
   },
 });
 
-const User = mongoose.model('User', userSchema);
+const Product = mongoose.model("Product", productSchema);
 
-module.exports = User;
+module.exports = Product;
