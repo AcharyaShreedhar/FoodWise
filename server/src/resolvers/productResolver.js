@@ -43,6 +43,42 @@ const productResolvers = {
         throw new Error(`Failed to create product: ${error.message}`);
       }
     },
+    updateProduct: async (_, { input }) => {
+      const { productId, productName,
+        productDescription,
+        productImage,
+        productPrice,
+        productSalePrice,
+        productQuantity,
+        productStatus,
+        productNotes,
+        productExpiry, } = input;
+    
+      try {
+        const updatedProduct = await Product.findByIdAndUpdate(
+          productId,
+          {
+            $set: {
+              productName,
+              productDescription,
+              productImage,
+              productPrice,
+              productSalePrice,
+              productQuantity,
+              productStatus,
+              productNotes,
+              productExpiry,
+            },
+          },
+          { new: true }
+        );
+    
+        return updatedProduct;
+      } catch (error) {
+        throw new Error('Failed to update product');
+      }
+    }
+
   },
 };
 

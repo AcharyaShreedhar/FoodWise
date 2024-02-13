@@ -42,6 +42,25 @@ const productSchema = gql`
         ): Product,
     
     }
+
+    type Mutation {
+        updateProduct(
+          input: ProductInput!
+        ): Product
+      }
+      
+      input ProductInput {
+        productId: ID!
+        productName: String
+        productDescription: String
+        productImage: String
+        productPrice: String
+        productSalePrice: String
+        productQuantity: Int
+        productStatus: Boolean
+        productNotes: String
+        productExpiry: String
+      }
 `;
 
 module.exports = productSchema;
