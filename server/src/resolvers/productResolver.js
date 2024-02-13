@@ -10,6 +10,26 @@
 const Product = require("../models/Product");
 
 const productResolvers = {
+  Query: {
+    products: async () => {
+      try {
+        const products = await Product.find();
+        return products.map((product) => ({
+          _id: product._id.toString(),
+          productName: product.productName,
+          productDescription: product.productDescription,
+          productImage: product.productImage,
+          productSalePrice: product.productSalePrice,
+          productQuantity: product.productQuantity,
+          productStatus: product.productStatus,
+          productNotes: product.productNotes,
+          productExpiry: product.productExpiry,
+        }));
+      } catch (error) {
+        throw new Error('Failed to fetch products');
+      }
+    },
+  },
   Mutation: {
     createProduct: async (_, args) => {
       const {
