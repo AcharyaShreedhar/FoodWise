@@ -22,25 +22,43 @@ export const ADD_PRODUCT = gql`
     $productExpiry: String!
   ) {
     createProduct(
-        productName: $productName
-        productDescription: $productDescription
-        productImage: $productImage
-        productPrice: $productPrice
-        productSalePrice: $productSalePrice
-        productQuantity: $productQuantity
-        productStatus: $productStatus
-        productNotes: $productNotes
-        productExpiry: $productExpiry
+      productName: $productName
+      productDescription: $productDescription
+      productImage: $productImage
+      productPrice: $productPrice
+      productSalePrice: $productSalePrice
+      productQuantity: $productQuantity
+      productStatus: $productStatus
+      productNotes: $productNotes
+      productExpiry: $productExpiry
     ) {
-        productName
-        productDescription
-        productImage
-        productPrice
-        productSalePrice
-        productQuantity
-        productStatus
-        productNotes
-        productExpiry
+      productName
+      productDescription
+      productImage
+      productPrice
+      productSalePrice
+      productQuantity
+      productStatus
+      productNotes
+      productExpiry
+    }
+  }
+`;
+
+// Update an existing product
+export const UPDATE_PRODUCT = gql`
+  mutation UpdateProduct($input: ProductInput!) {
+    updateProduct(input: $input) {
+      _id
+      productName
+      productDescription
+      productImage
+      productPrice
+      productSalePrice
+      productQuantity
+      productStatus
+      productNotes
+      productExpiry
     }
   }
 `;
