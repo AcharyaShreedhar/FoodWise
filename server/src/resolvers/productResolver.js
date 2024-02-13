@@ -27,7 +27,15 @@ const productResolvers = {
           productExpiry: product.productExpiry,
         }));
       } catch (error) {
-        throw new Error('Failed to fetch products');
+        throw new Error("Failed to fetch products");
+      }
+    },
+    product: async (_, { id }) => {
+      try {
+        const product = await Product.findById(id);
+        return product;
+      } catch (error) {
+        throw new Error("Failed to fetch product details");
       }
     },
   },
