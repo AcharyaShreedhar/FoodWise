@@ -19,6 +19,7 @@ const productResolvers = {
           productName: product.productName,
           productDescription: product.productDescription,
           productImage: product.productImage,
+          productPrice: product.productPrice,
           productSalePrice: product.productSalePrice,
           productQuantity: product.productQuantity,
           productStatus: product.productStatus,
