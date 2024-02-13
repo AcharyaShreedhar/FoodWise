@@ -61,6 +61,10 @@ const productSchema = gql`
         productNotes: String
         productExpiry: String
       }
+
+      type Mutation {
+        deleteProduct(productId: ID!): Boolean
+      }
 `;
 
 module.exports = productSchema;
