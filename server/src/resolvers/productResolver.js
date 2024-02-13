@@ -11,21 +11,33 @@ const Product = require("../models/Product");
 
 const productResolvers = {
   Query: {
-    products: async () => {
+    products: async (_, { input }) => {
       try {
-        const products = await Product.find();
-        return products.map((product) => ({
-          _id: product._id.toString(),
-          productName: product.productName,
-          productDescription: product.productDescription,
-          productImage: product.productImage,
-          productPrice: product.productPrice,
-          productSalePrice: product.productSalePrice,
-          productQuantity: product.productQuantity,
-          productStatus: product.productStatus,
-          productNotes: product.productNotes,
-          productExpiry: product.productExpiry,
-        }));
+        // Extracting search criteria from the input object
+        const {
+          productName,
+          productStatus,
+          productExpiry,
+        } = input;
+
+        // Constructing the base query
+        let query = Product.find();
+
+        // Adding search criteria to the query
+        if (productName) {
+          query = query.where('productName').regex(new RegExp(productName, 'i'));
+        }
+        if (productStatus !== undefined) {
+          query = query.where('productStatus').equals(productStatus);
+        }
+        if (productExpiry) {
+          query = query.where('productExpiry').equals(productExpiry);
+        }
+
+        // Execute the query
+        const products = await query.exec();
+
+        return products;
       } catch (error) {
         throw new Error("Failed to fetch products");
       }
