@@ -44,7 +44,9 @@ const productResolvers = {
       }
     },
     updateProduct: async (_, { input }) => {
-      const { productId, productName,
+      const {
+        productId,
+        productName,
         productDescription,
         productImage,
         productPrice,
@@ -52,8 +54,9 @@ const productResolvers = {
         productQuantity,
         productStatus,
         productNotes,
-        productExpiry, } = input;
-    
+        productExpiry,
+      } = input;
+
       try {
         const updatedProduct = await Product.findByIdAndUpdate(
           productId,
@@ -72,13 +75,20 @@ const productResolvers = {
           },
           { new: true }
         );
-    
+
         return updatedProduct;
       } catch (error) {
-        throw new Error('Failed to update product');
+        throw new Error("Failed to update product");
       }
-    }
-
+    },
+    deleteProduct: async (_, { productId }) => {
+      try {
+        const deletedProduct = await Product.findByIdAndDelete(productId);
+        return !!deletedProduct;
+      } catch (error) {
+        throw new Error("Failed to delete product");
+      }
+    },
   },
 };
 
