@@ -1,0 +1,94 @@
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 4th Feb 2024
+    Application : FoodWise
+    ----------------------------------------------------
+*/
+
+.footer {
+    width: 100%;
+    background-color: #2ecba9;
+    color: black;
+    padding-top: 20px;
+    padding-right:50px;
+    margin-top: 10px;
+  }
+
+  .foodwise-logo {
+    max-width: 200px; /* Adjust the max-width as needed */
+  }
+  .footer h3 {
+    color: #333;
+  }
+  
+  .footer ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer ul li a {
+    color: #666;
+    text-decoration: none;
+  }
+  
+  .footer ul li a:hover {
+    color: #000;
+  }
+  
+  .footer form input[type="email"],
+  .footer form button {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 2px;
+  }
+  
+  .footer form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .footer form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .footer p {
+    color: black;
+    padding-bottom: 1px;
+  }
+
+  .back-image{
+    height: 150px;
+    width: 100%;
+    margin: 0 !important;
+  }
+
+  /* Footer.css */
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.newsletter-form .input-group {
+  display: flex;
+}
+
+.newsletter-form input[type="email"] {
+  flex-grow: 1;
+}
+
+.newsletter-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px; /* Add margin to separate the button */
+}
+
+.newsletter-form button:hover {
+  background-color: #0056b3;
+}
+

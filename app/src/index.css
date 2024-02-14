@@ -1,3 +1,14 @@
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 4th Feb 2024
+    Application : FoodWise
+    ----------------------------------------------------
+*/
+
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
