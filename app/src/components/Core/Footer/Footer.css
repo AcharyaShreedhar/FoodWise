@@ -8,87 +8,71 @@
 */
 
 .footer {
-    width: 100%;
-    background-color: #2ecba9;
-    color: black;
-    padding-top: 20px;
-    padding-right:50px;
-    margin-top: 10px;
-  }
-
-  .foodwise-logo {
-    max-width: 200px; /* Adjust the max-width as needed */
-  }
-  .footer h3 {
-    color: #333;
-  }
-  
-  .footer ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .footer ul li a {
-    color: #666;
-    text-decoration: none;
-  }
-  
-  .footer ul li a:hover {
-    color: #000;
-  }
-  
-  .footer form input[type="email"],
-  .footer form button {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 2px;
-  }
-  
-  .footer form button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .footer form button:hover {
-    background-color: #0056b3;
-  }
-  
-  .footer p {
-    color: black;
-    padding-bottom: 1px;
-  }
-
-  .back-image{
-    height: 150px;
-    width: 100%;
-    margin: 0 !important;
-  }
-
-  /* Footer.css */
-.newsletter-form {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  background-color: #2ecba9;
+  color: black;
+  padding: 15px 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
 }
 
-.newsletter-form .input-group {
-  display: flex;
+.footer-header {
+  background-color: #2ecba9;
 }
 
-.newsletter-form input[type="email"] {
-  flex-grow: 1;
+.footer p {
+  margin: 0;
+  font-size: 1.1rem;
 }
 
-.newsletter-form button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  margin-left: 10px; /* Add margin to separate the button */
+
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 6th Feb 2024
+    Application : FoodWise
+    ----------------------------------------------------
+*/
+
+.hero {
+  height: 100px;
 }
 
-.newsletter-form button:hover {
-  background-color: #0056b3;
+.footer-img {
+  margin: 50px 0 0 30px
 }
 
+.row {
+  margin-left: 14%;
+  margin-top: 1%;
+}
+
+.col-md-3 {
+  width: 17%;
+  font-size: 10px;
+  font-weight: 500
+}
+
+.subscribe-btn {
+  border-radius: 0 50px 50px 0
+}
+
+.input-group .form-control {
+  background-color: #fff;
+}
+
+body {
+  /* Hide vertical scrollbar */
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
+}
+
+.copyright-text {
+  font-size: 12px;
+  text-align: center;
+  margin-left: 15%;
+  margin-top: 0.5%
+}
