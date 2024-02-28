@@ -13,8 +13,8 @@ import Header from "./components/Core/Header/Header";
 import Footer from "./components/Core/Footer/Footer";
 import HomeContainer from "./containers/HomeContainer/HomeContainer";
 import SignUpContainer from "./containers/SignUpContainer/SignUpContainer";
+import LoginContainer from "./containers/LoginContainer/LoginContainer";
 import BlogContainer from "./containers/AwarenessContainer/AwarenessContainer";
-
 const App = () => {
   return (
     <Router>
@@ -23,6 +23,7 @@ const App = () => {
         <Route exact path="/" element={<HomeContainer />} />
         <Route path="/signup" element={<SignUpContainer />} />
         <Route path="/blog" element={<BlogContainer />} />
+        <Route path="/login"  element={<LoginContainer />} /> 
       </Routes>
       <Footer />
     </Router>

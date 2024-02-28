@@ -17,12 +17,12 @@ const Hero = () => {
       <div className="hero-content">
         <img src={heroImage} alt="heroImage logo" className="hero-image" />
         <div className="text-content">
-          <h1 className="hero-heading">Welcome to FoodWise</h1>
-          <a href="/signup" className="hero-description">sign up to create your account</a>
-          <p className="hero-description">or</p>
-          <a href="/" className="btn btn-primary">
-            Login
-          </a>
+          <h6 className="hero-heading"><i>Welcome to FoodWise</i></h6>
+          <div className="signup-text mt-4">
+            <a href="/signup" className="hero-description mt-4">Sign up to create your account</a>
+            <p className="hero-description mt-4">or</p>
+            <a href="/login" className="btn btn-hero mt-3">Login</a>
+          </div>
         </div>
       </div>
     </section>

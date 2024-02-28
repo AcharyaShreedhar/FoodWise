@@ -10,6 +10,7 @@
 import React from "react";
 import Hero from "../../components/Core/Hero/Hero";
 import SignUp from "../../components/SignUp/SignUp";
+import Footer from "../../components/Core/Footer/Footer";
 
 const SignUpContainer = () => {
   return (

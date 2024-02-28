@@ -1,7 +1,17 @@
-import React, { useState } from 'react';
-import './SignUp.css';
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 6th Feb 2024
+    UpdatedBy   : Tirth Shah
+    Application : FoodWise
+    ----------------------------------------------------
+*/
 
-const SignUp = () => {
+import React, { useState } from 'react';
+import './Login.css';
+
+const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -61,8 +71,8 @@ const SignUp = () => {
     try {
       const requestBody = {
         query: `
-          mutation CreateUser($email: String!, $password: String!, $userType: String!) {
-            createUser(email: $email, password: $password,userType: $userType) {
+          query loginUser($email: String!, $password: String!) {
+            loginUser(email: $email, password: $password) {
              
               email
               password
@@ -72,10 +82,9 @@ const SignUp = () => {
         variables: {
           email: formData.email,
           password: formData.password,
-          userType: 'Admin'
+
         }
       };
-
       const response = await fetch('https://foodwise.minipixai.com/', {
         method: 'POST',
         headers: {
@@ -86,64 +95,60 @@ const SignUp = () => {
 
       const responseData = await response.json();
 
-      if (responseData.data.createUser) {
+      if (responseData.data.loginUser) {
         // Handle successful signup
         console.log('User signed up successfully!');
       } else {
         // Handle signup error
         console.error('Signup failed.');
       }
+
+
     } catch (error) {
       console.error('Error occurred during signup:', error);
     }
   };
 
   return (
-    <div className='signup-hero'>
-      <div className="container">
-        <div className="row row-height justify-content-center">
-          <div className="col-md-4">
-            <div className="card mt-5">
-              <div className="card-body">
-                <h5>Create an Account</h5>
-                <form onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="email">Email address</label>
-                    <input type="text"
-                      className={`form-control ${errors.email && 'is-invalid'}`}
-                      name='email'
-                      value={formData.email}
-                      onChange={handleChange}
-                      autoComplete='off'
-                    />
-                    {errors.email && <div className="invalid-feedback text-white">{errors.email}</div>}
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password"
-                      className={`form-control ${errors.password && 'is-invalid'}`}
-                      name='password'
-                      value={formData.password}
-                      onChange={handleChange}
-                      autoComplete='off'
-                    />
-                    {errors.password && <div className="invalid-feedback text-white" >{errors.password}</div>}
-                  </div>
-                  <div className='button text-center'>
-                    <button type="submit" className="btn  sign-in-btn">Sign Up</button>
-                  </div>
-                  <div className="text">
-                    <span>Already have an account? <a href="./login" className="sign-in"> Sign In</a></span>
-                  </div>
-                </form>
-              </div>
+    <div className='login-hero'>
+      <div className="row  row-height justify-content-center">
+        <div className="col-md-4">
+          <div className="card mt-5">
+            <div className="card-body">
+              <h5>Login</h5>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label htmlFor="email">Email address</label>
+                  <input type="text"
+                    className={`form-control ${errors.email && 'is-invalid'}`}
+                    name='email'
+                    value={formData.email}
+                    onChange={handleChange}
+                    autoComplete='off'
+                  />
+                  {errors.email && <div className="invalid-feedback text-white">{errors.email}</div>}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input type="password"
+                    className={`form-control ${errors.password && 'is-invalid'}`}
+                    name='password'
+                    value={formData.password}
+                    onChange={handleChange}
+                    autoComplete='off'
+                  />
+                  {errors.password && <div className="invalid-feedback text-white" >{errors.password}</div>}
+                </div>
+                <div className='button text-center'>
+                  <button type="submit" className="btn  sign-in-btn">Log In</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default Login;

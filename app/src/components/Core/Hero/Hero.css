@@ -8,55 +8,74 @@
 */
 
 .hero {
-    height: 400px;
-    margin-top: 50px;
-}
-
-.hero .content {
-    text-align: center;
-    position: relative;
-    z-index: 1;
-}
-
-.hero .hero-heading {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.hero .hero-description {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-}
-
-.hero button {
-    font-size: 1rem;
-    padding: 10px 20px;
-}
-
-.hero-image {
-    height: 395.9px;
-    width: 506.4px;
-    margin: 0 !important;
-    left: 400px;
+    height: 500px;
 }
 
 .hero-content {
-    width: 1000px; 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: var(--gap-xl);
+
     align-items: center;
-    top: 0;
-    z-index: 99;
-   
 }
 
 .text-content {
-    display: flex;
-    flex-direction: column;
-    align-self: stretch;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--gap-17xl);
+    margin-left: 140px;
+    position: absolute;
+    bottom: 60%;
+    left: 35%
+}
+
+.hero-heading {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.hero-description {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.hero-image {
+    height: 511px;
+    width: auto;
+}
+
+
+
+.signup-text {
+    text-align: center;
+}
+
+.btn-hero {
+    border-radius: 30px;
+    background-color: darkslateblue;
+    color: #fff;
+    width: 20%;
+}
+
+.btn-hero:hover {
+    background-color: darkslateblue;
+    /* Changing background color on hover */
+    color: #fff;
+    /* Changing text color on hover */
+}
+
+.btn-hero:active {
+    background-color: darkslateblue;
+    /* Keeping background color on click */
+    color: #fff;
+    /* Keeping text color on click */
+}
+
+@media (max-width: 1024px) {
+    .text-content {
+        position: absolute;
+        left: 20%
+    }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .text-content {
+        position: absolute;
+        left: 10%
+    }
 }
