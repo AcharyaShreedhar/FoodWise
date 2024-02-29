@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './SignUp.css';
+import { useNavigate } from 'react-router-dom';
+import Snackbar from '../Core/Snackbar/Snackbar'
+
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -12,6 +16,11 @@ const SignUp = () => {
     email: '',
     password: '',
   });
+
+  const [showSnackbar, setShowSnackbar] = useState(false); // State to control Snackbar visibility
+  const [snackbarMessage, setSnackbarMessage] = useState(''); // State to set the Snackbar message
+  const [snackbarSuccess, setSnackbarSuccess] = useState(''); // State to set the Snackbar message
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,8 +59,6 @@ const SignUp = () => {
     return valid;
   };
 
-
-
   const handleSubmit = async (e) => {
     // /enum: ['Admin','Staff', 'User', 'Donor', 'Receiver'],
     e.preventDefault();
@@ -88,9 +95,21 @@ const SignUp = () => {
 
       if (responseData.data.createUser) {
         // Handle successful signup
+        setShowSnackbar(true);
+        setSnackbarSuccess(true);
+        setSnackbarMessage('User has been successfully registered');
+        setTimeout(() => {
+          navigate('/login');
+        }, 1000); 
         console.log('User signed up successfully!');
       } else {
         // Handle signup error
+        setShowSnackbar(true);
+        setSnackbarSuccess(false)
+        setSnackbarMessage('Signup failed');
+        setTimeout(() => {
+          setShowSnackbar(false); 
+        }, 1000);
         console.error('Signup failed.');
       }
     } catch (error) {
@@ -136,6 +155,7 @@ const SignUp = () => {
                     <span>Already have an account? <a href="./login" className="sign-in"> Sign In</a></span>
                   </div>
                 </form>
+                <Snackbar message={snackbarMessage} success={snackbarSuccess} show={showSnackbar} />
               </div>
             </div>
           </div>
