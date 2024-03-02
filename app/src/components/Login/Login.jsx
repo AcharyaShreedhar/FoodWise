@@ -10,8 +10,11 @@
 
 import React, { useState } from 'react';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
+import Snackbar from '../Core/Snackbar/Snackbar'
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -22,6 +25,11 @@ const Login = () => {
     email: '',
     password: '',
   });
+
+  const [showSnackbar, setShowSnackbar] = useState(false); // State to control Snackbar visibility
+  const [snackbarMessage, setSnackbarMessage] = useState(''); // State to set the Snackbar message
+  const [snackbarSuccess, setSnackbarSuccess] = useState(''); // State to set the Snackbar message
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,8 +68,6 @@ const Login = () => {
     return valid;
   };
 
-
-
   const handleSubmit = async (e) => {
     // /enum: ['Admin','Staff', 'User', 'Donor', 'Receiver'],
     e.preventDefault();
@@ -96,14 +102,23 @@ const Login = () => {
       const responseData = await response.json();
 
       if (responseData.data.loginUser) {
-        // Handle successful signup
-        console.log('User signed up successfully!');
+        // Handle successful signupsetShowSnackbar(true);
+        setShowSnackbar(true);
+        setSnackbarSuccess(true);
+        setSnackbarMessage('Login successful!');
+        setTimeout(() => {
+          navigate('/');
+        }, 1000); 
       } else {
         // Handle signup error
+        setShowSnackbar(true);
+        setSnackbarSuccess(false)
+        setSnackbarMessage('Signup failed');
+        setTimeout(() => {
+          setShowSnackbar(false); 
+        }, 1000);
         console.error('Signup failed.');
       }
-
-
     } catch (error) {
       console.error('Error occurred during signup:', error);
     }
@@ -143,6 +158,7 @@ const Login = () => {
                   <button type="submit" className="btn  sign-in-btn">Log In</button>
                 </div>
               </form>
+              <Snackbar message={snackbarMessage} success={snackbarSuccess} show={showSnackbar} />
             </div>
           </div>
         </div>

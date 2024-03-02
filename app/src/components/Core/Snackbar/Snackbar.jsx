@@ -10,7 +10,7 @@
 import React from 'react';
 import './Snackbar.css';
 
-const Snackbar =({message,sucess,show})=>{
+const Snackbar =({message,success,show})=>{
     return (
         <div className = {`snackbar ${success ? 'success' : 'error'} ${show ? 'show' :''}`}>
             {message}
