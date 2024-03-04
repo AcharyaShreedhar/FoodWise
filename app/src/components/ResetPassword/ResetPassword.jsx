@@ -1,29 +1,25 @@
 /*
     ---------------------------------------------------
-    Author      : Shree Dhar Acharya
-    StudentId   : 8899288
-    Date        : 6th Feb 2024
-    UpdatedBy   : Tirth Shah
+    Author      : Prashant Sahu
+    StudentId   : 8877584
+    Date        : 15th Feb 2024
     Application : FoodWise
     ----------------------------------------------------
 */
 
 import React, { useState } from 'react';
-import './Login.css';
+import './ResetPassword.css';
 import { useNavigate } from 'react-router-dom';
 import Snackbar from '../Core/Snackbar/Snackbar'
 
-const Login = () => {
+const ResetPassword = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
-    // Add other fields if needed
   });
 
   const [errors, setErrors] = useState({
     email: '',
-    password: '',
   });
 
   const [showSnackbar, setShowSnackbar] = useState(false); // State to control Snackbar visibility
@@ -56,20 +52,11 @@ const Login = () => {
       valid = false;
     }
 
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-      valid = false;
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters long';
-      valid = false;
-    }
-
     setErrors(newErrors);
     return valid;
   };
 
   const handleSubmit = async (e) => {
-    // /enum: ['Admin','Staff', 'User', 'Donor', 'Receiver'],
     e.preventDefault();
     if (!validateForm()) {
       return; // Do not proceed if form validation fails
@@ -77,17 +64,12 @@ const Login = () => {
     try {
       const requestBody = {
         query: `
-          query loginUser($email: String!, $password: String!) {
-            loginUser(email: $email, password: $password) {
-             
-              email
-              password
-            }
+          mutation initiatePasswordReset($email: String!) {
+            initiatePasswordReset(email: $email) 
           }
         `,
         variables: {
           email: formData.email,
-          password: formData.password,
 
         }
       };
@@ -100,29 +82,30 @@ const Login = () => {
       });
 
       const responseData = await response.json();
+    console.log('responseData', responseData);
 
-      if (responseData.data.loginUser) {
-        // Handle successful signupsetShowSnackbar(true);
-        setShowSnackbar(true);
-        setSnackbarSuccess(true);
-        setSnackbarMessage('Login successful!');
-        setTimeout(() => {
-          navigate('/');
-        }, 1000); 
-      } else {
-        // Handle signup error
-        setShowSnackbar(true);
-        setSnackbarSuccess(false)
-        setSnackbarMessage('Signup failed');
-        setTimeout(() => {
-          setShowSnackbar(false); 
-        }, 1000);
-        console.error('Signup failed.');
-      }
-    } catch (error) {
-      console.error('Error occurred during signup:', error);
+    if (responseData.data && responseData.data.initiatePasswordReset) {
+      // Handle successful password reset initiation
+      setShowSnackbar(true);
+      setSnackbarSuccess(true);
+      setSnackbarMessage('Reset token is sent to your email successfully!');
+      setTimeout(() => {
+        navigate('/set');
+      }, 1000);
+    } else {
+      // Handle password reset initiation failure
+      setShowSnackbar(true);
+      setSnackbarSuccess(false);
+      setSnackbarMessage('Reset failed');
+      setTimeout(() => {
+        setShowSnackbar(false);
+      }, 1000);
+      console.error('Reset failed.');
     }
-  };
+  } catch (error) {
+    console.error('Error occurred during Reset Password:', error);
+  }
+};
 
   return (
     <div className='login-hero'>
@@ -130,7 +113,7 @@ const Login = () => {
         <div className="col-md-4">
           <div className="card mt-5">
             <div className="card-body">
-              <h5>Login</h5>
+              <h5>Reset Password</h5>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Email address</label>
@@ -143,23 +126,10 @@ const Login = () => {
                   />
                   {errors.email && <div className="invalid-feedback text-white">{errors.email}</div>}
                 </div>
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <input type="password"
-                    className={`form-control ${errors.password && 'is-invalid'}`}
-                    name='password'
-                    value={formData.password}
-                    onChange={handleChange}
-                    autoComplete='off'
-                  />
-                  {errors.password && <div className="invalid-feedback text-white" >{errors.password}</div>}
-                </div>
+                
                 <div className='button text-center'>
-                  <button type="submit" className="btn  sign-in-btn">Log In</button>
+                  <button type="submit" className="btn  sign-in-btn">Reset Password</button>
                 </div>
-                <div className="text">
-                    <span>Forget your Password ? <a href="./reset" className="sign-in"> Reset.</a></span>
-                  </div>
               </form>
               <Snackbar message={snackbarMessage} success={snackbarSuccess} show={showSnackbar} />
             </div>
@@ -170,4 +140,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPassword;

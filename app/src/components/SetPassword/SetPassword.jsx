@@ -1,29 +1,28 @@
 /*
     ---------------------------------------------------
-    Author      : Shree Dhar Acharya
-    StudentId   : 8899288
-    Date        : 6th Feb 2024
-    UpdatedBy   : Tirth Shah
+    Author      : Prashant Sahu
+    StudentId   : 8877584
+    Date        : 15th Feb 2024
     Application : FoodWise
     ----------------------------------------------------
 */
 
 import React, { useState } from 'react';
-import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import Snackbar from '../Core/Snackbar/Snackbar'
 
-const Login = () => {
+const SetPassword = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    // Add other fields if needed
+    token: '',
   });
 
   const [errors, setErrors] = useState({
     email: '',
     password: '',
+    token: '',
   });
 
   const [showSnackbar, setShowSnackbar] = useState(false); // State to control Snackbar visibility
@@ -57,19 +56,23 @@ const Login = () => {
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required';
-      valid = false;
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters long';
-      valid = false;
-    }
+        newErrors.password = 'Password is required';
+        valid = false;
+      } else if (formData.password.length < 6) {
+        newErrors.password = 'Password must be at least 6 characters long';
+        valid = false;
+      }
+
+    if (!formData.token) {
+        newErrors.token = 'Token is required. Please check you email for the reset token';
+        valid = false;
+      }
 
     setErrors(newErrors);
     return valid;
   };
 
   const handleSubmit = async (e) => {
-    // /enum: ['Admin','Staff', 'User', 'Donor', 'Receiver'],
     e.preventDefault();
     if (!validateForm()) {
       return; // Do not proceed if form validation fails
@@ -77,17 +80,14 @@ const Login = () => {
     try {
       const requestBody = {
         query: `
-          query loginUser($email: String!, $password: String!) {
-            loginUser(email: $email, password: $password) {
-             
-              email
-              password
-            }
+          mutation completePasswordReset($email: String!, $resetToken: String! ,$newPassword: String!, ) {
+            completePasswordReset(email: $email, resetToken:$resetToken, newPassword:$newPassword) 
           }
         `,
         variables: {
           email: formData.email,
-          password: formData.password,
+          resetToken:formData.token,
+          newPassword:formData.password
 
         }
       };
@@ -100,29 +100,30 @@ const Login = () => {
       });
 
       const responseData = await response.json();
+    console.log('responseData', responseData);
 
-      if (responseData.data.loginUser) {
-        // Handle successful signupsetShowSnackbar(true);
-        setShowSnackbar(true);
-        setSnackbarSuccess(true);
-        setSnackbarMessage('Login successful!');
-        setTimeout(() => {
-          navigate('/');
-        }, 1000); 
-      } else {
-        // Handle signup error
-        setShowSnackbar(true);
-        setSnackbarSuccess(false)
-        setSnackbarMessage('Signup failed');
-        setTimeout(() => {
-          setShowSnackbar(false); 
-        }, 1000);
-        console.error('Signup failed.');
-      }
-    } catch (error) {
-      console.error('Error occurred during signup:', error);
+    if (responseData.data && responseData.data.completePasswordReset) {
+      // Handle successful password reset initiation
+      setShowSnackbar(true);
+      setSnackbarSuccess(true);
+      setSnackbarMessage('Your password is changed successfully!');
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
+    } else {
+      // Handle password reset initiation failure
+      setShowSnackbar(true);
+      setSnackbarSuccess(false);
+      setSnackbarMessage('Reset failed');
+      setTimeout(() => {
+        setShowSnackbar(false);
+      }, 1000);
+      console.error('Reset failed.');
     }
-  };
+  } catch (error) {
+    console.error('Error occurred during Reset Password:', error);
+  }
+};
 
   return (
     <div className='login-hero'>
@@ -130,7 +131,7 @@ const Login = () => {
         <div className="col-md-4">
           <div className="card mt-5">
             <div className="card-body">
-              <h5>Login</h5>
+              <h5>Reset Password</h5>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Email address</label>
@@ -144,22 +145,32 @@ const Login = () => {
                   {errors.email && <div className="invalid-feedback text-white">{errors.email}</div>}
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <input type="password"
-                    className={`form-control ${errors.password && 'is-invalid'}`}
-                    name='password'
-                    value={formData.password}
-                    onChange={handleChange}
-                    autoComplete='off'
-                  />
-                  {errors.password && <div className="invalid-feedback text-white" >{errors.password}</div>}
-                </div>
-                <div className='button text-center'>
-                  <button type="submit" className="btn  sign-in-btn">Log In</button>
-                </div>
-                <div className="text">
-                    <span>Forget your Password ? <a href="./reset" className="sign-in"> Reset.</a></span>
+                    <label htmlFor="password">Password</label>
+                    <input type="password"
+                      className={`form-control ${errors.password && 'is-invalid'}`}
+                      name='password'
+                      value={formData.password}
+                      onChange={handleChange}
+                      autoComplete='off'
+                    />
+                    {errors.password && <div className="invalid-feedback text-white" >{errors.password}</div>}
                   </div>
+
+                  <div className="form-group">
+                    <label htmlFor="token">Token</label>
+                    <input type="text"
+                      className={`form-control ${errors.token && 'is-invalid'}`}
+                      name='token'
+                      value={formData.token}
+                      onChange={handleChange}
+                      autoComplete='off'
+                    />
+                    {errors.token && <div className="invalid-feedback text-white" >{errors.token}</div>}
+                  </div>
+                
+                <div className='button text-center'>
+                  <button type="submit" className="btn  sign-in-btn">Reset Password</button>
+                </div>
               </form>
               <Snackbar message={snackbarMessage} success={snackbarSuccess} show={showSnackbar} />
             </div>
@@ -170,4 +181,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SetPassword;

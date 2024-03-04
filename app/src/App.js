@@ -15,6 +15,8 @@ import HomeContainer from "./containers/HomeContainer/HomeContainer";
 import SignUpContainer from "./containers/SignUpContainer/SignUpContainer";
 import LoginContainer from "./containers/LoginContainer/LoginContainer";
 import BlogContainer from "./containers/AwarenessContainer/AwarenessContainer";
+import ResetContainer from "./containers/ResetContainer/ResetContainer";
+import SetPasswordContainer from "./containers/SetPasswordContainer/SetPasswordContainer";
 const App = () => {
   return (
     <Router>
@@ -24,6 +26,8 @@ const App = () => {
         <Route path="/signup" element={<SignUpContainer />} />
         <Route path="/blog" element={<BlogContainer />} />
         <Route path="/login"  element={<LoginContainer />} /> 
+        <Route path="/reset"  element={<ResetContainer />} /> 
+        <Route path="/set"  element={<SetPasswordContainer />} /> 
       </Routes>
       <Footer />
     </Router>
