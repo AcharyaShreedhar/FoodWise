@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Snackbar from '../../components/Core/Snackbar/Snackbar.jsx';
 import ProductsTable from '../../components/ProductsTable/ProductsTable.jsx';
 import { setProductsData, setProductFilters } from './productsSlice';
@@ -14,7 +15,10 @@ const ProductsContainer = () => {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSuccess, setSnackbarSuccess] = useState(false);
 
-  useEffect(() => {
+
+  const navigate = useNavigate();
+
+
     const fetchData = async () => {
       try {
         dispatch(setProductsData([]));
@@ -22,6 +26,7 @@ const ProductsContainer = () => {
           query: `
             query products($input: ProductSearchInput) {
               products(input: $input) {
+                _id,
                 productName,
                 productDescription,
                 productImage,
@@ -51,19 +56,7 @@ const ProductsContainer = () => {
 
         if (responseData?.data?.products?.length > 0) {
           dispatch(setProductsData(responseData.data.products));
-          setShowSnackbar(true);
-          setSnackbarSuccess(true);
-          setSnackbarMessage('Data fetch successful!');
-          setTimeout(() => {
-            setShowSnackbar(false);
-          }, 1000);
         } else {
-          setShowSnackbar(true);
-          setSnackbarSuccess(false);
-          setSnackbarMessage('No data found');
-          setTimeout(() => {
-            setShowSnackbar(false);
-          }, 1000);
           console.error('No data found.');
         }
       } catch (error) {
@@ -77,11 +70,26 @@ const ProductsContainer = () => {
       }
     };
 
-    fetchData();
-  }, [dispatch, filters]);
+useEffect(() => {
+  fetchData();
+}, [dispatch, filters]);
+
+  const handleSnackbar = (success, message) => {
+    console.log("Snackbar triggered with:", success, message); 
+    alert('handle snackbar')
+    setSnackbarSuccess(success);
+    setSnackbarMessage(message);
+    setShowSnackbar(true);
+    setTimeout(() => {
+        setShowSnackbar(false); 
+        fetchData();
+      }, 1000); 
+   
+  };
 
   return (
     <div className='products-container container'>
+         <Snackbar message={snackbarMessage} success={snackbarSuccess} show={showSnackbar} />
       <div className="directory-header">
         <h1>List of Products</h1>
         <div className="search-filter">
@@ -112,12 +120,12 @@ const ProductsContainer = () => {
       </div>
       {productsData.length > 0 ? (
         <Routes>
-          <Route path="/" element={<ProductsTable productsData={productsData} />} />
+          <Route path="/" element={<ProductsTable productsData={productsData} handleSnackbar={handleSnackbar} />} />
         </Routes>
       ) : (
-        <p>No data found</p>
+        <p className='pt-5 pb-5'>No Products found</p>
       )}
-      {showSnackbar && <Snackbar success={snackbarSuccess} message={snackbarMessage} />}
+    
     </div>
   );
 };
