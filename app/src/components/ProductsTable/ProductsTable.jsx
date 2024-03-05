@@ -1,11 +1,14 @@
 
 
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Table, Pagination } from "react-bootstrap";
+import { useMutation } from "@apollo/client";
+import { DELETE_PRODUCT } from "../../apis/productsApi.js";
+
 import "./ProductsTable.css";
 
-const ProductsTable = ({ productsData}) => {
+const ProductsTable = ({ productsData,handleSnackbar}) => {
   const itemsPerPage = 5;
   const totalPages = Math.ceil(productsData.length / itemsPerPage);
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -13,8 +16,28 @@ const ProductsTable = ({ productsData}) => {
   const endIndex = startIndex + itemsPerPage;
   const currentItems = productsData.slice(startIndex, endIndex);
 
+
+  // Define your mutation hook
+  const [deleteProductMutation] = useMutation(DELETE_PRODUCT);
+
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleDelete = (productId) => {
+    alert("yeha click bhayo hai")
+    // Call the delete product mutation function
+    deleteProductMutation({
+      variables: { productId },
+    }).then(() => {
+        handleSnackbar(true, 'Product is deleted Successfully!');
+        
+    }).catch((error) => {
+      // Handle error
+      handleSnackbar(false, 'Error Deleting Product. Please Try Again');
+      console.error("Error deleting product:", error);
+    });
   };
 
   return (
@@ -55,7 +78,7 @@ const ProductsTable = ({ productsData}) => {
                 <button  className="btn btn-sm btn-primary mr-5 btn-style" onClick={()=>{}}>Edit
 
                 </button>
-                <button  className="btn btn-sm btn-danger ml-5 btn-style" onClick={()=>{}}>Delete
+                <button  className="btn btn-sm btn-danger ml-5 btn-style" onClick={() => handleDelete(product._id)}>Delete
 
                 </button>
               </td>
