@@ -1,3 +1,7 @@
 .btn-style{
 margin-right: 10px;
 }
+
+.rounded-circle {
+    border-radius: 50%;
+  }

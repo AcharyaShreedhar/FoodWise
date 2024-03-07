@@ -1,7 +1,16 @@
-
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 6th March 2024
+    Application : FoodWise
+    ----------------------------------------------------
+*/
 
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import placeholderImage from "../../images/avatar.jpeg"
+import {Image, Col} from "react-bootstrap"
 import { Table, Pagination } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { DELETE_PRODUCT } from "../../apis/productsApi.js";
@@ -45,7 +54,7 @@ const ProductsTable = ({ productsData,handleSnackbar}) => {
       <Table striped bordered hover responsive>
         <thead>
           <tr>
-          <th>Image</th>
+            <th>Image</th>
             <th>Product Name</th>
             <th>Description</th>
             <th>Price</th>
@@ -61,7 +70,8 @@ const ProductsTable = ({ productsData,handleSnackbar}) => {
         <tbody>
           {currentItems.map((product, index) => (
             <tr key={`${product.productName}${index}`}>
-              <td>{product.productImage}</td>
+            <td>
+              <Image src={placeholderImage} className="rounded-circle" /></td>
               <td>{product.productName}</td>
               <td>{product.productDescription}</td>
               <td>{product.productPrice}</td>
