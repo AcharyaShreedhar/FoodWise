@@ -120,11 +120,11 @@ const SignUp = () => {
   return (
     <div className='signup-hero'>
       <div className="container">
-        <div className="row row-height justify-content-center">
+        <div className="row m-0 p-0 row-height justify-content-center align-items-center">
           <div className="col-md-4">
             <div className="card mt-5">
               <div className="card-body">
-                <h5>Create an Account</h5>
+                <h3>Create an Account</h3>
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="email">Email address</label>
@@ -135,7 +135,7 @@ const SignUp = () => {
                       onChange={handleChange}
                       autoComplete='off'
                     />
-                    {errors.email && <div className="invalid-feedback text-white">{errors.email}</div>}
+                    {errors.email && <div className="invalid-feedback text-danger pt-3">{errors.email}</div>}
                   </div>
                   <div className="form-group">
                     <label htmlFor="password">Password</label>
@@ -146,7 +146,7 @@ const SignUp = () => {
                       onChange={handleChange}
                       autoComplete='off'
                     />
-                    {errors.password && <div className="invalid-feedback text-white" >{errors.password}</div>}
+                    {errors.password && <div className="invalid-feedback text-danger pt-3" >{errors.password}</div>}
                   </div>
                   <div className='button text-center'>
                     <button type="submit" className="btn  sign-in-btn">Sign Up</button>

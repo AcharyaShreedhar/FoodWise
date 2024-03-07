@@ -21,11 +21,11 @@
 }
 
 .card-body {
-    background-color: #314ac0;
+    background-color: #7962d6;
     border-radius: 20px
 }
 
-h5 {
+h3 {
     text-align: center;
     color: #fff;
 }
@@ -38,12 +38,9 @@ h5 {
     border: 1px;
     border-radius: 25px;
     background-color: darkslateblue;
+    color: white;
 }
 
-.form-control:focus {
-    background-color: darkslateblue;
-    /* Or whatever background color you want */
-}
 
 label {
     color: #fff;
@@ -65,7 +62,7 @@ label {
 }
 
 .hero {
-    height: 500px;
+    height: 450px;
 }
 
 .signup-hero {

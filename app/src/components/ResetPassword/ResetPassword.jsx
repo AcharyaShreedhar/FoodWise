@@ -109,11 +109,11 @@ const ResetPassword = () => {
 
   return (
     <div className='login-hero'>
-      <div className="row  row-height justify-content-center">
+      <div className="row row m-0 p-0  row-height justify-content-center align-items-center">
         <div className="col-md-4">
           <div className="card mt-5">
             <div className="card-body">
-              <h5>Reset Password</h5>
+              <h3>Reset Password</h3>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Email address</label>
@@ -124,7 +124,7 @@ const ResetPassword = () => {
                     onChange={handleChange}
                     autoComplete='off'
                   />
-                  {errors.email && <div className="invalid-feedback text-white">{errors.email}</div>}
+                  {errors.email && <div className="invalid-feedback text-danger pt-3">{errors.email}</div>}
                 </div>
                 
                 <div className='button text-center'>
