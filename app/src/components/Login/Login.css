@@ -13,9 +13,14 @@
     color: #fff;
     font-weight: 900;
 }
+h3 {
+    text-align: center;
+    color: #fff;
+}
 
 .card {
     background-color: #7962d6;
+    font-size: x-large;
 }
 
 .form-group {
@@ -31,27 +36,28 @@
     border: 1px;
     border-radius: 25px;
     background-color: darkslateblue;
-}
-
-.form-control:focus {
-    background-color: darkslateblue;
-    /* Or whatever background color you want */
+    color:white;
+    font-size: medium;
 }
 
 label {
     color: #fff;
     margin-bottom: 5px;
-    font-size: small;
+    font-size: medium;
 }
 
 .button {
     margin-top: 15px;
+    font-size: large;
 }
 
 .sign-in-btn {
     background-color: #E6E09F;
     border: 1px;
     border-radius: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: large;
 }
 
 .sign-in-btn:hover {
@@ -59,10 +65,13 @@ label {
 }
 
 .hero {
-    height: 500px;
+    height: 450px;
 }
 
 .login-hero {
+    align-items: center;
+    justify-content: center;
+    margin: auto;
     background-color: darkslateblue;
 }
 
