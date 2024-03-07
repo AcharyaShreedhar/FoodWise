@@ -66,7 +66,7 @@ class DashBoardChart extends Component {
   render() {
     return (
       <div className="dashboard-chart bg-white rounded card">
-        <Row>
+        <Row className="m-2 p-2">
           <Col className="p-5">
             <h3>Inventory Tracking</h3>
             <Chart
@@ -88,7 +88,7 @@ class DashBoardChart extends Component {
             />
           </Col>
         </Row>
-        <Row>
+        <Row className="m-2 p-2">
           <Col className="p-5">
             <h3>Donation Statistics</h3>
             <Chart
@@ -104,7 +104,8 @@ class DashBoardChart extends Component {
               <Chart options={this.state.radialBarChartOptions}
                 series={this.state.radialBarSeries} type="radialBar" width={500} height={320} />
             </Col>
-          <Row>
+            </Row>
+          <Row className="m-2 p-2">
             <Col className="p-5">
               <h3>Inventory Growth</h3>
               <Chart options={this.state.areaChartOptions}
@@ -115,7 +116,7 @@ class DashBoardChart extends Component {
               <Chart options={this.state.pieChartOptions}
                 series={this.state.pieSeries} type="pie" width={500} height={320} />
             </Col>
-          </Row>
+         
         </Row>
       </div>
     );
