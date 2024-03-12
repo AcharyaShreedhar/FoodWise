@@ -68,8 +68,8 @@ const SignUp = () => {
     try {
       const requestBody = {
         query: `
-          mutation CreateUser($email: String!, $password: String!, $userType: String!) {
-            createUser(email: $email, password: $password,userType: $userType) {
+          mutation CreateUser($email: String!, $password: String!, $userType: String!,$userStatus:Boolean) {
+            createUser(email: $email, password: $password,userType: $userType, userStatus:$userStatus) {
              
               email
               password
@@ -80,6 +80,7 @@ const SignUp = () => {
           email: formData.email,
           password: formData.password,
           userType: formData.userType,
+          userStatus: formData.userType === "Admin" ? true : false 
         }
       };
 
@@ -92,6 +93,7 @@ const SignUp = () => {
       });
 
       const responseData = await response.json();
+      console.log('responsedata',responseData)
 
       if (responseData.data.createUser) {
         // Handle successful signup
