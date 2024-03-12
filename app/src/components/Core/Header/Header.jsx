@@ -10,9 +10,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../images/logo.png";
+import { useUser } from "../../../containers/LoginContainer/UserContext";
 import "./Header.css";
 
 const Header = () => {
+  const { user } = useUser();
+
+  console.log("sdfjsdfsd", user);
   return (
     <header className="header">
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -32,32 +36,32 @@ const Header = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
+            {user && user.userType === "Admin" && (
+              <li className="nav-item active">
+                <Link className="nav-link" to="/dashboard">
+                  home
+                </Link>
+              </li>
+            )}
+            {user &&
+              user.userType === "Admin" && ( // Conditionally render "Products" for Admin only
+                <li className="nav-item active">
+                  <Link className="nav-link" to="/products">
+                    products
+                  </Link>
+                </li>
+              )}
             <li className="nav-item active">
-              <Link className="nav-link" to="/">
-                home
-              </Link>
-            </li>
-            <li className="nav-item active">
-              <Link className="nav-link"  to="/products" >
-                products
-              </Link>
-            </li>
-            <li className="nav-item active">
-              <Link className="nav-link"  to="/blog">
+              <Link className="nav-link" to="/blog">
                 blog
               </Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link" >
-                about us
-              </Link>
+              <Link className="nav-link">about us</Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link" >
-                contacts
-              </Link>
+              <Link className="nav-link">contacts</Link>
             </li>
-
           </ul>
         </div>
       </nav>
