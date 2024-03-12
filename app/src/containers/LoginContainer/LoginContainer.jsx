@@ -10,8 +10,6 @@
 import React from "react";
 import Hero from "../../components/Core/Hero/Hero";
 import Login from "../../components/Login/Login";
-import Footer from "../../components/Core/Footer/Footer";
-
 
 const LoginContainer = () => {
   return (
