@@ -9,7 +9,7 @@ const SignUp = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    // Add other fields if needed
+    userType: 'User',
   });
 
   const [errors, setErrors] = useState({
@@ -68,8 +68,8 @@ const SignUp = () => {
     try {
       const requestBody = {
         query: `
-          mutation CreateUser($email: String!, $password: String!, $userType: String!) {
-            createUser(email: $email, password: $password,userType: $userType) {
+          mutation CreateUser($email: String!, $password: String!, $userType: String!,$userStatus:Boolean) {
+            createUser(email: $email, password: $password,userType: $userType, userStatus:$userStatus) {
              
               email
               password
@@ -79,7 +79,8 @@ const SignUp = () => {
         variables: {
           email: formData.email,
           password: formData.password,
-          userType: 'Admin'
+          userType: formData.userType,
+          userStatus: formData.userType === "Admin" ? true : false 
         }
       };
 
@@ -92,6 +93,7 @@ const SignUp = () => {
       });
 
       const responseData = await response.json();
+      console.log('responsedata',responseData)
 
       if (responseData.data.createUser) {
         // Handle successful signup
@@ -100,7 +102,7 @@ const SignUp = () => {
         setSnackbarMessage('User has been successfully registered');
         setTimeout(() => {
           navigate('/login');
-        }, 1000); 
+        }, 3000); 
         console.log('User signed up successfully!');
       } else {
         // Handle signup error
@@ -109,7 +111,7 @@ const SignUp = () => {
         setSnackbarMessage('Signup failed');
         setTimeout(() => {
           setShowSnackbar(false); 
-        }, 1000);
+        }, 3000);
         console.error('Signup failed.');
       }
     } catch (error) {
@@ -147,6 +149,21 @@ const SignUp = () => {
                       autoComplete='off'
                     />
                     {errors.password && <div className="invalid-feedback text-danger pt-3" >{errors.password}</div>}
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="userType">User Type</label>
+                    <select
+                      className="form-control"
+                      name="userType"
+                      value={formData.userType}
+                      onChange={handleChange}
+                    >
+                      <option value="Admin">Admin</option>
+                      <option value="Staff">Staff</option>
+                      <option value="User">User</option>
+                      <option value="Donor">Donor</option>
+                      <option value="Receiver">Receiver</option>
+                    </select>
                   </div>
                   <div className='button text-center'>
                     <button type="submit" className="btn  sign-in-btn">Sign Up</button>
