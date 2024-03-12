@@ -79,7 +79,6 @@ const Login = () => {
         query: `
           query loginUser($email: String!, $password: String!) {
             loginUser(email: $email, password: $password) {
-             
               email
               password
             }
@@ -113,14 +112,14 @@ const Login = () => {
         // Handle signup error
         setShowSnackbar(true);
         setSnackbarSuccess(false)
-        setSnackbarMessage('Signup failed');
+        setSnackbarMessage('Login failed');
         setTimeout(() => {
           setShowSnackbar(false); 
         }, 1000);
-        console.error('Signup failed.');
+        console.error('Login failed.');
       }
     } catch (error) {
-      console.error('Error occurred during signup:', error);
+      console.error('Error occurred during login:', error);
     }
   };
 

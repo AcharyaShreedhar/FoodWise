@@ -9,7 +9,7 @@ const SignUp = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    // Add other fields if needed
+    userType: 'User',
   });
 
   const [errors, setErrors] = useState({
@@ -79,7 +79,7 @@ const SignUp = () => {
         variables: {
           email: formData.email,
           password: formData.password,
-          userType: 'Admin'
+          userType: formData.userType,
         }
       };
 
@@ -100,7 +100,7 @@ const SignUp = () => {
         setSnackbarMessage('User has been successfully registered');
         setTimeout(() => {
           navigate('/login');
-        }, 1000); 
+        }, 3000); 
         console.log('User signed up successfully!');
       } else {
         // Handle signup error
@@ -109,7 +109,7 @@ const SignUp = () => {
         setSnackbarMessage('Signup failed');
         setTimeout(() => {
           setShowSnackbar(false); 
-        }, 1000);
+        }, 3000);
         console.error('Signup failed.');
       }
     } catch (error) {
@@ -147,6 +147,21 @@ const SignUp = () => {
                       autoComplete='off'
                     />
                     {errors.password && <div className="invalid-feedback text-danger pt-3" >{errors.password}</div>}
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="userType">User Type</label>
+                    <select
+                      className="form-control"
+                      name="userType"
+                      value={formData.userType}
+                      onChange={handleChange}
+                    >
+                      <option value="Admin">Admin</option>
+                      <option value="Staff">Staff</option>
+                      <option value="User">User</option>
+                      <option value="Donor">Donor</option>
+                      <option value="Receiver">Receiver</option>
+                    </select>
                   </div>
                   <div className='button text-center'>
                     <button type="submit" className="btn  sign-in-btn">Sign Up</button>
