@@ -50,6 +50,7 @@ const userProfileResolver = {
         phoneNumber,
         address,
         profileImage,
+        userId,
       } = args;
 
       try {
@@ -60,6 +61,7 @@ const userProfileResolver = {
           phoneNumber,
           address,
           profileImage,
+          userId,
         });
         const savedUserProfile = await newUserProfile.save();
         return savedUserProfile;
@@ -77,6 +79,7 @@ const userProfileResolver = {
         phoneNumber,
         address,
         profileImage,
+        userId,
       } = input;
 
       try {
@@ -90,6 +93,7 @@ const userProfileResolver = {
               phoneNumber,
               address,
               profileImage,
+              userId,
             },
           },
           { new: true }
