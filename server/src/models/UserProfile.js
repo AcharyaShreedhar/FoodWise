@@ -27,6 +27,9 @@ const userProfileSchema = new mongoose.Schema({
   },
   address:{
     type:String,
+  },
+  profileImage:{
+    type:String,
   }
 });
 

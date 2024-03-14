@@ -51,6 +51,7 @@ const userProfileResolver = {
         dateOfBirth,
         phoneNumber,
         address,
+        profileImage,
       } = args;
 
       try {
@@ -60,6 +61,7 @@ const userProfileResolver = {
             dateOfBirth,
             phoneNumber,
             address,
+            profileImage,
         });
         const savedUserProfile = await newUserProfile.save();
         return savedUserProfile;
@@ -70,11 +72,13 @@ const userProfileResolver = {
     },
     updateUserProfile: async (_, { input }) => {
       const {
+            userProfileId,
             firstName,
             lastName,
             dateOfBirth,
             phoneNumber,
             address,
+            profileImage,
       } = input;
 
       try {
@@ -87,6 +91,7 @@ const userProfileResolver = {
                 dateOfBirth,
                 phoneNumber,
                 address,
+                profileImage,
             },
           },
           { new: true }
