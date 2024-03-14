@@ -7,8 +7,7 @@
     ----------------------------------------------------
 */
 
-
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userProfileSchema = new mongoose.Schema({
   firstName: {
@@ -22,17 +21,17 @@ const userProfileSchema = new mongoose.Schema({
   dateOfBirth: {
     type: Date,
   },
-  phoneNumber:{
-    type:String,
+  phoneNumber: {
+    type: String,
   },
-  address:{
-    type:String,
+  address: {
+    type: String,
   },
-  profileImage:{
-    type:String,
-  }
+  profileImage: {
+    type: String,
+  },
 });
 
-const UserProfile = mongoose.model('UserProfile', userProfileSchema);
+const UserProfile = mongoose.model("UserProfile", userProfileSchema);
 
 module.exports = UserProfile;
