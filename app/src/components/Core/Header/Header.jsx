@@ -1,22 +1,25 @@
-/*
-    ---------------------------------------------------
-    Author      : Shree Dhar Acharya
-    StudentId   : 8899288
-    Date        : 4th Feb 2024
-    Application : FoodWise
-    ----------------------------------------------------
-*/
-
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // Import useHistory hook
+import { useNavigate } from 'react-router-dom';
 import logo from "../../../images/logo.png";
 import { useUser } from "../../../containers/LoginContainer/UserContext";
 import "./Header.css";
 
 const Header = () => {
-  const { user } = useUser();
+  const { user, setUser } = useUser(); // Get setUser function from UserContext
+  const navigate = useNavigate();
 
-  console.log("sdfjsdfsd", user);
+ // Logout function with confirmation dialog
+ const handleLogout = () => {
+  const shouldLogout = window.confirm("Are you sure you want to log out?");
+  if (shouldLogout) {
+    // Clear user information
+    setUser(null);
+    // Redirect user to login page
+    navigate('/login');
+  }
+};
+
   return (
     <header className="header">
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -36,6 +39,7 @@ const Header = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
+            {/* Render menu items based on user type */}
             {user && user.userType === "Admin" && (
               <li className="nav-item active">
                 <Link className="nav-link" to="/dashboard">
@@ -44,7 +48,7 @@ const Header = () => {
               </li>
             )}
             {user &&
-              user.userType === "Admin" && ( // Conditionally render "Products" for Admin only
+              user.userType === "Admin" && (
                 <li className="nav-item active">
                   <Link className="nav-link" to="/products">
                     products
@@ -57,11 +61,20 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link">about us</Link>
+              <Link className="nav-link" to="/about">
+                about us
+              </Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link">contacts</Link>
+              <Link className="nav-link" to="/contacts">
+                contacts
+              </Link>
             </li>
+            {user && (
+              <li className="nav-item active">
+                <Link className="nav-link" onClick={handleLogout}>logout</Link>
+              </li>
+            )}
           </ul>
         </div>
       </nav>
