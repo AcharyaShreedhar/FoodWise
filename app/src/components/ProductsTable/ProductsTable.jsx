@@ -25,7 +25,6 @@ const ProductsTable = ({ productsData,handleSnackbar}) => {
   const endIndex = startIndex + itemsPerPage;
   const currentItems = productsData.slice(startIndex, endIndex);
 
-
   // Define your mutation hook
   const [deleteProductMutation] = useMutation(DELETE_PRODUCT);
 
@@ -77,14 +76,14 @@ const ProductsTable = ({ productsData,handleSnackbar}) => {
               <td>{product.productPrice}</td>
               <td>{product.productSalePrice}</td>
               <td>{product.productQuantity}</td>
-              <td>{product.productStatus}</td>
+              <td>{product.productStatus ? "In Stock":"Out of Stock"}</td>
               <td>{product.productNotes}</td>
               <td>
                 {new Date(
                   parseInt(product.productExpiry)
                 ).toLocaleDateString()}
               </td>
-              <td>
+              <td className='d-flex'>
                 <button  className="btn btn-sm btn-primary mr-5 btn-style" onClick={()=>{}}>Edit
 
                 </button>
