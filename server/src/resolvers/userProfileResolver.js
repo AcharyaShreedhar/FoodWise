@@ -7,23 +7,21 @@
     ----------------------------------------------------
 */
 
-const UserProfile = require("../models/UserProfile")
+const UserProfile = require("../models/UserProfile");
 
 const userProfileResolver = {
   Query: {
     userProfiles: async (_, { input }) => {
       try {
         // Extracting search criteria from the input object
-        const {
-          firstName,
-        } = input;
+        const { firstName } = input;
 
         // Constructing the base query
-        let query = Product.find();
+        let query = UserProfile.find();
 
         // Adding search criteria to the query
         if (firstName) {
-          query = query.where('firstName').regex(new RegExp(firstName, 'i'));
+          query = query.where("firstName").regex(new RegExp(firstName, "i"));
         }
 
         // Execute the query
@@ -56,12 +54,12 @@ const userProfileResolver = {
 
       try {
         const newUserProfile = new UserProfile({
-            firstName,
-            lastName,
-            dateOfBirth,
-            phoneNumber,
-            address,
-            profileImage,
+          firstName,
+          lastName,
+          dateOfBirth,
+          phoneNumber,
+          address,
+          profileImage,
         });
         const savedUserProfile = await newUserProfile.save();
         return savedUserProfile;
@@ -72,13 +70,13 @@ const userProfileResolver = {
     },
     updateUserProfile: async (_, { input }) => {
       const {
-            userProfileId,
-            firstName,
-            lastName,
-            dateOfBirth,
-            phoneNumber,
-            address,
-            profileImage,
+        userProfileId,
+        firstName,
+        lastName,
+        dateOfBirth,
+        phoneNumber,
+        address,
+        profileImage,
       } = input;
 
       try {
@@ -86,12 +84,12 @@ const userProfileResolver = {
           userProfileId,
           {
             $set: {
-                firstName,
-                lastName,
-                dateOfBirth,
-                phoneNumber,
-                address,
-                profileImage,
+              firstName,
+              lastName,
+              dateOfBirth,
+              phoneNumber,
+              address,
+              profileImage,
             },
           },
           { new: true }
@@ -104,7 +102,9 @@ const userProfileResolver = {
     },
     deleteUserProfile: async (_, { userProfileId }) => {
       try {
-        const deletedUserProfile = await UserProfile.findByIdAndDelete(userProfileId);
+        const deletedUserProfile = await UserProfile.findByIdAndDelete(
+          userProfileId
+        );
         return !!deletedUserProfile;
       } catch (error) {
         throw new Error("Failed to delete userProfile");

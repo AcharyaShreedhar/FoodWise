@@ -15,16 +15,18 @@ require("dotenv").config({ path: "../.env" });
 const connectDB = require("./db/db");
 const userSchema = require("./schemas/userSchema");
 const userProfileSchema =require("./schemas/userProfileSchema");
+const orgProfileSchema= require("./schemas/orgProfileSchema");
 const productSchema= require("./schemas/productSchema");
 const userResolvers = require("./resolvers/userResolver");
 const userProfileResolver = require("./resolvers/userProfileResolver");
+const orgProfileResolver=require("./resolvers/orgProfileResolver");
 const productResolvers=require("./resolvers/productResolver");
 
 
 // Create an Apollo Server instance
 const server = new ApolloServer({
-  typeDefs: [userSchema,userProfileSchema, productSchema], // Merge type definitions
-  resolvers: [userResolvers,userProfileResolver, productResolvers], // Merge resolvers
+  typeDefs: [userSchema,userProfileSchema,orgProfileSchema, productSchema], // Merge type definitions
+  resolvers: [userResolvers,userProfileResolver,orgProfileResolver, productResolvers], // Merge resolvers
   playground: true,
 });
 

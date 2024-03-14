@@ -17,7 +17,7 @@ const userProfileSchema = gql`
     dateOfBirth: String!
     phoneNumber: String!
     address: String!
-    profileImage:String
+    profileImage: String
   }
 
   type Query {
@@ -27,12 +27,12 @@ const userProfileSchema = gql`
 
   type Mutation {
     createUserProfile(
-        firstName: String!
-        lastName: String!
-        dateOfBirth: String!
-        phoneNumber: String!
-        address: String!
-        profileImage:String
+      firstName: String!
+      lastName: String!
+      dateOfBirth: String!
+      phoneNumber: String!
+      address: String!
+      profileImage: String
     ): UserProfile
   }
 
@@ -48,12 +48,11 @@ const userProfileSchema = gql`
     dateOfBirth: String
     phoneNumber: String
     address: String
-    profileImage:String
+    profileImage: String
   }
 
   input UserProfileSearchInput {
     firstName: String
-    
   }
 `;
 

@@ -9,16 +9,16 @@
 
 const mongoose = require("mongoose");
 
-const userProfileSchema = new mongoose.Schema({
-  firstName: {
+const orgProfileSchema = new mongoose.Schema({
+  orgName: {
     type: String,
     required: true,
   },
-  lastName: {
+  website: {
     type: String,
     required: true,
   },
-  dateOfBirth: {
+  establishedDate: {
     type: Date,
   },
   phoneNumber: {
@@ -32,6 +32,6 @@ const userProfileSchema = new mongoose.Schema({
   },
 });
 
-const UserProfile = mongoose.model("UserProfile", userProfileSchema);
+const OrgProfile = mongoose.model("OrgProfile", orgProfileSchema);
 
-module.exports = UserProfile;
+module.exports = OrgProfile;
