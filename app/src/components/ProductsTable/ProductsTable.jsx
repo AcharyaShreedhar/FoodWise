@@ -7,17 +7,17 @@
     ----------------------------------------------------
 */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import placeholderImage from "../../images/avatar.jpeg"
-import {Image, Col} from "react-bootstrap"
+import placeholderImage from "../../images/avatar.jpeg";
+import { Image, Col } from "react-bootstrap";
 import { Table, Pagination } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import { DELETE_PRODUCT } from "../../apis/productsApi.js";
 
 import "./ProductsTable.css";
 
-const ProductsTable = ({ productsData,handleSnackbar}) => {
+const ProductsTable = ({ productsData, handleSnackbar }) => {
   const itemsPerPage = 5;
   const totalPages = Math.ceil(productsData.length / itemsPerPage);
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -28,24 +28,26 @@ const ProductsTable = ({ productsData,handleSnackbar}) => {
   // Define your mutation hook
   const [deleteProductMutation] = useMutation(DELETE_PRODUCT);
 
-
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
   const handleDelete = (productId) => {
-    alert("yeha click bhayo hai")
-    // Call the delete product mutation function
-    deleteProductMutation({
-      variables: { productId },
-    }).then(() => {
-        handleSnackbar(true, 'Product is deleted Successfully!');
-        
-    }).catch((error) => {
-      // Handle error
-      handleSnackbar(false, 'Error Deleting Product. Please Try Again');
-      console.error("Error deleting product:", error);
-    });
+    // Show confirmation dialog to the user
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      // User confirmed, proceed with deletion
+      deleteProductMutation({
+        variables: { productId },
+      })
+        .then(() => {
+          handleSnackbar(true, "Product is deleted Successfully!");
+        })
+        .catch((error) => {
+          // Handle error
+          handleSnackbar(false, "Error Deleting Product. Please Try Again");
+          console.error("Error deleting product:", error);
+        });
+    }
   };
 
   return (
@@ -63,32 +65,36 @@ const ProductsTable = ({ productsData,handleSnackbar}) => {
             <th>Notes</th>
             <th>Expiry</th>
             <th>Actions</th>
-          
           </tr>
         </thead>
         <tbody>
           {currentItems.map((product, index) => (
             <tr key={`${product.productName}${index}`}>
-            <td>
-              <Image src={placeholderImage} className="rounded-circle" /></td>
+              <td>
+                <Image src={placeholderImage} className="rounded-circle" />
+              </td>
               <td>{product.productName}</td>
               <td>{product.productDescription}</td>
               <td>{product.productPrice}</td>
               <td>{product.productSalePrice}</td>
               <td>{product.productQuantity}</td>
-              <td>{product.productStatus ? "In Stock":"Out of Stock"}</td>
+              <td>{product.productStatus ? "In Stock" : "Out of Stock"}</td>
               <td>{product.productNotes}</td>
               <td>
-                {new Date(
-                  parseInt(product.productExpiry)
-                ).toLocaleDateString()}
+                {new Date(parseInt(product.productExpiry)).toLocaleDateString()}
               </td>
-              <td className='d-flex'>
-                <button  className="btn btn-sm btn-primary mr-5 btn-style" onClick={()=>{}}>Edit
-
+              <td className="d-flex">
+                <button
+                  className="btn btn-sm btn-primary mr-5 btn-style"
+                  onClick={() => {}}
+                >
+                  Edit
                 </button>
-                <button  className="btn btn-sm btn-danger ml-5 btn-style" onClick={() => handleDelete(product._id)}>Delete
-
+                <button
+                  className="btn btn-sm btn-danger ml-5 btn-style"
+                  onClick={() => handleDelete(product._id)}
+                >
+                  Delete
                 </button>
               </td>
             </tr>
@@ -96,27 +102,27 @@ const ProductsTable = ({ productsData,handleSnackbar}) => {
         </tbody>
       </Table>
       <hr />
-        <div className="text-center d-flex justify-content-center">
-          <Pagination className="mt-3">
-            {[...Array(totalPages)].map((_, page) => (
-              <Pagination.Item
-                key={page}
-                active={page + 1 === currentPage}
-                onClick={() => handlePageChange(page + 1)}
-                style={{
-                  backgroundColor:
-                    page + 1 === currentPage ? "#28a745" : "#007bff",
-                  color: "white",
-                  border: "1px solid #dee2e6",
-                  margin: "0 2px",
-                  cursor: "pointer",
-                }}
-              >
-                {page + 1}
-              </Pagination.Item>
-            ))}
-          </Pagination>
-        </div>
+      <div className="text-center d-flex justify-content-center">
+        <Pagination className="mt-3">
+          {[...Array(totalPages)].map((_, page) => (
+            <Pagination.Item
+              key={page}
+              active={page + 1 === currentPage}
+              onClick={() => handlePageChange(page + 1)}
+              style={{
+                backgroundColor:
+                  page + 1 === currentPage ? "#28a745" : "#007bff",
+                color: "white",
+                border: "1px solid #dee2e6",
+                margin: "0 2px",
+                cursor: "pointer",
+              }}
+            >
+              {page + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      </div>
       <hr />
     </div>
   );
