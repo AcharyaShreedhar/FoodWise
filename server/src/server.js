@@ -14,15 +14,17 @@ const mongoose = require("mongoose");
 require("dotenv").config({ path: "../.env" });
 const connectDB = require("./db/db");
 const userSchema = require("./schemas/userSchema");
+const userProfileSchema =require("./schemas/userProfileSchema");
 const productSchema= require("./schemas/productSchema");
 const userResolvers = require("./resolvers/userResolver");
+const userProfileResolver = require("./resolvers/userProfileResolver");
 const productResolvers=require("./resolvers/productResolver");
 
 
 // Create an Apollo Server instance
 const server = new ApolloServer({
-  typeDefs: [userSchema, productSchema], // Merge type definitions
-  resolvers: [userResolvers, productResolvers], // Merge resolvers
+  typeDefs: [userSchema,userProfileSchema, productSchema], // Merge type definitions
+  resolvers: [userResolvers,userProfileResolver, productResolvers], // Merge resolvers
   playground: true,
 });
 
