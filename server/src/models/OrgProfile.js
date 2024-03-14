@@ -30,6 +30,9 @@ const orgProfileSchema = new mongoose.Schema({
   profileImage: {
     type: String,
   },
+  userId:{
+    type:String,
+  }
 });
 
 const OrgProfile = mongoose.model("OrgProfile", orgProfileSchema);

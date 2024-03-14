@@ -50,6 +50,7 @@ const orgProfileResolver = {
         phoneNumber,
         address,
         profileImage,
+        userId,
       } = args;
 
       try {
@@ -60,6 +61,7 @@ const orgProfileResolver = {
           phoneNumber,
           address,
           profileImage,
+          userId,
         });
         const savedOrgProfile = await newOrgProfile.save();
         return savedOrgProfile;
@@ -77,6 +79,7 @@ const orgProfileResolver = {
         phoneNumber,
         address,
         profileImage,
+        userId,
       } = input;
 
       try {
@@ -90,6 +93,7 @@ const orgProfileResolver = {
               phoneNumber,
               address,
               profileImage,
+              userId,
             },
           },
           { new: true }

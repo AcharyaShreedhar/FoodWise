@@ -18,6 +18,7 @@ const orgProfileSchema = gql`
     phoneNumber: String!
     address: String!
     profileImage: String
+    userId:String
   }
 
   type Query {
@@ -33,6 +34,7 @@ const orgProfileSchema = gql`
       phoneNumber: String!
       address: String!
       profileImage: String
+      userId:String
     ): OrgProfile
   }
 
@@ -49,6 +51,7 @@ const orgProfileSchema = gql`
     phoneNumber: String!
     address: String!
     profileImage: String
+    userId:String
   }
 
   input OrgProfileSearchInput {
