@@ -18,6 +18,7 @@ import SetPasswordContainer from "./containers/SetPasswordContainer/SetPasswordC
 import ProductsContainer from "./containers/ProductsContainer/ProductsContainer";
 import LoginContainer from "./containers/LoginContainer/LoginContainer";
 import AboutUsContainer from "./containers/AboutUsContainer/AboutUsContainer";
+import ContactUsContainer from "./containers/ContactUsContainer/ContactUsContainer";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="/dashboard" element={<PrivateRoute />} />
             <Route path="/blog" element={<BlogContainer />} />
             <Route path="/aboutus" element={<AboutUsContainer />} />
+            <Route path="/contactus" element={<ContactUsContainer />} />
             <Route path="/reset" element={<ResetContainer />} />
             <Route path="/set" element={<SetPasswordContainer />} />
             <Route path="/login" element={<LoginComponent />} />
