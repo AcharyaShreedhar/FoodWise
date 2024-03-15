@@ -18,7 +18,7 @@ import { DELETE_PRODUCT } from "../../apis/productsApi.js";
 import "./ProductsTable.css";
 
 const ProductsTable = ({ productsData, handleSnackbar }) => {
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
   const totalPages = Math.ceil(productsData.length / itemsPerPage);
   const [currentPage, setCurrentPage] = React.useState(1);
   const startIndex = (currentPage - 1) * itemsPerPage;
