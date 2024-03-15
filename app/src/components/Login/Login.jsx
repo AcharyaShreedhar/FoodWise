@@ -136,8 +136,8 @@ const Login = () => {
         <div className="col-md-4">
           <div className="card mt-5">
             <div className="card-body">
-              <h3>Login</h3>
-              <form onSubmit={handleSubmit}>
+              <h3 className="mt-5">Login</h3>
+              <form onSubmit={handleSubmit} className="p-4">
                 <div className="form-group">
                   <label htmlFor="email">Email address</label>
                   <input

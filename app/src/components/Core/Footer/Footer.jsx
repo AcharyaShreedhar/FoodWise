@@ -27,16 +27,16 @@ const Footer = () => {
         <div className="row m-1">
           <div className="col-md-3"></div>
             <div className="col-md-2">
-              <h6>About Us</h6>
+              <h6 className="bold-text">about us</h6>
               <ul>
-                <li>Company</li>
-                <li>Team</li>
-                <li>Blog</li>
-                <li>FAQ</li>
+                <li>company</li>
+                <li>team</li>
+                <li>blog</li>
+                <li>faq</li>
               </ul>
             </div>
             <div className="col-md-2">
-              <h6>Quick Links</h6>
+              <h6 className="bold-text">quick links</h6>
               <ul>
                 <li>product support</li>
                 <li>careers</li>
@@ -45,7 +45,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className="col-md-2">
-              <h6>Connect</h6>
+              <h6 className="bold-text">connect</h6>
               <ul>
                 <li>instagram</li>
                 <li>facebook</li>
@@ -54,11 +54,11 @@ const Footer = () => {
               </ul>
             </div>
             <div className="col-md-3">
-              <h6>Newsletter</h6>
+              <h6 className="bold-text"> newsletter</h6>
               <p>get exclusive updates directly to your inbox.</p>
               {/* Add your newsletter subscription form here */}
               <div class="input-group">
-                <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <input type="search" class="form-control" placeholder="search" aria-label="Search" aria-describedby="search-addon" />
                 <button type="button" class="btn btn-primary subscribe-btn">search</button>
               </div>
             </div>

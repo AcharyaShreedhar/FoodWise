@@ -1,37 +1,43 @@
-import React, { useState } from 'react';
-import './SignUp.css';
-import { useNavigate } from 'react-router-dom';
-import Snackbar from '../Core/Snackbar/Snackbar'
-
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 14th March 2024
+    Application : FoodWise
+    ----------------------------------------------------
+*/
+import React, { useState } from "react";
+import "./SignUp.css";
+import { useNavigate } from "react-router-dom";
+import Snackbar from "../Core/Snackbar/Snackbar";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    userType: 'User',
+    email: "",
+    password: "",
+    userType: "User",
   });
 
   const [errors, setErrors] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [showSnackbar, setShowSnackbar] = useState(false); // State to control Snackbar visibility
-  const [snackbarMessage, setSnackbarMessage] = useState(''); // State to set the Snackbar message
-  const [snackbarSuccess, setSnackbarSuccess] = useState(''); // State to set the Snackbar message
-
+  const [snackbarMessage, setSnackbarMessage] = useState(""); // State to set the Snackbar message
+  const [snackbarSuccess, setSnackbarSuccess] = useState(""); // State to set the Snackbar message
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
     // Clear previous errors when user starts typing
     setErrors({
       ...errors,
-      [name]: ''
+      [name]: "",
     });
   };
 
@@ -40,18 +46,18 @@ const SignUp = () => {
     const newErrors = {};
 
     if (!formData.email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
       valid = false;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Invalid email address';
+      newErrors.email = "Invalid email address";
       valid = false;
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = "Password is required";
       valid = false;
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters long';
+      newErrors.password = "Password must be at least 6 characters long";
       valid = false;
     }
 
@@ -80,75 +86,87 @@ const SignUp = () => {
           email: formData.email,
           password: formData.password,
           userType: formData.userType,
-          userStatus: formData.userType === "Admin" ? true : false 
-        }
+          userStatus: formData.userType === "Admin" ? true : false,
+        },
       };
 
-      const response = await fetch('https://foodwise.minipixai.com/', {
-        method: 'POST',
+      const response = await fetch("https://foodwise.minipixai.com/", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify(requestBody),
       });
 
       const responseData = await response.json();
-      console.log('responsedata',responseData)
+      console.log("responsedata", responseData);
 
       if (responseData.data.createUser) {
         // Handle successful signup
         setShowSnackbar(true);
         setSnackbarSuccess(true);
-        setSnackbarMessage('User has been successfully registered');
+        setSnackbarMessage("User has been successfully registered");
         setTimeout(() => {
-          navigate('/login');
-        }, 3000); 
-        console.log('User signed up successfully!');
+          navigate("/login");
+        }, 3000);
+        console.log("User signed up successfully!");
       } else {
         // Handle signup error
         setShowSnackbar(true);
-        setSnackbarSuccess(false)
-        setSnackbarMessage('Signup failed');
+        setSnackbarSuccess(false);
+        setSnackbarMessage("Signup failed");
         setTimeout(() => {
-          setShowSnackbar(false); 
+          setShowSnackbar(false);
         }, 3000);
-        console.error('Signup failed.');
+        console.error("Signup failed.");
       }
     } catch (error) {
-      console.error('Error occurred during signup:', error);
+      console.error("Error occurred during signup:", error);
     }
   };
 
   return (
-    <div className='signup-hero'>
+    <div className="signup-hero">
       <div className="container">
         <div className="row m-0 p-0 row-height justify-content-center align-items-center">
           <div className="col-md-4">
             <div className="card mt-5">
               <div className="card-body">
-                <h3>Create an Account</h3>
-                <form onSubmit={handleSubmit}>
+                <h3 className="mt-5">Create an Account</h3>
+                <form onSubmit={handleSubmit} className="p-4">
                   <div className="form-group">
                     <label htmlFor="email">Email address</label>
-                    <input type="text"
-                      className={`form-control ${errors.email && 'is-invalid'}`}
-                      name='email'
+                    <input
+                      type="text"
+                      className={`form-control ${errors.email && "is-invalid"}`}
+                      name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      autoComplete='off'
+                      autoComplete="off"
                     />
-                    {errors.email && <div className="invalid-feedback text-danger pt-3">{errors.email}</div>}
+                    {errors.email && (
+                      <div className="invalid-feedback text-danger pt-3">
+                        {errors.email}
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password"
-                      className={`form-control ${errors.password && 'is-invalid'}`}
-                      name='password'
+                    <input
+                      type="password"
+                      className={`form-control ${
+                        errors.password && "is-invalid"
+                      }`}
+                      name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      autoComplete='off'
+                      autoComplete="off"
                     />
-                    {errors.password && <div className="invalid-feedback text-danger pt-3" >{errors.password}</div>}
+                    {errors.password && (
+                      <div className="invalid-feedback text-danger pt-3">
+                        {errors.password}
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="userType">User Type</label>
@@ -165,19 +183,30 @@ const SignUp = () => {
                       <option value="Receiver">Receiver</option>
                     </select>
                   </div>
-                  <div className='button text-center'>
-                    <button type="submit" className="btn  sign-in-btn">Sign Up</button>
+                  <div className="button text-center">
+                    <button type="submit" className="btn  sign-in-btn">
+                      Sign Up
+                    </button>
                   </div>
                   <div className="text">
-                    <span>Already have an account? <a href="./login" className="sign-in"> Sign In</a></span>
+                    <span>
+                      Already have an account?{" "}
+                      <a href="./login" className="sign-in">
+                        {" "}
+                        Sign In
+                      </a>
+                    </span>
                   </div>
                 </form>
-                <Snackbar message={snackbarMessage} success={snackbarSuccess} show={showSnackbar} />
+                <Snackbar
+                  message={snackbarMessage}
+                  success={snackbarSuccess}
+                  show={showSnackbar}
+                />
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

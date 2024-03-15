@@ -1,0 +1,83 @@
+.about-us-container {
+    padding: 50px;
+    background-color: #25318b;
+  }
+  
+  .section-title {
+    color: #ffffff; /* White text color */
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .team-members {
+    margin-top: 20px;
+   
+  }
+
+  .profile-image{
+    height: 100px;
+    width: 90px;
+  }
+  
+  .team-member {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: #2e4ac1;
+    border-radius: 20px;
+    
+  }
+  .team-member h3 {
+    font-size: 20px;
+    margin-top: 10px;
+    color: #ffffff; /* White text color */
+  }
+  
+  .team-member h4 {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #cccccc; 
+  }
+  .team-member p {
+    margin-top: 10px;
+    color: #ffffff; 
+  }
+  .cta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cta-button {
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #34cbab; /* Button color */
+    border-color: #34cbab; /* Button border color */
+    color: #ffffff; /* Button text color */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    animation: bounce 0.5s infinite alternate;
+    background-color: #237866;
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .section {
+    background-color: #2e4ac1;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  
+  

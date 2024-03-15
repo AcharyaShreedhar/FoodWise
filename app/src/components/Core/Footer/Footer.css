@@ -10,7 +10,7 @@
 .footer {
   width: 100%;
   display: flex;
-  background-color: #2ecba9;
+  background-color: #34cbab;
   color: black;
   padding: 15px 0;
   text-align: center;
@@ -19,23 +19,13 @@
 }
 
 .footer-header {
-  background-color: #2ecba9;
+  background-color: #34cbab;
 }
 
 .footer p {
   margin: 0;
   font-size: 1.1rem;
 }
-
-
-/*
-    ---------------------------------------------------
-    Author      : Shree Dhar Acharya
-    StudentId   : 8899288
-    Date        : 6th Feb 2024
-    Application : FoodWise
-    ----------------------------------------------------
-*/
 
 .hero {
   height: 100px;
@@ -74,4 +64,7 @@ body {
   font-size: 12px;
   text-align: center;
   margin-top: 0.5%
+}
+.bold-text {
+  font-weight: bold;
 }
