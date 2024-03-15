@@ -19,7 +19,7 @@ h3 {
 }
 
 .card {
-    background-color: #7962d6;
+    background-color: #2e4ac1;
     font-size: x-large;
 }
 
@@ -35,7 +35,7 @@ h3 {
 .form-control {
     border: 1px;
     border-radius: 25px;
-    background-color: darkslateblue;
+    background-color: #25318b;
     color:white;
     font-size: medium;
 }
@@ -52,11 +52,12 @@ label {
 }
 
 .sign-in-btn {
-    background-color: #E6E09F;
+    background-color: #34cbab;
     border: 1px;
     border-radius: 25px;
     padding-left: 25px;
     padding-right: 25px;
+    margin-top: 10px;
     font-size: large;
 }
 
@@ -72,7 +73,7 @@ label {
     align-items: center;
     justify-content: center;
     margin: auto;
-    background-color: darkslateblue;
+    background-color: #25318b;
 }
 
 .login-hero .col-md-4 {

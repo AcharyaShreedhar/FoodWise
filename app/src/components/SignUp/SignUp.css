@@ -21,7 +21,7 @@
 }
 
 .card-body {
-    background-color: #7962d6;
+    background-color: #2e4ac1;
     border-radius: 20px
 }
 
@@ -37,7 +37,7 @@ h3 {
 .form-control {
     border: 1px;
     border-radius: 25px;
-    background-color: darkslateblue;
+    background-color: #25318b;
     color: white;
 }
 
@@ -53,7 +53,8 @@ label {
 }
 
 .sign-in-btn {
-    background-color: #30ccac;
+    margin-top: 10px;
+    background-color: #34cbab;
 
 }
 
@@ -66,7 +67,7 @@ label {
 }
 
 .signup-hero {
-    background-color: darkslateblue;
+    background-color: #25318b;
 }
 
 .col-md-4 {

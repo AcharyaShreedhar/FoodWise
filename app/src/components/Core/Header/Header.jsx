@@ -1,3 +1,12 @@
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 14th March 2024
+    Application : FoodWise
+    ----------------------------------------------------
+*/
+
 import React from "react";
 import { Link } from "react-router-dom"; // Import useHistory hook
 import { useNavigate } from 'react-router-dom';
