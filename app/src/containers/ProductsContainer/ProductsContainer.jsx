@@ -75,8 +75,6 @@ useEffect(() => {
 }, [dispatch, filters]);
 
   const handleSnackbar = (success, message) => {
-    console.log("Snackbar triggered with:", success, message); 
-    alert('handle snackbar')
     setSnackbarSuccess(success);
     setSnackbarMessage(message);
     setShowSnackbar(true);
@@ -112,7 +110,7 @@ useEffect(() => {
             onChange={(e) => dispatch(setProductFilters({ ...filters, productExpiry: e.target.value }))}
           />
         </div>
-        <Link to="/insert">
+        <Link to="/addproduct">
           <button type="button" className="btn btn-primary">
             Add Product
           </button>

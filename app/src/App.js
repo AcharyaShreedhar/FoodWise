@@ -19,6 +19,7 @@ import ProductsContainer from "./containers/ProductsContainer/ProductsContainer"
 import LoginContainer from "./containers/LoginContainer/LoginContainer";
 import AboutUsContainer from "./containers/AboutUsContainer/AboutUsContainer";
 import ContactUsContainer from "./containers/ContactUsContainer/ContactUsContainer";
+import AddProductContainer from "./containers/AddProductContainer/AddProductContainer";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="/set" element={<SetPasswordContainer />} />
             <Route path="/login" element={<LoginComponent />} />
             <Route path="/products/*" element={<PrivateRouteProducts />} />
+            <Route path="/addproduct" element={<PrivateRouteAddProducts />} />
           </Routes>
           <Footer />
         </Router>
@@ -77,4 +79,14 @@ const PrivateRouteProducts = () => {
   return isAdmin ? <ProductsContainer /> : <Navigate to="/login" />;
 };
 
+
+// Define a PrivateRouteProducts component to conditionally render AddProductContainer based on user state
+const PrivateRouteAddProducts = () => {
+  const { user } = useUser();
+
+  // Check if the user is an admin or not
+  const isAdmin = user && user.userType === "Admin";
+
+  return isAdmin ? <AddProductContainer /> : <Navigate to="/login" />;
+};
 export default App;

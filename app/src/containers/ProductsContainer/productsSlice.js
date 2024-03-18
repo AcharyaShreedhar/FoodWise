@@ -7,7 +7,7 @@ export const productsSlice = createSlice({
     data: [],
     filters: {
       productName: '',
-      productStatus: '',
+      productStatus: true,
       productExpiry: '',
     },
   },
