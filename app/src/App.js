@@ -20,6 +20,7 @@ import LoginContainer from "./containers/LoginContainer/LoginContainer";
 import AboutUsContainer from "./containers/AboutUsContainer/AboutUsContainer";
 import ContactUsContainer from "./containers/ContactUsContainer/ContactUsContainer";
 import AddProductContainer from "./containers/AddProductContainer/AddProductContainer";
+import EditProductContainer from "./containers/EditProductContainer/EditProductContainer";
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="/login" element={<LoginComponent />} />
             <Route path="/products/*" element={<PrivateRouteProducts />} />
             <Route path="/addproduct" element={<PrivateRouteAddProducts />} />
+            <Route path="/products/:productId/edit" element={<PrivateRouteEditProduct />} />
           </Routes>
           <Footer />
         </Router>
@@ -88,5 +90,15 @@ const PrivateRouteAddProducts = () => {
   const isAdmin = user && user.userType === "Admin";
 
   return isAdmin ? <AddProductContainer /> : <Navigate to="/login" />;
+};
+
+
+const PrivateRouteEditProduct = () => {
+  const { user } = useUser();
+
+  // Check if the user is an admin or not
+  const isAdmin = user && user.userType === "Admin";
+
+  return isAdmin ? <EditProductContainer /> : <Navigate to="/login" />;
 };
 export default App;
