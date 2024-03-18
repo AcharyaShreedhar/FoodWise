@@ -8,7 +8,7 @@
 */
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import placeholderImage from "../../images/avatar.jpeg";
 import { Image, Col } from "react-bootstrap";
 import { Table, Pagination } from "react-bootstrap";
@@ -24,12 +24,16 @@ const ProductsTable = ({ productsData, handleSnackbar }) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = productsData.slice(startIndex, endIndex);
-
+  const navigate = useNavigate();
   // Define your mutation hook
   const [deleteProductMutation] = useMutation(DELETE_PRODUCT);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleEdit = (productId) => {
+    navigate(`/products/${productId}/edit`);
   };
 
   const handleDelete = (productId) => {
@@ -86,7 +90,7 @@ const ProductsTable = ({ productsData, handleSnackbar }) => {
               <td className="d-flex">
                 <button
                   className="btn btn-sm btn-primary mr-5 btn-style"
-                  onClick={() => {}}
+                  onClick={() => handleEdit(product._id)}
                 >
                   Edit
                 </button>
