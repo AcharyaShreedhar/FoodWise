@@ -8,6 +8,7 @@
 */
 
 const Donation = require("../models/Donation");
+const Product = require("../models/Product");
 
 const donationResolvers = {
   Mutation: {
@@ -44,6 +45,30 @@ const donationResolvers = {
         console.error("Error adding donation:", error);
         throw new Error(`Failed to create donation: ${error.message}`);
       }
+    },
+    addToDonation: async (_, { productId,donerName,pickUpLocation,contact }) => {
+        try {
+          // Fetch the product from the database
+          const product = await Product.findById(productId);
+  
+          const donation= new Donation({
+          productName:product.productName,
+          productDescription:product.productDescription,
+          productImage:product.productImage,
+          productQuantity:product.productQuantity,
+          productStatus:product.productStatus,
+          productNotes:product.productNotes,
+          productExpiry:product.productExpiry,
+          donerName,
+          pickUpLocation,
+          contact,
+          })
+          const savedDonation = await donation.save();
+          return savedDonation;
+        } catch (error) {
+            console.error("Error adding donation:", error);
+            throw new Error(`Failed to add donation: ${error.message}`);
+        }
     },
   },
 };
