@@ -91,7 +91,7 @@ const SetPassword = () => {
 
         }
       };
-      const response = await fetch('https://foodwise.minipixai.com/', {
+      const response = await fetch('http://localhost:4021/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

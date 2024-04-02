@@ -45,6 +45,7 @@ const productSchema = gql`
   type Mutation {
     updateProduct(input: ProductInput!): Product
     deleteProduct(productId: ID!): Boolean
+    generateDynamicPrice(productId: ID!): String
   }
 
   input ProductInput {

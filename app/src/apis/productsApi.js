@@ -69,3 +69,9 @@ export const DELETE_PRODUCT = gql`
     
   }
 `;
+export const UPDATE_PRODUCT_PRICE = gql`
+  mutation GenerateDynamicPrice($productId: ID!) {
+    generateDynamicPrice(productId: $productId) 
+    
+  }
+`;
