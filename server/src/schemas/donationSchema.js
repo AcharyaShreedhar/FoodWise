@@ -25,7 +25,8 @@ const donationSchema = gql`
   }
 
   type Query {
-    
+    donations(input: DonationSearchInput): [Donation]!
+    donation(id: ID!): Donation
   }
 
   type Mutation {
@@ -67,6 +68,11 @@ const donationSchema = gql`
     donerName:String
     pickUpLocation:String
     contact:String
+  }
+  input DonationSearchInput {
+    productName: String
+    productStatus: Boolean
+    productExpiry: String
   }
 
 `;
