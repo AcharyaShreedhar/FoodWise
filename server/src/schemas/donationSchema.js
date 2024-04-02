@@ -44,6 +44,15 @@ const donationSchema = gql`
     ): Donation
   }
 
+
+  type Mutation {
+    addToDonation(productId: ID!
+        donerName:String
+        pickUpLocation:String
+        contact:String
+        ): Donation
+  }
+
   
 
   input DonationInput {
