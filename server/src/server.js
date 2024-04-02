@@ -21,12 +21,14 @@ const userResolvers = require("./resolvers/userResolver");
 const userProfileResolver = require("./resolvers/userProfileResolver");
 const orgProfileResolver=require("./resolvers/orgProfileResolver");
 const productResolvers=require("./resolvers/productResolver");
+const donationSchema = require("./schemas/donationSchema");
+const donationResolvers = require("./resolvers/donationResolver");
 
 
 // Create an Apollo Server instance
 const server = new ApolloServer({
-  typeDefs: [userSchema,userProfileSchema,orgProfileSchema, productSchema], // Merge type definitions
-  resolvers: [userResolvers,userProfileResolver,orgProfileResolver, productResolvers], // Merge resolvers
+  typeDefs: [userSchema,userProfileSchema,orgProfileSchema, productSchema,donationSchema], // Merge type definitions
+  resolvers: [userResolvers,userProfileResolver,orgProfileResolver, productResolvers,donationResolvers], // Merge resolvers
   playground: true,
 });
 
