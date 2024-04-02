@@ -10,7 +10,6 @@
 const Donation = require("../models/Donation");
 
 const donationResolvers = {
-
   Mutation: {
     createDonation: async (_, args) => {
       const {
@@ -23,7 +22,7 @@ const donationResolvers = {
         productExpiry,
         donerName,
         pickUpLocation,
-        contact
+        contact,
       } = args;
 
       try {
@@ -36,8 +35,8 @@ const donationResolvers = {
           productNotes,
           productExpiry,
           donerName,
-        pickUpLocation,
-        contact
+          pickUpLocation,
+          contact,
         });
         const savedDonation = await newDonation.save();
         return savedDonation;
@@ -45,8 +44,8 @@ const donationResolvers = {
         console.error("Error adding donation:", error);
         throw new Error(`Failed to create donation: ${error.message}`);
       }
-    }
     },
+  },
 };
 
 module.exports = donationResolvers;
