@@ -13,35 +13,57 @@ import Snackbar from "../Core/Snackbar/Snackbar";
 
 const AddProduct = () => {
   const navigate = useNavigate();
+  const [image, setImage] = useState("");
   const [formData, setFormData] = useState({
-   
-    productName:"",
-    productDescription:"",
-    productImage:"default.png",
-    productPrice:"",
-    productSalePrice:"",
-    productQuantity:10,
-    productStatus:true,
-    productNotes:"",
-    productExpiry:"",
+    productName: "",
+    productDescription: "",
+    productImage: "default.png",
+    productPrice: "",
+    productSalePrice: "",
+    productQuantity: 10,
+    productStatus: true,
+    productNotes: "",
+    productExpiry: "",
     productCategory: 1,
-    productSupplier:1,
+    productSupplier: 1,
   });
 
   const [errors, setErrors] = useState({
-    productName:"",
-    productDescription:"",
-    productImage:"",
-    productPrice:"",
-    productSalePrice:"",
-    productQuantity:"",
-    productNotes:"",
-    productExpiry:"",
+    productName: "",
+    productDescription: "",
+    productImage: "",
+    productPrice: "",
+    productSalePrice: "",
+    productQuantity: "",
+    productNotes: "",
+    productExpiry: "",
   });
 
   const [showSnackbar, setShowSnackbar] = useState(false); // State to control Snackbar visibility
   const [snackbarMessage, setSnackbarMessage] = useState(""); // State to set the Snackbar message
   const [snackbarSuccess, setSnackbarSuccess] = useState(""); // State to set the Snackbar message
+
+  const handleImageUpload = () => {
+    const imageData = new FormData();
+    imageData.append("file", image);
+    imageData.append("upload_preset", "iyxty7af");
+    imageData.append("cloud_name", "dd8fsbuxl");
+    fetch("https://api.cloudinary.com/v1_1/dd8fsbuxl/image/upload", {
+      method: "post",
+      body: imageData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setFormData({
+          ...formData,
+          productImage: data.secure_url,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,41 +85,41 @@ const AddProduct = () => {
     if (!formData.productName) {
       newErrors.productName = "product name is required";
       valid = false;
-    } 
+    }
 
     if (!formData.productDescription) {
       newErrors.productDescription = "product description is required";
       valid = false;
-    } 
+    }
 
     if (!formData.productImage) {
-        newErrors.productImage = "product image is required";
-        valid = false;
-    } 
+      newErrors.productImage = "product image is required";
+      valid = false;
+    }
 
     if (!formData.productPrice) {
-        newErrors.productPrice = "product price is required";
-        valid = false;
-    } 
+      newErrors.productPrice = "product price is required";
+      valid = false;
+    }
     if (!formData.productSalePrice) {
-        newErrors.productSalePrice = "product salePrice is required";
-        valid = false;
-    } 
+      newErrors.productSalePrice = "product salePrice is required";
+      valid = false;
+    }
     if (!formData.productQuantity) {
-        newErrors.productQuantity = "product quantity is required";
-        valid = false;
-    } 
+      newErrors.productQuantity = "product quantity is required";
+      valid = false;
+    }
     if (!formData.productStatus) {
-        newErrors.productStatus = "product status is required";
-        valid = false;
+      newErrors.productStatus = "product status is required";
+      valid = false;
     }
     if (!formData.productNotes) {
-        newErrors.productNotes = "product notes is required";
-        valid = false;
+      newErrors.productNotes = "product notes is required";
+      valid = false;
     }
     if (!formData.productExpiry) {
-        newErrors.productExpiry = "product expiry is required";
-        valid = false;
+      newErrors.productExpiry = "product expiry is required";
+      valid = false;
     }
     setErrors(newErrors);
     return valid;
@@ -106,7 +128,7 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
-        alert("validation failed")
+      alert("validation failed");
       return; // Do not proceed if form validation fails
     }
     try {
@@ -129,15 +151,15 @@ const AddProduct = () => {
           }
         `,
         variables: {
-            productName:formData.productName,
-            productDescription:formData.productDescription,
-            productImage:formData.productImage,
-            productPrice:formData.productPrice,
-            productSalePrice:formData.productSalePrice,
-            productQuantity:parseInt(formData.productQuantity, 10),
-            productExpiry:formData.productExpiry,
-            productStatus:true,
-            productNotes:formData.productNotes,
+          productName: formData.productName,
+          productDescription: formData.productDescription,
+          productImage: formData.productImage,
+          productPrice: formData.productPrice,
+          productSalePrice: formData.productSalePrice,
+          productQuantity: parseInt(formData.productQuantity, 10),
+          productExpiry: formData.productExpiry,
+          productStatus: true,
+          productNotes: formData.productNotes,
         },
       };
       const response = await fetch("http://localhost:4021/graphql", {
@@ -158,7 +180,6 @@ const AddProduct = () => {
         setTimeout(() => {
           navigate("/products");
         }, 3000);
-       
       } else {
         // Handle signup error
         setShowSnackbar(true);
@@ -167,7 +188,6 @@ const AddProduct = () => {
         setTimeout(() => {
           setShowSnackbar(false);
         }, 3000);
-       
       }
     } catch (error) {
       console.error("Error occurred during product creation:", error);
@@ -187,7 +207,9 @@ const AddProduct = () => {
                     <label htmlFor="productName">product name</label>
                     <input
                       type="text"
-                      className={`form-control ${errors.productName && "is-invalid"}`}
+                      className={`form-control ${
+                        errors.productName && "is-invalid"
+                      }`}
                       name="productName"
                       value={formData.productName}
                       onChange={handleChange}
@@ -200,7 +222,9 @@ const AddProduct = () => {
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productDescription">product description</label>
+                    <label htmlFor="productDescription">
+                      product description
+                    </label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -254,7 +278,7 @@ const AddProduct = () => {
                       </div>
                     )}
                   </div>
-                  
+
                   <div className="form-group">
                     <label htmlFor="productQuantity">product quantity</label>
                     <input
@@ -283,7 +307,6 @@ const AddProduct = () => {
                     >
                       <option value="instock">In Stock</option>
                       <option value="outofstock">Out of Stock</option>
-                      
                     </select>
                   </div>
                   <div className="form-group">
@@ -348,15 +371,33 @@ const AddProduct = () => {
                       <option value="LF">Liam Foods</option>
                       <option value="Sobeys">Sobeys</option>
                       <option value="Compliments">Compliments</option>
-                      
                     </select>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="productImage">Product Image</label>
+                    <input
+                      type="file"
+                      className="form-control text-white "
+                      name="productImage"
+                      onChange={(e) => setImage(e.target.files[0])}
+                    />
+                    <button
+                     type="button"
+                      onClick={handleImageUpload}
+                      className="btn btn-lg btn-success mt-2"
+                    >
+                      upload
+                    </button>
+                  </div>
+                  
+                  <div className="form-group">
+                    <img src={formData.productImage} alt="Product" />
                   </div>
                   <div className="button text-center">
                     <button type="submit" className="btn  sign-in-btn">
                       add product
                     </button>
                   </div>
-                 
                 </form>
                 <Snackbar
                   message={snackbarMessage}

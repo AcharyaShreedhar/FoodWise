@@ -5,6 +5,7 @@ import Snackbar from "../Core/Snackbar/Snackbar";
 
 const EditProduct = () => {
   const navigate = useNavigate();
+  const [image, setImage] = useState("");
   const { productId } = useParams();
   const [formData, setFormData] = useState({
     productName: "",
@@ -72,7 +73,7 @@ const EditProduct = () => {
 
         const responseData = await response.json();
         const productData = responseData.data.product;
-console.log('productdata',productData)
+
         setFormData({
           productName: productData.productName,
           productDescription: productData.productDescription,
@@ -105,6 +106,30 @@ console.log('productdata',productData)
       [name]: "",
     });
   };
+
+
+  const handleImageUpload = async () => {
+    const imageData = new FormData();
+    imageData.append("file", image);
+    imageData.append("upload_preset", "iyxty7af");
+    imageData.append("cloud_name", "dd8fsbuxl");
+    fetch("https://api.cloudinary.com/v1_1/dd8fsbuxl/image/upload", {
+      method: "post",
+      body: imageData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setFormData({
+          ...formData,
+          productImage: data.secure_url,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
 
   const validateForm = () => {
     let valid = true;
@@ -400,6 +425,26 @@ console.log('productdata',productData)
                       <option value="Compliments">Compliments</option>
                       
                     </select>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="productImage">Product Image</label>
+                    <input
+                      type="file"
+                      className="form-control text-white "
+                      name="productImage"
+                      onChange={(e) => setImage(e.target.files[0])}
+                    />
+                    <button
+                     type="button"
+                      onClick={handleImageUpload}
+                      className="btn btn-lg btn-success mt-2"
+                    >
+                      upload
+                    </button>
+                  </div>
+                  {/* Display current product image */}
+                  <div className="form-group">
+                    <img src={formData.productImage} alt="Product" />
                   </div>
                   <div className="button text-center">
                     <button type="submit" className="btn  sign-in-btn">
