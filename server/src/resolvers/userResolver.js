@@ -9,6 +9,7 @@
 */
 
 const User = require("../models/User");
+const UserProfile = require("../models/UserProfile");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 
@@ -199,8 +200,17 @@ const userResolvers = {
           );
         }
 
+        // Fetch user profile data based on user ID
+        const userProfile = await UserProfile.findOne({ userId: user._id });
+
+        // Combine user and userProfile data and return as a single object
+        const userData = {
+          ...user.toObject(),
+          profile: userProfile ? userProfile.toObject() : null,
+        };
+     
         // Return the user data as the result of the login query
-        return user;
+        return userData;
       } catch (error) {
         // Log and propagate any errors that occur during the login process
         console.error("Error during user login:", error);
