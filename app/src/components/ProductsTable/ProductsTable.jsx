@@ -118,7 +118,7 @@ const ProductsTable = ({ productsData, handleSnackbar }) => {
           {currentItems.map((product, index) => (
             <tr key={`${product.productName}${index}`}>
               <td>
-                <Image src={placeholderImage} className="rounded-circle" />
+                <Image src={product.productImage || placeholderImage} className="rounded-circle" />
               </td>
               <td>{product.productName}</td>
               <td>{product.productDescription}</td>
