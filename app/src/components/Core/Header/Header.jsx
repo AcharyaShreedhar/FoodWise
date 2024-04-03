@@ -8,26 +8,23 @@
 */
 
 import React from "react";
-import { Link } from "react-router-dom"; // Import useHistory hook
-import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../images/logo.png";
 import { useUser } from "../../../containers/LoginContainer/UserContext";
 import "./Header.css";
 
 const Header = () => {
-  const { user, setUser } = useUser(); // Get setUser function from UserContext
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
 
- // Logout function with confirmation dialog
- const handleLogout = () => {
-  const shouldLogout = window.confirm("Are you sure you want to log out?");
-  if (shouldLogout) {
-    // Clear user information
-    setUser(null);
-    // Redirect user to login page
-    navigate('/login');
-  }
-};
+  const handleLogout = () => {
+    const shouldLogout = window.confirm("Are you sure you want to log out?");
+    if (shouldLogout) {
+      setUser(null);
+      navigate("/login");
+    }
+  };
 
   return (
     <header className="header">
@@ -48,40 +45,70 @@ const Header = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
-            {/* Render menu items based on user type */}
-            {user && user.userType === "Admin" && (
+            {user && (
               <li className="nav-item active">
                 <Link className="nav-link" to="/dashboard">
-                  home
+                  Home
                 </Link>
               </li>
             )}
-            {user &&
-              user.userType === "Admin" && (
-                <li className="nav-item active">
-                  <Link className="nav-link" to="/products">
-                    products
-                  </Link>
-                </li>
-              )}
+            {user && (
+              <li className="nav-item active">
+                <Link className="nav-link" to="/products">
+                  Products
+                </Link>
+              </li>
+            )}
             <li className="nav-item active">
               <Link className="nav-link" to="/blog">
-                blog
+                Blog
               </Link>
             </li>
             <li className="nav-item active">
               <Link className="nav-link" to="/aboutus">
-                about us
+                About Us
               </Link>
             </li>
             <li className="nav-item active">
               <Link className="nav-link" to="/contactus">
-                contacts
+                Contacts
               </Link>
             </li>
             {user && (
-              <li className="nav-item active">
-                <Link className="nav-link" onClick={handleLogout}>logout</Link>
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <img
+                    src={user.profile.profileImage}
+                    alt="Profile Avatar"
+                    className="profile-avatar pr-5"
+                  />
+                  <span className="ml-5">{user.profile.firstName}</span>
+                </a>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <Link className="dropdown-item" to="/viewprofile">
+                    View Profile
+                  </Link>
+                  <Link className="dropdown-item" to="/createprofile">
+                    Create Profile
+                  </Link>
+                  <Link className="dropdown-item" to="/editprofile">
+                    Edit Profile
+                  </Link>
+                  <button className="dropdown-item" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
               </li>
             )}
           </ul>

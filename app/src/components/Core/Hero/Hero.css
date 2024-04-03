@@ -8,7 +8,7 @@
 */
 
 .hero {
-    height: 450px;
+    height: 350px;
 }
 
 .hero-content {
@@ -19,7 +19,7 @@
 .text-content {
     margin-left: 140px;
     position: absolute;
-    bottom: 60%;
+    bottom: 50%;
     left: 35%
 }
 
@@ -35,7 +35,7 @@
 }
 
 .hero-image {
-    height: 450px;
+    height: 350px;
     width: auto;
 }
 

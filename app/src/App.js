@@ -21,6 +21,9 @@ import AboutUsContainer from "./containers/AboutUsContainer/AboutUsContainer";
 import ContactUsContainer from "./containers/ContactUsContainer/ContactUsContainer";
 import AddProductContainer from "./containers/AddProductContainer/AddProductContainer";
 import EditProductContainer from "./containers/EditProductContainer/EditProductContainer";
+import CreateProfileContainer from "./containers/CreateProfileContainer/CreateProfileContainer";
+import ViewProfileContainer from "./containers/ViewProfileContainer/ViewProfileContainer";
+import EditProfileContainer from "./containers/EditProfileContainer/EditProfileContainer";
 
 const App = () => {
   return (
@@ -31,6 +34,9 @@ const App = () => {
           <Routes>
             <Route path="/" element={<SignUpContainer />} />
             <Route path="/signup" element={<SignUpContainer />} />
+            <Route path="/viewprofile" element={<ViewProfileContainer />} />
+            <Route path="/editprofile" element={<EditProfileContainer />} />
+            <Route path="/createprofile" element={<CreateProfileContainer />} />
             <Route path="/dashboard" element={<PrivateRoute />} />
             <Route path="/blog" element={<BlogContainer />} />
             <Route path="/aboutus" element={<AboutUsContainer />} />
@@ -40,7 +46,10 @@ const App = () => {
             <Route path="/login" element={<LoginComponent />} />
             <Route path="/products/*" element={<PrivateRouteProducts />} />
             <Route path="/addproduct" element={<PrivateRouteAddProducts />} />
-            <Route path="/products/:productId/edit" element={<PrivateRouteEditProduct />} />
+            <Route
+              path="/products/:productId/edit"
+              element={<PrivateRouteEditProduct />}
+            />
           </Routes>
           <Footer />
         </Router>
@@ -81,7 +90,6 @@ const PrivateRouteProducts = () => {
   return isAdmin ? <ProductsContainer /> : <Navigate to="/login" />;
 };
 
-
 // Define a PrivateRouteProducts component to conditionally render AddProductContainer based on user state
 const PrivateRouteAddProducts = () => {
   const { user } = useUser();
@@ -91,7 +99,6 @@ const PrivateRouteAddProducts = () => {
 
   return isAdmin ? <AddProductContainer /> : <Navigate to="/login" />;
 };
-
 
 const PrivateRouteEditProduct = () => {
   const { user } = useUser();

@@ -85,6 +85,16 @@ const Login = () => {
               password
               userType
               userStatus
+              profile {
+                _id
+                address
+                dateOfBirth
+                firstName
+                lastName
+                phoneNumber
+                profileImage
+                userId
+              }
             }
           }
         `,

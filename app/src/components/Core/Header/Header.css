@@ -17,6 +17,13 @@ img {
   justify-content: space-between;
 }
 
+.profile-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
 
 .header .navbar-brand {
   font-size: 1.5rem;
@@ -36,29 +43,25 @@ img {
   color: #000;
 }
 
-/* .header .nav-link:hover {
-    color: #ecf0f1;
-  } */
-
+/* Custom styles for dropdown menu */
 .dropdown-menu {
-  min-width: 250px;
-  border-radius: 10px;
-  margin: 0px;
-  padding: 0px;
-  background-color: #0d466d;
+  border-radius: 20px;
+  /* Rounded corners */
+  background-color: #34cbab;
+  /* Aqua background color */
+  min-width: unset !important;
+  /* Remove minimum width */
+  width: max-content;
+  /* Set width to fit content */
 }
 
-.dropdown-menu .nav-link {
-  border-bottom: 2px solid grey;
-  color: white;
-  padding: 15px 20px;
-  margin: 0px;
-
-}
-
-.dropdown-menu .nav-link:hover {
-
-  color: black;
-  background-color: #136195;
-
+.dropdown-item {
+  color: black !important;
+  /* Black font color */
+  padding: 8px 20px;
+  /* Adjust padding for dropdown items */
+  min-width: 180px;
+  /* Set minimum width for dropdown items */
+  width: max-content;
+  /* Set width to fit content */
 }
