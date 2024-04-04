@@ -23,71 +23,100 @@ import "./Blog.css";
 const Blog = () => {
   return (
     <div className="blog-container m-0 p-5">
-      <hr className="text-white mt-5 mb-5" />
-      <h2 className="hero-heading text-center text-white">
+      <hr className="mt-5 mb-5" />
+      <h2 className="hero-heading text-center">
         FoodWise was born out of a desire to address the pressing issue of food
         waste and contribute to global sustainability goals. We believe that by
         empowering businesses and consumers with innovative solutions, we can
         make a meaningful difference in the world.
       </h2>
-      <hr className="text-white mt-5 mb-5" />
+      <hr className="mt-5 mb-5" />
+     
       <div className="carousel-container">
-        <Carousel>
-          <Carousel.Item>
-            <img src={PosterImage1} alt="Poster 1" className="d-block w-100" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img src={PosterImage2} alt="Poster 2" className="d-block w-100" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img src={PosterImage3} alt="Poster 3" className="d-block w-100" />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img src={PosterImage4} alt="Poster 4" className="d-block w-100" />
-          </Carousel.Item>
-        </Carousel>
-      </div>
-      <hr className="text-white mt-5 mb-5" />
-      <div className="poster-grid-container clearfix">
-        <Row className="m-0">
-          <Col sm={4} md={4} lg={4}>
-            <Card className="poster-card">
-              <Card.Img variant="top" src={PosterImage5} />
-            </Card>
-          </Col>
-          <Col sm={4} md={4} lg={4}>
-            <Card className="poster-card">
-              <Card.Img variant="top" src={PosterImage6} />
-            </Card>
-          </Col>
-          <Col sm={4} md={4} lg={4}>
-            <Card className="poster-card">
-              <Card.Img variant="top" src={PosterImage7} />
-            </Card>
-          </Col>
-          <Col sm={4} md={4} lg={4}>
-            <Card className="poster-card">
-              <Card.Img variant="top" src={PosterImage8} />
-            </Card>
-          </Col>
-          <Col sm={4} md={4} lg={4}>
-            <Card className="poster-card">
-              <Card.Img variant="top" src={PosterImage9} />
-            </Card>
-          </Col>
-          <Col sm={4} md={4} lg={4}>
-            <Card className="poster-card">
-              <Card.Img variant="top" src={PosterImage10} />
-            </Card>
-          </Col>
-        </Row>
-      </div>
-      <hr className="text-white mt-5 mb-5" />
+      <Carousel>
+        <Carousel.Item>
+          <img
+            className="d-block mx-auto"
+            src={PosterImage1}
+            alt="First slide"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+          
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block mx-auto"
+            src={PosterImage2}
+            alt="Second slide"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+
+         
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block mx-auto"
+            src={PosterImage3}
+            alt="Third slide"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+
+          
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block mx-auto"
+            src={PosterImage4}
+            alt="Fourth slide"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+
+         
+        </Carousel.Item>
+      </Carousel>
+    </div>
+    
+      <hr className="mt-5 mb-5" />
+      <div className="poster-grid-container">
+      <Row className="m-0">
+        <Col sm={4} md={4} lg={4} className="p-5">
+          <Card className="poster-card">
+            <Card.Img variant="top" src={PosterImage5} />
+          </Card>
+        </Col>
+        <Col sm={4} md={4} lg={4} className="p-5">
+          <Card className="poster-card">
+            <Card.Img variant="top" src={PosterImage6} />
+          </Card>
+        </Col>
+        <Col sm={4} md={4} lg={4} className="p-5">
+          <Card className="poster-card">
+            <Card.Img variant="top" src={PosterImage7} />
+          </Card>
+        </Col>
+        <Col sm={4} md={4} lg={4} className="p-5">
+          <Card className="poster-card">
+            <Card.Img variant="top" src={PosterImage8} />
+          </Card>
+        </Col>
+        <Col sm={4} md={4} lg={4} className="p-5">
+          <Card className="poster-card">
+            <Card.Img variant="top" src={PosterImage9} />
+          </Card>
+        </Col>
+        <Col sm={4} md={4} lg={4} className="p-5">
+          <Card className="poster-card">
+            <Card.Img variant="top" src={PosterImage10} />
+          </Card>
+        </Col>
+      </Row>
+    </div>
+      <hr className="mt-5 mb-5" />
       <div className="m-0 posts-container">
         <Row className="m-0">
-          <Col sm={8}>
+          <Col sm={8} md={8} lg={8}>
             <Row className="m-0">
-              <Card className="blog-card">
+              <Card className="blog-card bg-white">
                 <Card.Body>
                   <Card.Title>How to Reduce Food Waste at Home</Card.Title>
                   <Card.Text>
@@ -103,7 +132,7 @@ const Blog = () => {
                   </Button>
                 </Card.Body>
               </Card>
-              <Card className="blog-card">
+              <Card className="blog-card bg-white">
                 <Card.Body>
                   <Card.Title>
                     The Role of Technology in Food Management
@@ -122,7 +151,7 @@ const Blog = () => {
                   </Button>
                 </Card.Body>
               </Card>
-              <Card className="blog-card">
+              <Card className="blog-card bg-white">
                 <Card.Body>
                   <Card.Title>
                     Success Stories: Users Share Their FoodWise Experience
@@ -141,7 +170,7 @@ const Blog = () => {
                   </Button>
                 </Card.Body>
               </Card>
-              <Card className="blog-card">
+              <Card className="blog-card bg-white">
                 <Card.Body>
                   <Card.Title>Sustainable Practices for Restaurants</Card.Title>
                   <Card.Text>
@@ -163,7 +192,7 @@ const Blog = () => {
 
           <Col sm={4}>
             <Row className="m-0">
-              <Card className="sidebar-card">
+              <Card className="sidebar-card bg-white">
                 <Card.Body>
                   <Card.Title>Upcoming Events</Card.Title>
                   <Card.Text>
@@ -179,7 +208,7 @@ const Blog = () => {
                   </Button>
                 </Card.Body>
               </Card>
-              <Card className="sidebar-card">
+              <Card className="sidebar-card bg-white">
                 <Card.Body>
                   <Card.Title>Latest Project Updates</Card.Title>
                   <Card.Text>
@@ -195,7 +224,7 @@ const Blog = () => {
                   </Button>
                 </Card.Body>
               </Card>
-              <Card className="sidebar-card">
+              <Card className="sidebar-card bg-white">
                 <Card.Body>
                   <Card.Title>FoodWise in the News</Card.Title>
                   <Card.Text>
@@ -211,7 +240,7 @@ const Blog = () => {
                   </Button>
                 </Card.Body>
               </Card>
-              <Card className="sidebar-card">
+              <Card className="sidebar-card bg-white">
                 <Card.Body>
                   <Card.Title>Subscribe to Our Newsletter</Card.Title>
                   <Card.Text>
