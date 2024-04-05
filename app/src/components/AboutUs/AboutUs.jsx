@@ -10,23 +10,70 @@ import React from "react";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import placeholderImage from "../../images/avatar.jpeg";
 import ShreeImage from "../../images/Shree1.jpeg";
+import PrashantImage from "../../images/prashant.jpeg";
+import AboutUsImage from "../../images/about1.png";
+import MissionImage from "../../images/mission1.png";
+import WhyUsImage from "../../images/whyus1.png";
+import VisionImage from "../../images/vision.png";
 import "./AboutUs.css";
 
 const AboutUs = () => {
   return (
     <div className="about-us-container">
+      <hr className=" mt-0 mb-0" />
+      <div className="section m-0">
+        <Col sm={9}>
+          <div className="image-container">
+            <Image src={AboutUsImage} alt="About Us" fluid />
+          </div>
+        </Col>
+        <Col sm={3}></Col>
+      </div>
+      <hr className=" mt-0 mb-0" />
+      <div className="section m-0">
+        <Col sm={3}></Col>
+        <Col sm={9}>
+          <div className="image-container">
+          <Image src={WhyUsImage} alt="Why Choose Us" fluid />
+          </div>
+        </Col>
+      </div>
+      <hr className=" mt-0 mb-0" />
+      <div className="section m-0">
+        <Col sm={9}>
+          <div className="image-container">
+          <Image src={VisionImage} alt="Our Vision" fluid />
+          </div>
+        </Col>
+        <Col sm={3}></Col>
+      </div>
+      <hr className=" mt-0 mb-0" />
+      <div className="section m-0">
+        <Col sm={3}></Col>
+        <Col sm={9}>
+          <div className="image-container">
+          <Image src={MissionImage} alt="Our Mission" fluid />
+          </div>
+        </Col>
+      </div>
+      <hr className=" mt-0 mb-5" />
       <Row className="m-0 mt-2">
         <Col>
-          <h2 className="section-title">Our Team</h2>
-          <h4 className="text-white mb-5">
+          <h2 className="section-title text-center">Our Team</h2>
+          <h3 className="mb-5 text-center team-desc">
             We are a dedicated team of developers passionate about tackling the
             issue of food waste through technology.
-          </h4>
-          <hr className="text-white mt-5 mb-5" />
+          </h3>
+          <hr className=" mt-5 mb-5" />
           <Row className="team-members m-0 mt-2">
             <Col xs={12} md={4}>
               <div className="team-member p-5">
-                <Image src={ShreeImage} alt="Member 1" roundedCircle className="profile-image" />
+                <Image
+                  src={ShreeImage}
+                  alt="Member 1"
+                  roundedCircle
+                  className="team-profile-image"
+                />
                 <h3>Shree Dhar Acharya</h3>
                 <h4 className="mb-5">
                   Senior Full Stack Developer | Senior Software Engineer |
@@ -42,9 +89,16 @@ const AboutUs = () => {
                 </p>
               </div>
             </Col>
+            </Row>
+            <Row className="team-members m-0 mt-2">
             <Col xs={12} md={4}>
               <div className="team-member p-5">
-                <Image src={placeholderImage} alt="Member 2" roundedCircle className="profile-image"/>
+                <Image
+                  src={placeholderImage}
+                  alt="Member 2"
+                  roundedCircle
+                  className="team-profile-image"
+                />
                 <h3>Tirth Shah</h3>
                 <h4 className="mb-5">Frontend Developer | UI/UX Developer</h4>
                 <p>
@@ -58,7 +112,12 @@ const AboutUs = () => {
             </Col>
             <Col xs={12} md={4}>
               <div className="team-member p-5">
-                <Image src={placeholderImage} alt="Member 3" roundedCircle className="profile-image"/>
+                <Image
+                  src={PrashantImage}
+                  alt="Member 3"
+                  roundedCircle
+                  className="team-profile-image"
+                />
                 <h3>Prashant Sahu</h3>
                 <h4 className="mb-5">Front End Developer | Content Creator</h4>
                 <p>
@@ -73,44 +132,12 @@ const AboutUs = () => {
           </Row>
         </Col>
       </Row>
-      <hr className="text-white mt-5 mb-5" />
+      <hr className="mt-5 mb-5" />
       <div className="m-0 mb-5 cta">
         <Button variant="primary" className="cta-button  btn mb-5">
           Meet the Team
         </Button>
       </div>
-      <hr className="text-white mt-5 mb-5" />
-      <Row className="section m-0 mb-5">
-        <Col>
-          <h2 className="section-title">Our Mission</h2>
-          <h4 className="text-white">
-            At FoodWise, our mission is to create a more sustainable and
-            responsible food supply chain by leveraging technology and community
-            engagement.
-          </h4>
-        </Col>
-      </Row>
-      <Row className="section m-0 mb-5">
-        <Col>
-          <h2 className="section-title">Why FoodWise?</h2>
-          <h4 className="text-white">
-            FoodWise was born out of a desire to address the pressing issue of
-            food waste and contribute to global sustainability goals. We believe
-            that by empowering businesses and consumers with innovative
-            solutions, we can make a meaningful difference in the world.
-          </h4>
-        </Col>
-      </Row>
-      <Row className="section m-0 mb-5">
-        <Col>
-          <h2 className="section-title">Our Vision</h2>
-          <h4 className="text-white">
-            Our vision is to build a world where every meal counts, where food
-            is valued, and waste is minimized. Together, we can create a future
-            where hunger is eradicated, and our planet thrives.
-          </h4>
-        </Col>
-      </Row>
     </div>
   );
 };

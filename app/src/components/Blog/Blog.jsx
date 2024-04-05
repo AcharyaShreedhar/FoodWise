@@ -24,7 +24,7 @@ const Blog = () => {
   return (
     <div className="blog-container m-0 p-5">
       <hr className="mt-5 mb-5" />
-      <h2 className="hero-heading text-center">
+      <h2 className="hero-heading blog text-center">
         FoodWise was born out of a desire to address the pressing issue of food
         waste and contribute to global sustainability goals. We believe that by
         empowering businesses and consumers with innovative solutions, we can

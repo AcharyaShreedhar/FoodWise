@@ -10,11 +10,38 @@
 .contact-container {
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: #25318b;
   position: relative;
   overflow: hidden;
   border-radius: 10px;
   height: 100%;
+}
+
+/* FAQ Section Styles */
+.faq-section {
+  background-color: #f8f9fa; /* Background color for the FAQ section */
+  padding: 20px; /* Padding around the FAQ items */
+  border-radius: 10px; /* Rounded corners for the FAQ section */
+}
+
+/* FAQ Item Styles */
+.faq-item {
+  margin-bottom: 20px; /* Spacing between each FAQ item */
+}
+
+.faq-item h5 {
+  font-weight: bold; /* Bold font for FAQ question */
+  margin-bottom: 10px; /* Spacing below FAQ question */
+}
+
+.faq-item p {
+  margin-bottom: 0; /* Remove extra spacing below FAQ answer */
+}
+
+
+.contact-section {
+  background-color: #f8f9fa; /* Background color for the FAQ section */
+  padding: 20px; /* Padding around the FAQ items */
+  border-radius: 10px; /* Rounded corners for the FAQ section */
 }
 
 .map-column {
@@ -74,4 +101,13 @@
 .contact-form-container form .btn-primary:hover {
   background-color: #0056b3;
   border-color: #0056b3;
+}
+
+.newsletter-section .form-control{
+  background-color: white;
+}
+
+.accordion-header{
+  font-weight: 700;
+  font-size: 20px;
 }
