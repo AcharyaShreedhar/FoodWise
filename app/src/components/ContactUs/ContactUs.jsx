@@ -106,7 +106,7 @@ const ContactUs = () => {
             <h2 className="mb-3 mt-2">Frequently Asked Questions</h2>
             <hr className="mt-2 mb-5" />
             <Accordion>
-              <Accordion.Item eventKey="0">
+              <Accordion.Item eventKey="0" className="p-2">
                 <Accordion.Header>Q: How does FoodWise work?</Accordion.Header>
                 <Accordion.Body>
                   A: FoodWise connects users with local businesses offering
@@ -115,7 +115,7 @@ const ContactUs = () => {
                   store.
                 </Accordion.Body>
               </Accordion.Item>
-              <Accordion.Item eventKey="1">
+              <Accordion.Item eventKey="1" className="p-2">
                 <Accordion.Header>
                   Q: What are the benefits of using FoodWise?
                 </Accordion.Header>
@@ -126,7 +126,7 @@ const ContactUs = () => {
                 </Accordion.Body>
               </Accordion.Item>
               {/* Add more Accordion.Item components for each additional question */}
-              <Accordion.Item eventKey="2">
+              <Accordion.Item eventKey="2" className="p-2">
                 <Accordion.Header>
                   Q: Is FoodWise available in multiple cities?
                 </Accordion.Header>
@@ -136,7 +136,7 @@ const ContactUs = () => {
                 </Accordion.Body>
               </Accordion.Item>
               {/* Add more Accordion.Item components for each additional question */}
-              <Accordion.Item eventKey="3">
+              <Accordion.Item eventKey="3" className="p-2">
                 <Accordion.Header>
                   Q: How can I pay for my orders on FoodWise?
                 </Accordion.Header>
@@ -147,7 +147,7 @@ const ContactUs = () => {
                 </Accordion.Body>
               </Accordion.Item>
               {/* Add more Accordion.Item components for each additional question */}
-              <Accordion.Item eventKey="4">
+              <Accordion.Item eventKey="4" className="p-2">
                 <Accordion.Header>
                   Q: Can I customize my food orders on FoodWise?
                 </Accordion.Header>
@@ -158,7 +158,7 @@ const ContactUs = () => {
                 </Accordion.Body>
               </Accordion.Item>
               {/* Add more Accordion.Item components for each additional question */}
-              <Accordion.Item eventKey="5">
+              <Accordion.Item eventKey="5" className="p-2">
                 <Accordion.Header>
                   Q: Are the food items on FoodWise fresh and safe to consume?
                 </Accordion.Header>
@@ -169,7 +169,7 @@ const ContactUs = () => {
                 </Accordion.Body>
               </Accordion.Item>
               {/* Add more Accordion.Item components for each additional question */}
-              <Accordion.Item eventKey="6">
+              <Accordion.Item eventKey="6"className="p-2" >
                 <Accordion.Header>
                   Q: Can I return or exchange items purchased through FoodWise?
                 </Accordion.Header>
@@ -180,7 +180,7 @@ const ContactUs = () => {
                 </Accordion.Body>
               </Accordion.Item>
               {/* Add more Accordion.Item components for each additional question */}
-              <Accordion.Item eventKey="7">
+              <Accordion.Item eventKey="7" className="p-2">
                 <Accordion.Header>
                   Q: How can I contact FoodWise customer support?
                 </Accordion.Header>
@@ -191,7 +191,7 @@ const ContactUs = () => {
                 </Accordion.Body>
               </Accordion.Item>
               {/* Add more Accordion.Item components for each additional question */}
-              <Accordion.Item eventKey="8">
+              <Accordion.Item eventKey="8" className="p-2">
                 <Accordion.Header>
                   Q: Does FoodWise offer discounts or promotions?
                 </Accordion.Header>
@@ -202,7 +202,7 @@ const ContactUs = () => {
                 </Accordion.Body>
               </Accordion.Item>
               {/* Add more Accordion.Item components for each additional question */}
-              <Accordion.Item eventKey="9">
+              <Accordion.Item eventKey="9" className="p-2">
                 <Accordion.Header>
                   Q: How can I provide feedback or suggestions to FoodWise?
                 </Accordion.Header>
