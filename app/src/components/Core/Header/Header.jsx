@@ -71,7 +71,7 @@ const Header = () => {
             </li>
             <li className="nav-item active">
               <Link className="nav-link" to="/contactus">
-                Contacts
+                Contact Us
               </Link>
             </li>
             {user && (

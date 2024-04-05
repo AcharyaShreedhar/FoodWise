@@ -29,7 +29,7 @@ const Hero = () => {
             <div className="signup-text mt-4">
               <a href="/signup" className="hero-description mt-4">Sign up to create your account</a>
               <p className="hero-description mt-4">or</p>
-              <a href="/login" className="btn btn-hero mt-3">Login</a>
+              <a href="/login" className="btn btn-hero btn-lg mt-3">Login</a>
             </div>
           )}
         </div>

@@ -30,7 +30,7 @@
 }
 
 .hero-description {
-    font-size: 1rem;
+    font-size: 2rem;
     margin-bottom: 10px;
 }
 
@@ -43,6 +43,7 @@
 
 .signup-text {
     text-align: center;
+    font-size: 16px;
 }
 
 .btn-hero {

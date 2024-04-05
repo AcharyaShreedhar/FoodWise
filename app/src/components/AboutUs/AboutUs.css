@@ -1,83 +1,109 @@
 .about-us-container {
-    padding: 50px;
-    background-color: #25318b;
-  }
-  
-  .section-title {
-    color: #ffffff; /* White text color */
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .team-members {
-    margin-top: 20px;
-   
+  padding: 50px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.team-members {
+  margin-top: 20px;
+  justify-content: center;
+
+}
+.team-desc{
+  color: black;
+}
+
+.team-profile-image {
+  height: 100px;
+  width: 90px;
+}
+
+.team-member {
+  text-align: center;
+  margin-bottom: 30px;
+  background-color:#d1d5db;
+  border-radius: 20px;
+
+}
+
+.team-member h3 {
+  font-size: 20px;
+  margin-top: 30px;
+  color: black;
+  /* White text color */
+}
+
+.team-member h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  color: black;
+}
+
+.team-member p {
+  font-size: 16px;
+  margin-top: 10px;
+  color: black;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta-button {
+  margin-top: 20px;
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #34cbab;
+  /* Button color */
+  border-color: #34cbab;
+  /* Button border color */
+  color: black;
+  /* Button text color */
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button:hover {
+  animation: bounce 0.5s infinite alternate;
+  background-color: #237866;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
   }
 
-  .profile-image{
-    height: 100px;
-    width: 90px;
+  100% {
+    transform: translateY(-10px);
   }
-  
-  .team-member {
-    text-align: center;
-    margin-bottom: 30px;
-    background-color: #2e4ac1;
-    border-radius: 20px;
-    
-  }
-  .team-member h3 {
-    font-size: 20px;
-    margin-top: 10px;
-    color: #ffffff; /* White text color */
-  }
-  
-  .team-member h4 {
-    font-size: 16px;
-    margin-top: 10px;
-    color: #cccccc; 
-  }
-  .team-member p {
-    margin-top: 10px;
-    color: #ffffff; 
-  }
-  .cta{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .cta-button {
-    margin-top: 20px;
-    font-size: 20px;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #34cbab; /* Button color */
-    border-color: #34cbab; /* Button border color */
-    color: #ffffff; /* Button text color */
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .cta-button:hover {
-    animation: bounce 0.5s infinite alternate;
-    background-color: #237866;
-  }
-  
-  @keyframes bounce {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-10px);
-    }
-  }
-  
-  .section {
-    background-color: #2e4ac1;
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-  }
-  
-  
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 20px;
+  padding-left: 20px;
+
+}
+
+.image-container {
+  width: auto;
+  /* Adjust width as needed */
+  height: auto;
+  /* Adjust height as needed */
+}
+
+.image-container img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  /* Maintain aspect ratio and fit entire image within container */
+}

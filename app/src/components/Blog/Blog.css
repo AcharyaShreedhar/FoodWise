@@ -7,6 +7,10 @@
     ----------------------------------------------------
 */
 
+.blog{
+  font-size: 2rem;
+}
+
 .carousel-container {
     background-color: #2e4ac1;
     margin-top: 20px;
@@ -131,7 +135,7 @@ background-color: #ffffff;
   .blog-card .btn {
     background-color: #34cbab;
     border-color: #34cbab;
-    color: #ffffff;
+    color: black;
     margin-top: 10px;
   }
   
@@ -165,7 +169,7 @@ background-color: #ffffff;
   .sidebar-card .btn {
     background-color: #34cbab;
     border-color: #34cbab;
-    color: #ffffff;
+    color: black;
     margin-top: 10px;
   }
   
