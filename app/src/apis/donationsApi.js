@@ -29,5 +29,32 @@ mutation AddToDonation($productId: ID!, $donerName: String, $pickUpLocation: Str
       productQuantity
       productStatus
     }
-  }
+  },
+  
   `;
+
+
+// Update an existing donation
+export const UPDATE_DONATION= gql`
+  mutation UpdateDonation($input: DonationInput!) {
+    updateDonation(input: $input) {
+      _id
+      contact
+      donerName
+      pickUpLocation
+      productDescription
+      productExpiry
+      productImage
+      productName
+      productNotes
+      productQuantity
+      productStatus
+    }
+  }
+`;
+export const DELETE_DONATION = gql`
+mutation DeleteDonation($donationId: ID!) {
+  deleteDonation(donationId: $donationId) 
+  
+}
+`;
