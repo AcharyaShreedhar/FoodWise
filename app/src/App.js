@@ -24,6 +24,9 @@ import EditProductContainer from "./containers/EditProductContainer/EditProductC
 import CreateProfileContainer from "./containers/CreateProfileContainer/CreateProfileContainer";
 import ViewProfileContainer from "./containers/ViewProfileContainer/ViewProfileContainer";
 import EditProfileContainer from "./containers/EditProfileContainer/EditProfileContainer";
+import DonationsContainer from "./containers/DonationsContainer/DonationContainer";
+import AddDonation from "./components/AddDonation/AddDonation";
+import EditDonationContainer from "./containers/EditDonationContainer/EditDonationContainer";
 
 const App = () => {
   return (
@@ -44,7 +47,14 @@ const App = () => {
             <Route path="/reset" element={<ResetContainer />} />
             <Route path="/set" element={<SetPasswordContainer />} />
             <Route path="/login" element={<LoginComponent />} />
+            <Route path="/donations/*" element={<DonationsContainer />} />
+            <Route path="/addDonation" element={<PrivateRouteAddDonations />} />
+            <Route
+              path="/donations/:donationId/edit"
+              element={<PrivateRouteEditDonation />}
+            />
             <Route path="/products/*" element={<PrivateRouteProducts />} />
+
             <Route path="/addproduct" element={<PrivateRouteAddProducts />} />
             <Route
               path="/products/:productId/edit"
@@ -107,5 +117,24 @@ const PrivateRouteEditProduct = () => {
   const isAdmin = user && user.userType === "Admin";
 
   return isAdmin ? <EditProductContainer /> : <Navigate to="/login" />;
+};
+
+// Define a PrivateRouteProducts component to conditionally render AddProductContainer based on user state
+const PrivateRouteAddDonations = () => {
+  const { user } = useUser();
+
+  // Check if the user is an admin or not
+  const isAdmin = user && user.userType === "Admin";
+
+  return isAdmin ? <AddDonation /> : <Navigate to="/login" />;
+};
+
+const PrivateRouteEditDonation = () => {
+  const { user } = useUser();
+
+  // Check if the user is an admin or not
+  const isAdmin = user && user.userType === "Admin";
+
+  return isAdmin ? <EditDonationContainer /> : <Navigate to="/login" />;
 };
 export default App;

@@ -19,9 +19,9 @@ const donationSchema = gql`
     productStatus: Boolean
     productNotes: String
     productExpiry: String!
-    donerName:String
-    pickUpLocation:String
-    contact:String
+    donerName: String
+    pickUpLocation: String
+    contact: String
   }
 
   type Query {
@@ -38,26 +38,27 @@ const donationSchema = gql`
       productStatus: Boolean
       productNotes: String
       productExpiry: String!
-      donerName:String
-      pickUpLocation:String
-      contact:String
-
+      donerName: String
+      pickUpLocation: String
+      contact: String
     ): Donation
   }
 
-
   type Mutation {
-    addToDonation(productId: ID!
-        donerName:String
-        pickUpLocation:String
-        contact:String
-        ): Donation
+    updateDonation(input: DonationInput!): Donation
+    deleteDonation(donationId: ID!): Boolean
+  }
+  type Mutation {
+    addToDonation(
+      productId: ID!
+      donerName: String
+      pickUpLocation: String
+      contact: String
+    ): Donation
   }
 
-  
-
   input DonationInput {
-    productId: ID!
+    donationId: ID!
     productName: String
     productDescription: String
     productImage: String
@@ -65,16 +66,15 @@ const donationSchema = gql`
     productStatus: Boolean
     productNotes: String
     productExpiry: String
-    donerName:String
-    pickUpLocation:String
-    contact:String
+    donerName: String
+    pickUpLocation: String
+    contact: String
   }
   input DonationSearchInput {
     productName: String
     productStatus: Boolean
     productExpiry: String
   }
-
 `;
 
 module.exports = donationSchema;

@@ -11,6 +11,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../images/logo.png";
+import placeholderImage from "../../../images/avatar.jpeg";
 import { useUser } from "../../../containers/LoginContainer/UserContext";
 import "./Header.css";
 
@@ -45,20 +46,25 @@ const Header = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
-            {user && (
+            {user && user.userType === "Admin" &&(
               <li className="nav-item active">
                 <Link className="nav-link" to="/dashboard">
                   Home
                 </Link>
               </li>
             )}
-            {user && (
+            {user && user.userType === "Admin" &&  (
               <li className="nav-item active">
                 <Link className="nav-link" to="/products">
                   Products
                 </Link>
               </li>
             )}
+            <li className="nav-item active">
+              <Link className="nav-link" to="/donations">
+                Donations
+              </Link>
+            </li>
             <li className="nav-item active">
               <Link className="nav-link" to="/blog">
                 Blog
@@ -86,25 +92,26 @@ const Header = () => {
                   aria-expanded="false"
                 >
                   <img
-                    src={user.profile.profileImage}
+                     src={user && user.profile ? (user.profile.profileImage) : placeholderImage}
                     alt="Profile Avatar"
                     className="profile-avatar pr-5"
                   />
-                  <span className="ml-5">{user.profile.firstName}</span>
+                  <span className="ml-5">{user && user.profile ? (user.profile.firstName) : user.email}</span>
                 </a>
                 <div
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <Link className="dropdown-item" to="/viewprofile">
+                  {user && user.profile && (<Link className="dropdown-item" to="/viewprofile">
                     View Profile
-                  </Link>
+                  </Link> )}
                   <Link className="dropdown-item" to="/createprofile">
                     Create Profile
                   </Link>
-                  <Link className="dropdown-item" to="/editprofile">
+                  {user && user.profile && (<Link className="dropdown-item" to="/editprofile">
                     Edit Profile
                   </Link>
+                  )}
                   <button className="dropdown-item" onClick={handleLogout}>
                     Logout
                   </button>
