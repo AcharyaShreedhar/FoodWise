@@ -80,6 +80,13 @@ const Header = () => {
                 Contact Us
               </Link>
             </li>
+            {!user &&(
+              <li className="nav-item active">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            </li>
+            )}
             {user && (
               <li className="nav-item dropdown">
                 <a
