@@ -11,51 +11,98 @@ import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import placeholderImage from "../../images/avatar.jpeg";
 import ShreeImage from "../../images/Shree1.jpeg";
 import PrashantImage from "../../images/prashant.jpeg";
-import AboutUsImage from "../../images/about1.png";
-import MissionImage from "../../images/mission1.png";
-import WhyUsImage from "../../images/whyus1.png";
-import VisionImage from "../../images/vision.png";
+import AboutUsImage from "../../images/foodwaste.jpeg";
+import MissionImage from "../../images/mission.gif";
+import WhyUsImage from "../../images/logo.png";
+import VisionImage from "../../images/vision.jpeg";
 import "./AboutUs.css";
 
 const AboutUs = () => {
   return (
     <div className="about-us-container">
-      <hr className=" mt-0 mb-0" />
-      <div className="section m-0">
-        <Col sm={9}>
+      <hr className=" mt-0 mb-5" />
+      <Row className="section bio m-0">
+      <Col xs={12} sm={12} md={12} lg={6} className="order-lg-2">
           <div className="image-container">
             <Image src={AboutUsImage} alt="About Us" fluid />
           </div>
         </Col>
-        <Col sm={3}></Col>
-      </div>
-      <hr className=" mt-0 mb-0" />
-      <div className="section m-0">
-        <Col sm={3}></Col>
-        <Col sm={9}>
+        <Col xs={12} sm={12} md={12} lg={6} className="order-lg-1">
+          <h1>About Us</h1>
+          <p className="pt-5">
+            Food Wise is an innovative platform that addresses the pressing
+            issue of food waste by connecting businesses and consumers with
+            surplus food to those in need. Through our technology-driven
+            solutions and community engagement, we strive to reduce food waste,
+            promote sustainability, and ensure that no meal goes to waste.​ Our
+            platform facilitates the redistribution of surplus food from
+            restaurants, grocery stores, and events to local shelters, food
+            banks, and community organizations. By providing a seamless and
+            efficient way to donate excess food, we not only minimize waste but
+            also help alleviate hunger in our communities.​
+          </p>
+        </Col>
+      </Row>
+      <hr className=" mt-0 mb-5" />
+      <Row className="section bio m-0">
+        <Col xs={12} sm={12} lg={6} className="order-lg-1">
           <div className="image-container">
-          <Image src={WhyUsImage} alt="Why Choose Us" fluid />
+            <Image src={WhyUsImage} alt="Why Choose Us" fluid />
           </div>
         </Col>
-      </div>
-      <hr className=" mt-0 mb-0" />
-      <div className="section m-0">
-        <Col sm={9}>
+        <Col xs={12} sm={12} lg={6} className="order-lg-2">
+          <h1>Why FoodWise ?</h1>
+          <p className="pt-5">
+            Food Wise was born out of a desire to address the pressing issue of
+            food waste and contribute to global sustainability goals. We believe
+            that by empowering businesses and consumers with innovative
+            solutions, we can make a meaningful difference in the world.​
+          </p>
+        </Col>
+      </Row>
+      <hr className=" mt-0 mb-5" />
+      <Row className="section bio m-0">
+      <Col xs={12} sm={12} lg={6} className="order-lg-2">
           <div className="image-container">
-          <Image src={VisionImage} alt="Our Vision" fluid />
+            <Image src={VisionImage} alt="Image for Vision" fluid />
           </div>
         </Col>
-        <Col sm={3}></Col>
-      </div>
+        <Col xs={12} sm={12} lg={6} className="order-lg-1">
+          <h1>Our Vision</h1>
+          <p className="pt-5">
+            Food Wise is an innovative platform that addresses the pressing
+            issue of food waste by connecting businesses and consumers with
+            surplus food to those in need. Through our technology-driven
+            solutions and community engagement, we strive to reduce food waste,
+            promote sustainability, and ensure that no meal goes to waste.​ Our
+            platform facilitates the redistribution of surplus food from
+            restaurants, grocery stores, and events to local shelters, food
+            banks, and community organizations. By providing a seamless and
+            efficient way to donate excess food, we not only minimize waste but
+            also help alleviate hunger in our communities.​
+          </p>
+        </Col>
+        
+      </Row>
       <hr className=" mt-0 mb-0" />
-      <div className="section m-0">
-        <Col sm={3}></Col>
-        <Col sm={9}>
+      <Row className="section bio m-0">
+        <Col xs={12} sm={12} lg={6} className="order-lg-1">
           <div className="image-container">
-          <Image src={MissionImage} alt="Our Mission" fluid />
+            <Image src={MissionImage} alt="Our Mission Image" fluid />
           </div>
         </Col>
-      </div>
+        <Col xs={12} sm={12} lg={6} className="order-lg-2">
+          <h1>Our Mission</h1>
+          <p className="pt-5">
+            At Food Wise, our mission is to create a more sustainable and
+            responsible food supply chain by leveraging technology and community
+            engagement. We aim to bridge the gap between surplus food and
+            hunger, ensuring that no food goes to waste while addressing food
+            insecurity.​
+          </p>
+        </Col>
+      </Row>
+
       <hr className=" mt-0 mb-5" />
       <Row className="m-0 mt-2">
         <Col>
@@ -89,8 +136,8 @@ const AboutUs = () => {
                 </p>
               </div>
             </Col>
-            </Row>
-            <Row className="team-members m-0 mt-2">
+          </Row>
+          <Row className="team-members m-0 mt-2">
             <Col xs={12} md={4}>
               <div className="team-member p-5">
                 <Image

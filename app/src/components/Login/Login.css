@@ -67,7 +67,7 @@ label {
 }
 
 .hero {
-    height: 350px;
+    height: 250px;
 }
 
 .login-hero {
@@ -80,3 +80,12 @@ label {
 .login-hero .col-md-4 {
     width: 35%
 }
+
+@media (max-width: 768px) {
+    .login-hero .col-md-4 {
+      width: 80%;
+    }
+    .signup-hero {
+        padding-bottom: 40px;
+    }
+  }

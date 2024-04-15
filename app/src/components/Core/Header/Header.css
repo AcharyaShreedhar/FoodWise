@@ -15,6 +15,22 @@ img {
   padding: 20px 0;
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Center align vertically */
+}
+
+.navbar-brand {
+  height: auto;
+  font-size: 1.5rem;
+  padding-left: 50px;
+  margin-right: 50px; /* Reduce margin for better spacing */
+}
+
+.nav-link {
+  font-weight: 500;
+  margin-left: 20px; /* Reduce margin for better spacing */
+  padding-left: 20px; /* Reduce padding for better spacing */
+  font-size: 14px; /* Increase font size for better readability */
+  color: #000;
 }
 
 .profile-avatar {
@@ -24,44 +40,46 @@ img {
   margin-right: 10px;
 }
 
-
-.header .navbar-brand {
-  font-size: 1.5rem;
-  padding-left: 50px;
-  margin-right: 200px;
-}
-
-/* .navbar-brand img {
-    width: 250px;
-  } */
-
-.header .nav-link {
-  font-weight: 500;
-  margin-left: 30px;
-  padding-left: 30px;
-  font-size: 13px;
-  color: #000;
-}
-
 /* Custom styles for dropdown menu */
 .dropdown-menu {
   border-radius: 20px;
-  /* Rounded corners */
   background-color: #34cbab;
-  /* Aqua background color */
   min-width: unset !important;
-  /* Remove minimum width */
   width: max-content;
-  /* Set width to fit content */
 }
 
 .dropdown-item {
   color: black !important;
-  /* Black font color */
   padding: 8px 20px;
-  /* Adjust padding for dropdown items */
   min-width: 180px;
-  /* Set minimum width for dropdown items */
   width: max-content;
-  /* Set width to fit content */
+}
+
+@media (max-width: 768px) {
+  .header{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .navbar-brand {
+    padding-left: 0px; /* Reduce padding for better spacing */
+    margin-right: 0px;
+  }
+  
+  .nav-link {
+    margin-left: 10px; /* Reduce margin for better spacing */
+    padding-left: 10px; /* Reduce padding for better spacing */
+    font-size: 12px; /* Reduce font size for better fit */
+  }
+  .navbar-nav {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow items to wrap to next line if needed */
+  }
+
+  .nav-item {
+    margin: 10px 0;
+  }
 }

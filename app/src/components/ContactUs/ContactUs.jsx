@@ -9,6 +9,7 @@
 import React, { useState } from "react";
 import { Row, Col, Form, Button, Card } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
+import Snackbar from "../Core/Snackbar/Snackbar";
 import "./ContactUs.css";
 
 const MapContainer = () => {
@@ -40,6 +41,9 @@ const ContactUs = () => {
     message: "",
   });
   const [email, setEmail] = useState("");
+  const [showSnackbar, setShowSnackbar] = useState(false); // State to control Snackbar visibility
+  const [snackbarMessage, setSnackbarMessage] = useState(""); // State to set the Snackbar message
+  const [snackbarSuccess, setSnackbarSuccess] = useState(""); // State to set the Snackbar message
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -95,11 +99,17 @@ const ContactUs = () => {
     if (!validateForm()) {
       return; // Do not proceed if form validation fails
     }
-    // Here you can submit the form data to your backend or perform any other actions
+    setShowSnackbar(true);
+    setSnackbarSuccess(true);
+    setSnackbarMessage("Your Message is sent successfully.Thank you for Contacting us");
+    setTimeout(() => {
+      // setShowSnackbar(false);
+    }, 3000);
   };
 
   return (
     <div className="contact-container">
+      
       <div className="container">
         <Row className="m-0 p-2">
           <div className="faq-section mt-4">
@@ -218,10 +228,17 @@ const ContactUs = () => {
       </div>
 
       <div className="container mt-4">
+        
         <div className="contact-section">
+       
           <h2 className="text-center">Have Any Questions ? Reach Out to Us</h2>
           <hr className="m-5" />
           <Row className="m-0 p-2">
+          <Snackbar
+                  message={snackbarMessage}
+                  success={snackbarSuccess}
+                  show={showSnackbar}
+                />
             <Col md={6} className="map-column">
               <MapContainer />
             </Col>
@@ -302,7 +319,7 @@ const ContactUs = () => {
       </div>
       <div className="container">
         <div className="contact-section mt-4">
-          <Row className="justify-content-center">
+          <Row className="justify-content-center m-0">
             <Col md={8}>
               <div className="newsletter-section mt-4 p-4 text-center bg-light">
                 <h2 className="mb-4">Subscribe to Our Newsletter</h2>

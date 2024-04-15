@@ -2,15 +2,36 @@
   padding: 50px;
 }
 
+@media (max-width: 768px) {
+  .about-us-container {
+    padding: 10px;
+  }
+}
+
 .section-title {
-  font-size: 24px;
+  font-size: 2rem;
   margin-bottom: 20px;
 }
 
+.bio h1{
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.bio p{
+  font-size: 1.5rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .team-members {
   margin-top: 20px;
   justify-content: center;
 
+}
+
+@media (max-width: 768px) {
+  .team-members .col-md-4 {
+    width: 100%;
+  }
+ 
 }
 .team-desc{
   color: black;
@@ -30,14 +51,14 @@
 }
 
 .team-member h3 {
-  font-size: 20px;
+  font-size: 2rem;
   margin-top: 30px;
   color: black;
   /* White text color */
 }
 
 .team-member h4 {
-  font-size: 18px;
+  font-size: 1.5rem;
   margin-top: 10px;
   color: black;
 }
@@ -99,6 +120,12 @@
   /* Adjust width as needed */
   height: auto;
   /* Adjust height as needed */
+}
+
+.bio .image-container{
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
 
 .image-container img {

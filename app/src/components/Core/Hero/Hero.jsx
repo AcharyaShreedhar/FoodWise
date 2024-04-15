@@ -22,7 +22,7 @@ const Hero = () => {
     <section className="hero">
       <div className="hero-content">
         <img src={heroImage} alt="heroImage logo" className="hero-image" />
-        <div className="text-content justify-content-center">
+        <div className="text-content justify-content-center heroText">
           <h6 className="hero-heading mt-5 mb-5"><i>{slogan}</i></h6>
           <h2 className="hero-heading text-center">Welcome to FoodWise</h2>
           {!user && (
