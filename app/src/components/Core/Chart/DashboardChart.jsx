@@ -66,56 +66,75 @@ class DashBoardChart extends Component {
   render() {
     return (
       <div className="dashboard-chart bg-white rounded card">
-        <Row>
-          <Col className="p-5">
+         <Row className="m-2 p-2">
+          <Col className="p-3">
             <h3>Inventory Tracking</h3>
             <Chart
               options={this.state.inventoryChartOptions}
               series={this.state.inventorySeries}
               type="bar"
-              width={500}
+              width="100%"
               height={320}
             />
           </Col>
-          <Col className="p-5">
+          <Col className="p-3">
             <h3>Food Waste Monitoring</h3>
             <Chart
               options={this.state.wasteChartOptions}
               series={this.state.wasteSeries}
               type="line"
-              width={500}
+              width="100%"
               height={320}
             />
           </Col>
         </Row>
-        <Row>
-          <Col className="p-5">
+
+        {/* Donation Statistics and Inventory Composition */}
+        <Row className="m-2 p-2">
+          <Col className="p-3">
             <h3>Donation Statistics</h3>
             <Chart
               options={this.state.donationChartOptions}
               series={this.state.donationSeries}
               type="donut"
-              width={500}
+              width="100%"
               height={320}
             />
           </Col>
-          <Col className="p-5">
-              <h3>Inventory Composition</h3>
-              <Chart options={this.state.radialBarChartOptions}
-                series={this.state.radialBarSeries} type="radialBar" width={500} height={320} />
-            </Col>
-          <Row>
-            <Col className="p-5">
-              <h3>Inventory Growth</h3>
-              <Chart options={this.state.areaChartOptions}
-                series={this.state.areaSeries} type="area" width={500} height={320} />
-            </Col>
-            <Col className="p-5">
-              <h3>Inventory Distribution</h3>
-              <Chart options={this.state.pieChartOptions}
-                series={this.state.pieSeries} type="pie" width={500} height={320} />
-            </Col>
-          </Row>
+          <Col className="p-3">
+            <h3>Inventory Composition</h3>
+            <Chart
+              options={this.state.radialBarChartOptions}
+              series={this.state.radialBarSeries}
+              type="radialBar"
+              width="100%"
+              height={320}
+            />
+          </Col>
+        </Row>
+
+        {/* Inventory Growth and Inventory Distribution */}
+        <Row className="m-2 p-2">
+          <Col className="p-3">
+            <h3>Inventory Growth</h3>
+            <Chart
+              options={this.state.areaChartOptions}
+              series={this.state.areaSeries}
+              type="area"
+              width="100%"
+              height={320}
+            />
+          </Col>
+          <Col className="p-3">
+            <h3>Inventory Distribution</h3>
+            <Chart
+              options={this.state.pieChartOptions}
+              series={this.state.pieSeries}
+              type="pie"
+              width="100%"
+              height={320}
+            />
+          </Col>
         </Row>
       </div>
     );

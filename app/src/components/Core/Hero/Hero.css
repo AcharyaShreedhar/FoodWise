@@ -1,62 +1,67 @@
-/*
-    ---------------------------------------------------
-    Author      : Shree Dhar Acharya
-    StudentId   : 8899288
-    Date        : 6th Feb 2024
-    Application : FoodWise
-    ----------------------------------------------------
-*/
-
 .hero {
-    height: 400px;
-    margin-top: 50px;
-}
-
-.hero .content {
-    text-align: center;
+    height: 250px;
     position: relative;
-    z-index: 1;
-}
-
-.hero .hero-heading {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.hero .hero-description {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-}
-
-.hero button {
-    font-size: 1rem;
-    padding: 10px 20px;
-}
-
-.hero-image {
-    height: 395.9px;
-    width: 506.4px;
-    margin: 0 !important;
-    left: 400px;
 }
 
 .hero-content {
-    width: 1000px; 
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: var(--gap-xl);
-    align-items: center;
-    top: 0;
-    z-index: 99;
-   
+    height: 100%;
+    position: relative; /* Add position relative to position child elements */
 }
 
 .text-content {
-    display: flex;
-    flex-direction: column;
-    align-self: stretch;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--gap-17xl);
+    text-align: center;
+}
+
+.hero-heading {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.hero-description {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.hero-image {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    order: 1; /* Change order to display hero image first */
+}
+
+.heroText {
+    margin-right: auto;
+    order: 2; /* Change order to display hero text second */
+    position: absolute; /* Position absolutely */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center */
+}
+
+.signup-text {
+    font-size: 1rem;
+}
+
+.btn-hero {
+    border-radius: 30px;
+    background-color: darkslateblue;
+    color: #fff;
+    width: 50%;
+    margin-top: 20px;
+    font-size: 1.50rem;
+}
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column; /* Change to column layout */
+        align-items: center; /* Center align items */
+    }
+
+    .heroText {
+       margin-top: 20px; /* Adjust margin */
+        margin: auto;
+    }
 }

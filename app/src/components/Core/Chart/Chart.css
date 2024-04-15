@@ -9,3 +9,10 @@
 .dashboard-chart .chart {
     border-top: 1px solid darkcyan;
 }
+
+@media (max-width: 768px) {
+    .dashboard-chart .row{
+        flex-direction: column;
+    }
+  }
+  

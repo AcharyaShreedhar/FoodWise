@@ -16,7 +16,8 @@ import reportWebVitals from "./reportWebVitals";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4021/graphql",
+  // uri: "https://foodwise.minipixai.com/",
+ uri: "http://localhost:4021/graphql",
   cache: new InMemoryCache(),
   onError: (error) => {
     console.error("Apollo Client Error:", error);

@@ -1,94 +1,115 @@
-/*
-    ---------------------------------------------------
-    Author      : Shree Dhar Acharya
-    StudentId   : 8899288
-    Date        : 4th Feb 2024
-    Application : FoodWise
-    ----------------------------------------------------
-*/
-
+/* Common styles */
 .footer {
-    width: 100%;
-    background-color: #2ecba9;
-    color: black;
-    padding-top: 20px;
-    padding-right:50px;
-    margin-top: 10px;
-  }
-
-  .foodwise-logo {
-    max-width: 200px; /* Adjust the max-width as needed */
-  }
-  .footer h3 {
-    color: #333;
-  }
-  
-  .footer ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .footer ul li a {
-    color: #666;
-    text-decoration: none;
-  }
-  
-  .footer ul li a:hover {
-    color: #000;
-  }
-  
-  .footer form input[type="email"],
-  .footer form button {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 2px;
-  }
-  
-  .footer form button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .footer form button:hover {
-    background-color: #0056b3;
-  }
-  
-  .footer p {
-    color: black;
-    padding-bottom: 1px;
-  }
-
-  .back-image{
-    height: 150px;
-    width: 100%;
-    margin: 0 !important;
-  }
-
-  /* Footer.css */
-.newsletter-form {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  background-color: #34cbab;
+  color: black;
+  padding: 15px 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
 }
 
-.newsletter-form .input-group {
-  display: flex;
+.footer-header {
+  background-color: #34cbab;
 }
 
-.newsletter-form input[type="email"] {
-  flex-grow: 1;
+.footer p {
+  margin: 0;
+  font-size: 3.5rem; /* Use rem for text size */
 }
 
-.newsletter-form button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  margin-left: 10px; /* Add margin to separate the button */
+.hero {
+  height: 100px;
 }
 
-.newsletter-form button:hover {
-  background-color: #0056b3;
+.footer-img {
+  margin: 50px 0 0 30px;
+  max-width: 100%; /* Make sure image doesn't overflow */
 }
+
+.row {
+  margin-left: 14%;
+  margin-top: 1%;
+}
+
+.col-md-3, .col-md-2 {
+  width: 17%;
+  font-size: 1.425rem; /* Use rem for font size */
+  font-weight: 500;
+}
+
+.subscribe-btn {
+  border-radius: 0 50px 50px 0;
+}
+
+.input-group .form-control {
+  background-color: #fff;
+}
+
+body {
+  /* Hide vertical scrollbar */
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
+}
+
+.copyright-text {
+  font-size: 1.50rem; /* Use rem for font size */
+  text-align: center;
+  margin-top: 0.5%;
+}
+.bold-text {
+  font-weight: bold;
+  font-size: 1.625rem;
+}
+
+.subscribe-btn {
+  border-radius: 0 50px 50px 0;
+  width: auto; /* Adjust width as needed */
+}
+
+
+/* Media Queries for Tablet */
+@media screen and (max-width: 1024px) {
+  .col-md-3, .col-md-2 {
+    width: 50%; /* Two columns per row on tablet */
+  }
+}
+
+/* Media Queries for Mobile */
+@media screen and (max-width: 768px) {
+  .footer-header {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .row {
+    width: 100%; /* Set the width of the row to 100% */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex-wrap: wrap; /* Allow items to wrap to new lines */
+  }
+
+  .col-md-3,
+  .col-md-2 {
+    width: 90%; /* Set columns to take up 90% of the width */
+    max-width: 300px; /* Set maximum width to prevent stretching */
+    margin-bottom: 20px; /* Add some space between columns */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .input-group {
+    width: 50%; /* Set input group width to 100% for mobile */
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
 

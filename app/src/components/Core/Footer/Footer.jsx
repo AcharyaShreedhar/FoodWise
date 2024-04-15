@@ -2,45 +2,41 @@
     ---------------------------------------------------
     Author      : Shree Dhar Acharya
     StudentId   : 8899288
-    Date        : 4th Feb 2024
+    Date        : 6th Feb 2024
     Application : FoodWise
     ----------------------------------------------------
 */
 
 import React from "react";
-import logo from "../../../images/footer-logo.svg";
-import heroImage from "../../../images/footer-image.svg";
+import heroImage from "../../../images/hero.svg";
 import "./Footer.css";
+import logo from "../../../images/logo.png";
+import foodwise from "../../../images/foodwise.png"
+
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="row">
-        <div className="col-2 text-center">
-          <img className="foodwise-logo" src={logo} alt="foodwise logo" />
+    <>
+      <div className="footer-header">
+        <div className="row m-1">
+          <div className="col-md-3">
+            <img src={foodwise} alt="foodwise logo" className="footer-img" />
+          </div>
         </div>
-      </div>
-      <div
-        className="row"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="col-2"></div>
-        <div className="col-9">
-          <div className="row">
-            <div className="col-md-3">
-              <h5>about us</h5>
+
+        <div className="row m-1">
+          <div className="col-md-3"></div>
+            <div className="col-md-2">
+              <h6 className="bold-text">about us</h6>
               <ul>
                 <li>company</li>
                 <li>team</li>
                 <li>blog</li>
-                <li>FAQ</li>
+                <li>faq</li>
               </ul>
             </div>
-            <div className="col-md-3">
-              <h5>quick links</h5>
+            <div className="col-md-2">
+              <h6 className="bold-text">quick links</h6>
               <ul>
                 <li>product support</li>
                 <li>careers</li>
@@ -48,35 +44,35 @@ const Footer = () => {
                 <li>press</li>
               </ul>
             </div>
-            <div className="col-md-3">
-              <h5>connect</h5>
+            <div className="col-md-2">
+              <h6 className="bold-text">connect</h6>
               <ul>
                 <li>instagram</li>
                 <li>facebook</li>
-                <li>x</li>
+                <li>X</li>
                 <li>linkedin</li>
               </ul>
             </div>
             <div className="col-md-3">
-              <h5>newsletter</h5>
-              <form className="newsletter-form">
-                <p>get exclusive updates directly to your inbox</p>
-                <div className="input-group">
-                  <input type="email" placeholder="Your email" />
-                  <button type="submit">Subscribe</button>
-                </div>
-              </form>
+              <h6 className="bold-text"> newsletter</h6>
+              <p>get exclusive updates directly to your inbox.</p>
+              {/* Add your newsletter subscription form here */}
+              <div class="input-group">
+                <input type="search" class="form-control" placeholder="search" aria-label="Search" aria-describedby="search-addon" />
+                <button type="button" class="btn btn-primary subscribe-btn">search</button>
+              </div>
             </div>
           </div>
-          <div className="col-2"></div>
-        </div>
-        <div className="row">
-          <div className="col-12 text-center">
-            <p>© 2024 FoodWise. All Rights Reserved.</p>
+          <div className="row m-1 p-5 text-center align-items-center justify-content-center">
+            <div className="col-md-12">
+              <div className="copyright-text">
+                <i className="fa-regular fa-copyright"></i>
+                2024 FoodWise. All Rights Reserved
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </footer>
+          </div>
+    </>
   );
 };
 

@@ -7,32 +7,43 @@
     ----------------------------------------------------
 */
 
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const userSchema = gql`
-type User {
-    _id: ID!  
+  type UserProfile {
+    _id: ID!
+    firstName: String!
+    lastName: String!
+    dateOfBirth: String!
+    phoneNumber: String!
+    address: String!
+    profileImage: String
+    userId: String
+  }
+
+  type User {
+    _id: ID!
     email: String!
     password: String!
-    salt:String
+    salt: String
     userType: String!
     userStatus: Boolean
+    profile: UserProfile
   }
 
   type Query {
     users: [User]!
     # Query to log in a user
     loginUser(email: String!, password: String!): User
-    
   }
 
   type Mutation {
     createUser(
-        email: String!
-        password: String!
-        salt:String
-        userType: String!
-        userStatus: Boolean
+      email: String!
+      password: String!
+      salt: String
+      userType: String!
+      userStatus: Boolean
     ): User
     initiatePasswordReset(email: String!): Boolean
     completePasswordReset(
@@ -40,7 +51,6 @@ type User {
       newPassword: String!
       resetToken: String!
     ): Boolean
-    
   }
 `;
 

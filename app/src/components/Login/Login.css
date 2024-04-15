@@ -1,0 +1,91 @@
+/*
+    ---------------------------------------------------
+    Author      : Shree Dhar Acharya
+    StudentId   : 8899288
+    Date        : 6th Feb 2024
+    UpdatedBy   : Tirth Shah
+    Application : FoodWise
+    ----------------------------------------------------
+*/
+
+.header {
+    justify-content: center;
+    color: #fff;
+    font-weight: 900;
+}
+
+h3 {
+    text-align: center;
+    color: #fff;
+}
+
+.card {
+    background-color: #2e4ac1;
+    font-size: x-large;
+}
+
+.form-group {
+    margin-top: 15px
+}
+
+.row-height {
+    height: 500px;
+
+}
+
+.form-control {
+    border: 1px;
+    border-radius: 25px;
+    background-color: #25318b;
+    color: white;
+    font-size: medium;
+}
+
+label {
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: medium;
+}
+
+.button {
+    margin-top: 15px;
+    font-size: large;
+}
+
+.sign-in-btn {
+    background-color: #34cbab;
+    border: 1px;
+    border-radius: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 10px;
+    font-size: large;
+}
+
+.sign-in-btn:hover {
+    background-color: #E6E09F;
+}
+
+.hero {
+    height: 250px;
+}
+
+.login-hero {
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background-color: #25318b;
+}
+
+.login-hero .col-md-4 {
+    width: 35%
+}
+
+@media (max-width: 768px) {
+    .login-hero .col-md-4 {
+      width: 80%;
+    }
+    .signup-hero {
+        padding-bottom: 40px;
+    }
+  }
