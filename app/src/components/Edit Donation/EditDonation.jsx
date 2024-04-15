@@ -254,7 +254,7 @@ const EditDonation = () => {
         },
       };
 
-      const response = await fetch("http://localhost:4021/graphql", {
+      const response = await fetch("https://foodwiseapi.onrender.com/graphql", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
