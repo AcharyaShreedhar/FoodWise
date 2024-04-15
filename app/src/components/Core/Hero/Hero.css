@@ -1,82 +1,67 @@
-/*
-    ---------------------------------------------------
-    Author      : Shree Dhar Acharya
-    StudentId   : 8899288
-    Date        : 6th Feb 2024
-    Application : FoodWise
-    ----------------------------------------------------
-*/
-
 .hero {
-    height: 350px;
+    height: 250px;
+    position: relative;
 }
 
 .hero-content {
-
-    align-items: center;
+    display: flex;
+    height: 100%;
+    position: relative; /* Add position relative to position child elements */
 }
 
 .text-content {
-    margin-left: 140px;
-    position: absolute;
-    bottom: 50%;
-    left: 35%
+    text-align: center;
 }
 
 .hero-heading {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 10px;
     font-family: 'Playfair Display', serif;
 }
 
 .hero-description {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
 .hero-image {
-    height: 350px;
+    height: 100%;
     width: auto;
+    max-width: 100%;
+    order: 1; /* Change order to display hero image first */
 }
 
-
+.heroText {
+    margin-right: auto;
+    order: 2; /* Change order to display hero text second */
+    position: absolute; /* Position absolutely */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center */
+}
 
 .signup-text {
-    text-align: center;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .btn-hero {
     border-radius: 30px;
     background-color: darkslateblue;
     color: #fff;
-    width: 20%;
+    width: 50%;
+    margin-top: 20px;
+    font-size: 1.50rem;
 }
 
-.btn-hero:hover {
-    background-color: darkslateblue;
-    /* Changing background color on hover */
-    color: #fff;
-    /* Changing text color on hover */
-}
-
-.btn-hero:active {
-    background-color: darkslateblue;
-    /* Keeping background color on click */
-    color: #fff;
-    /* Keeping text color on click */
-}
-
-@media (max-width: 1024px) {
-    .text-content {
-        position: absolute;
-        left: 20%
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column; /* Change to column layout */
+        align-items: center; /* Center align items */
     }
-}
 
-@media (min-width: 320px) and (max-width: 768px) {
-    .text-content {
-        position: absolute;
-        left: 10%
+    .heroText {
+       margin-top: 20px; /* Adjust margin */
+        margin: auto;
     }
 }

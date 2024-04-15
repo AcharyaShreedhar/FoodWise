@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./EditProduct.css";
 import { useParams, useNavigate } from "react-router-dom";
 import Snackbar from "../Core/Snackbar/Snackbar";
@@ -16,7 +18,7 @@ const EditProduct = () => {
     productQuantity: 10,
     productStatus: true,
     productNotes: "",
-    productExpiry: "",
+    productExpiry: new Date(), 
     productCategory: 1,
     productSupplier: 1,
   });
@@ -83,7 +85,7 @@ const EditProduct = () => {
           productQuantity: productData.productQuantity,
           productStatus: productData.productStatus,
           productNotes: productData.productNotes,
-          productExpiry: productData.productExpiry,
+          productExpiry: new Date(parseInt(productData.productExpiry)),
           productCategory: productData.productCategory,
           productSupplier: productData.productSupplier,
         });
@@ -136,43 +138,66 @@ const EditProduct = () => {
     const newErrors = {};
 
     if (!formData.productName) {
-        newErrors.productName = "product name is required";
+        newErrors.productName = "Product Name is required";
         valid = false;
       } 
   
       if (!formData.productDescription) {
-        newErrors.productDescription = "product description is required";
+        newErrors.productDescription = "Product Description is required";
         valid = false;
       } 
   
       if (!formData.productImage) {
-          newErrors.productImage = "product image is required";
+          newErrors.productImage = "Product Image is required";
           valid = false;
       } 
   
       if (!formData.productPrice) {
-          newErrors.productPrice = "product price is required";
-          valid = false;
-      } 
+        newErrors.productPrice = "Product Price is required";
+        valid = false;
+      } else if (!/^\d+(\.\d{1,2})?$/.test(formData.productPrice)) {
+        newErrors.productPrice = "Invalid Product Price format. Please enter a valid numeric value.";
+        valid = false;
+      }
+      
       if (!formData.productSalePrice) {
-          newErrors.productSalePrice = "product salePrice is required";
-          valid = false;
-      } 
+        newErrors.productSalePrice = "Product Sale Price is required";
+        valid = false;
+      } else if (!/^\d+(\.\d{1,2})?$/.test(formData.productSalePrice)) {
+        newErrors.productSalePrice = "Invalid Product Sale Price format. Please enter a valid numeric value.";
+        valid = false;
+      }
       if (!formData.productQuantity) {
-          newErrors.productQuantity = "product quantity is required";
+          newErrors.productQuantity = "Product Quantity is required";
           valid = false;
       } 
       if (!formData.productStatus) {
-          newErrors.productStatus = "product status is required";
+          newErrors.productStatus = "Product Status is required";
           valid = false;
       }
       if (!formData.productNotes) {
-          newErrors.productNotes = "product notes is required";
+          newErrors.productNotes = "Product notes is required";
           valid = false;
       }
       if (!formData.productExpiry) {
-          newErrors.productExpiry = "product expiry is required";
+        newErrors.productExpiry = "Product Expiry is required";
+        valid = false;
+      } else {
+        let expiryString = formData.productExpiry;
+        if (formData.productExpiry instanceof Date) {
+          const month = formData.productExpiry.getMonth() + 1; // Adding 1 because getMonth() returns zero-based month index
+          const day = formData.productExpiry.getDate();
+          const year = formData.productExpiry.getFullYear();
+          expiryString = `${month.toString().padStart(2, "0")}/${day
+            .toString()
+            .padStart(2, "0")}/${year}`;
+        }
+        if (
+          !expiryString.match(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)
+        ) {
+          newErrors.productExpiry = "Invalid Expiry Date format (MM/DD/YYYY)";
           valid = false;
+        }
       }
 
     setErrors(newErrors);
@@ -186,6 +211,12 @@ const EditProduct = () => {
       return;
     }
     try {
+      const formattedProductExpiry =
+      formData.productExpiry instanceof Date
+        ? `${
+            formData.productExpiry.getMonth() + 1
+          }/${formData.productExpiry.getDate()}/${formData.productExpiry.getFullYear()}`
+        : formData.productExpiry;
       const requestBody = {
         query: `
           mutation UpdateProduct($input: ProductInput!) {
@@ -211,7 +242,7 @@ const EditProduct = () => {
           productPrice: formData.productPrice,
           productSalePrice: formData.productSalePrice,
           productQuantity: parseInt(formData.productQuantity, 10),
-          productExpiry: formData.productExpiry,
+          productExpiry: formattedProductExpiry,
           productStatus: formData.productStatus,
           productNotes: formData.productNotes,
 
@@ -248,7 +279,7 @@ const EditProduct = () => {
       console.error("Error occurred during product update:", error);
     }
   };
-
+console.log('expiry', formData.productExpiry)
   return (
     <div className="edit-product-hero">
       <div className="container">
@@ -256,10 +287,10 @@ const EditProduct = () => {
           <div className="col-md-4">
             <div className="card mt-5 mb-5">
               <div className="card-body">
-                <h3 className="mt-5">edit product</h3>
+                <h3 className="mt-5">Edit Product</h3>
                 <form onSubmit={handleSubmit} className="p-4">
                 <div className="form-group">
-                    <label htmlFor="productName">product name</label>
+                    <label htmlFor="productName">Product Name</label>
                     <input
                       type="text"
                       className={`form-control ${errors.productName && "is-invalid"}`}
@@ -275,7 +306,7 @@ const EditProduct = () => {
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productDescription">product description</label>
+                    <label htmlFor="productDescription">Product Description</label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -293,7 +324,7 @@ const EditProduct = () => {
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productPrice">product price</label>
+                    <label htmlFor="productPrice">Product Price</label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -312,7 +343,7 @@ const EditProduct = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="productSalePrice">product sale price</label>
+                    <label htmlFor="productSalePrice">Product Sale Price</label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -331,7 +362,7 @@ const EditProduct = () => {
                   </div>
                   
                   <div className="form-group">
-                    <label htmlFor="productQuantity">product quantity</label>
+                    <label htmlFor="productQuantity">Product Quantity</label>
                     <input
                       type="number"
                       className={`form-control ${
@@ -341,6 +372,7 @@ const EditProduct = () => {
                       value={formData.productQuantity}
                       onChange={handleChange}
                       autoComplete="off"
+                      min="1"
                     />
                     {errors.productQuantity && (
                       <div className="invalid-feedback text-danger pt-3">
@@ -349,7 +381,7 @@ const EditProduct = () => {
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productStatus">product status</label>
+                    <label htmlFor="productStatus">Product Status</label>
                     <select
                       className="form-control"
                       name="productStatus"
@@ -362,7 +394,7 @@ const EditProduct = () => {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productNotes">product notes</label>
+                    <label htmlFor="productNotes">Product Notes</label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -380,25 +412,33 @@ const EditProduct = () => {
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productExpiry">product expiry</label>
-                    <input
-                      type="text"
+                    <label htmlFor="productExpiry">Product Expiry</label>
+                    <DatePicker
+                      selected={formData.productExpiry}
+                      onChange={(date) => {
+                        if (
+                          date instanceof Date &&
+                          !isNaN(date.getTime())
+                        ) {
+                          setFormData({
+                            ...formData,
+                            productExpiry: date,
+                          });
+                        }
+                      }}
                       className={`form-control ${
                         errors.productExpiry && "is-invalid"
                       }`}
-                      name="productExpiry"
-                      value={formData.productExpiry}
-                      onChange={handleChange}
-                      autoComplete="off"
                     />
+
                     {errors.productExpiry && (
-                      <div className="invalid-feedback text-danger pt-3">
+                      <div className="invalid-feedback text-danger d-block pt-3">
                         {errors.productExpiry}
                       </div>
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productCategory">product category</label>
+                    <label htmlFor="productCategory">Product Category</label>
                     <select
                       className="form-control"
                       name="productCategory"
@@ -413,7 +453,7 @@ const EditProduct = () => {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productSupplier">product supplier</label>
+                    <label htmlFor="productSupplier">Product Supplier</label>
                     <select
                       className="form-control"
                       name="productSupplier"
@@ -439,7 +479,7 @@ const EditProduct = () => {
                       onClick={handleImageUpload}
                       className="btn btn-lg btn-success mt-2"
                     >
-                      upload
+                      Upload
                     </button>
                   </div>
                   {/* Display current product image */}
@@ -448,7 +488,7 @@ const EditProduct = () => {
                   </div>
                   <div className="button text-center">
                     <button type="submit" className="btn  sign-in-btn">
-                      update product
+                      Update Product
                     </button>
                   </div>
                  

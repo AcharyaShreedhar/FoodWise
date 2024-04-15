@@ -130,7 +130,7 @@ const SignUp = () => {
       <div className="container">
         <div className="row m-0 p-0 row-height justify-content-center align-items-center">
           <div className="col-md-4">
-            <div className="card mt-5">
+            <div className="card mt-5 mb-5">
               <div className="card-body">
                 <h3 className="mt-5">Create an Account</h3>
                 <form onSubmit={handleSubmit} className="p-4">
@@ -177,10 +177,10 @@ const SignUp = () => {
                       onChange={handleChange}
                     >
                       <option value="Admin">Admin</option>
-                      <option value="Staff">Staff</option>
+                      {/* <option value="Staff">Staff</option> */}
                       <option value="User">User</option>
-                      <option value="Donor">Donor</option>
-                      <option value="Receiver">Receiver</option>
+                      {/* <option value="Donor">Donor</option>
+                      <option value="Receiver">Receiver</option> */}
                     </select>
                   </div>
                   <div className="button text-center">

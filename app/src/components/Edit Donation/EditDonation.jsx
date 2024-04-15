@@ -9,6 +9,8 @@
 */
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import Snackbar from "../Core/Snackbar/Snackbar";
 
 const EditDonation = () => {
@@ -22,7 +24,7 @@ const EditDonation = () => {
     productQuantity: 10,
     productStatus: true,
     productNotes: "",
-    productExpiry: "",
+    productExpiry: new Date(), 
     donerName: "",
     pickUpLocation: "",
     contact: "",
@@ -90,7 +92,7 @@ const EditDonation = () => {
           productQuantity: donationData.productQuantity,
           productStatus: donationData.productStatus,
           productNotes: donationData.productNotes,
-          productExpiry: donationData.productExpiry,
+          productExpiry: new Date(parseInt(donationData.productExpiry)),
           donerName: donationData.donerName,
           pickUpLocation: donationData.pickUpLocation,
           contact: donationData.contact,
@@ -142,43 +144,63 @@ const EditDonation = () => {
     const newErrors = {};
 
     if (!formData.productName) {
-      newErrors.productName = "product name is required";
+      newErrors.productName = "Product name is required";
       valid = false;
     }
 
     if (!formData.productDescription) {
-      newErrors.productDescription = "product description is required";
+      newErrors.productDescription = "Product Description is required";
       valid = false;
     }
 
     if (!formData.productImage) {
-      newErrors.productImage = "product image is required";
+      newErrors.productImage = "Product Image is required";
       valid = false;
     }
 
     if (!formData.pickUpLocation) {
-      newErrors.pickUpLocation = "pickup location is required";
+      newErrors.pickUpLocation = "Pickup Location is required";
       valid = false;
     }
     if (!formData.contact) {
-      newErrors.contact = "contact is required";
+      newErrors.contact = "Contact is required";
+      valid = false;
+    } else if (!/^\+?\d{0,3}\d{10}$/.test(formData.contact)) {
+      newErrors.contact =
+        "Invalid Contact format. Please enter a valid phone number with country code (if applicable) and 10 digits after.";
       valid = false;
     }
     if (!formData.productQuantity) {
-      newErrors.productQuantity = "product quantity is required";
+      newErrors.productQuantity = "Product Quantity is required";
       valid = false;
     }
     if (!formData.productStatus) {
-      newErrors.productStatus = "product status is required";
+      newErrors.productStatus = "Product Status is required";
       valid = false;
     }
     if (!formData.productNotes) {
-      newErrors.productNotes = "product notes is required";
+      newErrors.productNotes = "Product Notes is required";
       valid = false;
     }
     if (!formData.productExpiry) {
-      newErrors.productExpiry = "product expiry is required";
+      newErrors.productExpiry = "Product Expiry is required";
       valid = false;
+    } else {
+      let expiryString = formData.productExpiry;
+      if (formData.productExpiry instanceof Date) {
+        const month = formData.productExpiry.getMonth() + 1; // Adding 1 because getMonth() returns zero-based month index
+        const day = formData.productExpiry.getDate();
+        const year = formData.productExpiry.getFullYear();
+        expiryString = `${month.toString().padStart(2, "0")}/${day
+          .toString()
+          .padStart(2, "0")}/${year}`;
+      }
+      if (
+        !expiryString.match(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)
+      ) {
+        newErrors.productExpiry = "Invalid Expiry Date format (MM/DD/YYYY)";
+        valid = false;
+      }
     }
     setErrors(newErrors);
     return valid;
@@ -191,6 +213,12 @@ const EditDonation = () => {
       return;
     }
     try {
+      const formattedProductExpiry =
+      formData.productExpiry instanceof Date
+        ? `${
+            formData.productExpiry.getMonth() + 1
+          }/${formData.productExpiry.getDate()}/${formData.productExpiry.getFullYear()}`
+        : formData.productExpiry;
       const requestBody = {
         query: `
           mutation UpdateDonation($input: DonationInput!) {
@@ -220,7 +248,7 @@ const EditDonation = () => {
             productQuantity: parseInt(formData.productQuantity, 10),
             productStatus: formData.productStatus,
             productNotes: formData.productNotes,
-            productExpiry: formData.productExpiry,
+            productExpiry: formattedProductExpiry,
             donerName: formData.donerName,
           },
         },
@@ -235,7 +263,7 @@ const EditDonation = () => {
       });
 
       const responseData = await response.json();
-console.log('responseData',responseData)
+
       if (responseData.data.updateDonation) {
         setShowSnackbar(true);
         setSnackbarSuccess(true);
@@ -266,7 +294,7 @@ console.log('responseData',responseData)
                 <h3 className="mt-5">Edit Donation</h3>
                 <form onSubmit={handleSubmit} className="p-4">
                   <div className="form-group">
-                    <label htmlFor="productName">product name</label>
+                    <label htmlFor="productName">Product Name</label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -285,7 +313,7 @@ console.log('responseData',responseData)
                   </div>
                   <div className="form-group">
                     <label htmlFor="productDescription">
-                      product description
+                      Product Description
                     </label>
                     <input
                       type="text"
@@ -342,7 +370,7 @@ console.log('responseData',responseData)
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="productQuantity">product quantity</label>
+                    <label htmlFor="productQuantity">Product Quantity</label>
                     <input
                       type="number"
                       className={`form-control ${
@@ -352,6 +380,7 @@ console.log('responseData',responseData)
                       value={formData.productQuantity}
                       onChange={handleChange}
                       autoComplete="off"
+                      min="1"
                     />
                     {errors.productQuantity && (
                       <div className="invalid-feedback text-danger pt-3">
@@ -360,7 +389,7 @@ console.log('responseData',responseData)
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productStatus">product status</label>
+                    <label htmlFor="productStatus">Product Status</label>
                     <select
                       className="form-control"
                       name="productStatus"
@@ -372,7 +401,7 @@ console.log('responseData',responseData)
                     </select>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productNotes">product notes</label>
+                    <label htmlFor="productNotes">Product Notes</label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -390,19 +419,27 @@ console.log('responseData',responseData)
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="productExpiry">product expiry</label>
-                    <input
-                      type="text"
+                    <label htmlFor="productExpiry">Product Expiry</label>
+                    <DatePicker
+                      selected={formData.productExpiry}
+                      onChange={(date) => {
+                        if (
+                          date instanceof Date &&
+                          !isNaN(date.getTime())
+                        ) {
+                          setFormData({
+                            ...formData,
+                            productExpiry: date,
+                          });
+                        }
+                      }}
                       className={`form-control ${
                         errors.productExpiry && "is-invalid"
                       }`}
-                      name="productExpiry"
-                      value={formData.productExpiry}
-                      onChange={handleChange}
-                      autoComplete="off"
                     />
+
                     {errors.productExpiry && (
-                      <div className="invalid-feedback text-danger pt-3">
+                      <div className="invalid-feedback text-danger d-block pt-3">
                         {errors.productExpiry}
                       </div>
                     )}
@@ -434,7 +471,7 @@ console.log('responseData',responseData)
                       onClick={handleImageUpload}
                       className="btn btn-lg btn-success mt-2"
                     >
-                      upload
+                      Upload
                     </button>
                   </div>
                   

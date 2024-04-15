@@ -55,7 +55,7 @@ const DonationsTable = ({ donationsData, handleSnackbar }) => {
     }
   };
   return (
-    <div>
+    <div className="table-responsive">
       <Table striped bordered hover responsive>
         <thead>
           <tr>

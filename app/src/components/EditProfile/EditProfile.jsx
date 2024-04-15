@@ -8,6 +8,8 @@
 */
 
 import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../containers/LoginContainer/UserContext";
 import Snackbar from "../Core/Snackbar/Snackbar";
@@ -16,16 +18,17 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const [image, setImage] = useState("");
   const { user, setUser } = useUser();
-
+  const adjustedTimestamp =
+    parseInt(user.profile.dateOfBirth) +
+    new Date().getTimezoneOffset() * 60 * 1000;
   const [formData, setFormData] = useState({
     firstName: user.profile.firstName,
     lastName: user.profile.lastName,
-    dateOfBirth: user.profile.dateOfBirth,
+    dateOfBirth: new Date(adjustedTimestamp),
     phoneNumber: user.profile.phoneNumber,
     address: user.profile.address,
     profileImage: user.profile.profileImage,
   });
-
   const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
@@ -80,29 +83,58 @@ const EditProfile = () => {
     if (!formData.firstName) {
       newErrors.firstName = "First name is required";
       valid = false;
+    } else if (!/^[A-Za-z]+$/.test(formData.firstName)) {
+      newErrors.firstName =
+        "First name should only contain alphabetic characters";
+      valid = false;
     }
 
     if (!formData.lastName) {
       newErrors.lastName = "Last Name is required";
+      valid = false;
+    } else if (!/^[A-Za-z]+$/.test(formData.lastName)) {
+      newErrors.lastName =
+        "Last Name should only contain alphabetic characters";
       valid = false;
     }
 
     if (!formData.dateOfBirth) {
       newErrors.dateOfBirth = "Date of Birth is required";
       valid = false;
+    } else {
+      let dobString = formData.dateOfBirth;
+      if (formData.dateOfBirth instanceof Date) {
+        const month = formData.dateOfBirth.getMonth() + 1; // Adding 1 because getMonth() returns zero-based month index
+        const day = formData.dateOfBirth.getDate();
+        const year = formData.dateOfBirth.getFullYear();
+        dobString = `${month.toString().padStart(2, "0")}/${day
+          .toString()
+          .padStart(2, "0")}/${year}`;
+      }
+      if (
+        !dobString.match(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)
+      ) {
+        newErrors.dateOfBirth = "Invalid Date of Birth format (MM/DD/YYYY)";
+        valid = false;
+      }
     }
 
     if (!formData.phoneNumber) {
       newErrors.phoneNumber = "Phone Number is required";
       valid = false;
+    } else if (!/^\+?\d{0,3}\d{10}$/.test(formData.phoneNumber)) {
+      newErrors.phoneNumber =
+        "Invalid Phone Number format. Please enter a valid phone number with country code (if applicable) and 10 digits after.";
+      valid = false;
     }
+
     if (!formData.address) {
       newErrors.address = "Address is required";
       valid = false;
     }
 
     if (!formData.profileImage) {
-      newErrors.profileImage = "ProfileImage is required";
+      newErrors.profileImage = "Profile Image is required";
       valid = false;
     }
 
@@ -117,6 +149,12 @@ const EditProfile = () => {
       return;
     }
     try {
+      const formattedDateOfBirth =
+      formData.dateOfBirth instanceof Date
+        ? `${
+            formData.dateOfBirth.getMonth() + 1
+          }/${formData.dateOfBirth.getDate()}/${formData.dateOfBirth.getFullYear()}`
+        : formData.dateOfBirth;
       const requestBody = {
         query: `
         mutation UpdateUserProfile($input: UserProfileInput!) {
@@ -138,7 +176,7 @@ const EditProfile = () => {
             userId: user._id,
             firstName: formData.firstName,
             lastName: formData.lastName,
-            dateOfBirth: formData.dateOfBirth,
+            dateOfBirth: formattedDateOfBirth,
             phoneNumber: formData.phoneNumber,
             address: formData.address,
             profileImage: formData.profileImage,
@@ -153,8 +191,10 @@ const EditProfile = () => {
         },
         body: JSON.stringify(requestBody),
       });
-
+      console.log('formdata',formData)
+console.log('response',response)
       const responseData = await response.json();
+      console.log('responseData',responseData)
 
       if (responseData.data.updateUserProfile) {
         setShowSnackbar(true);
@@ -175,11 +215,12 @@ const EditProfile = () => {
       console.error("Error occurred during profile update:", error);
     }
   };
+  console.log("formdata dateofbirth", formData.dateOfBirth);
 
   return (
     <div className="edit-profile-hero">
       <div className="container">
-        <div className="row justify-content-center align-items-center">
+        <div className="row m-0 justify-content-center align-items-center">
           <div className="col-md-4">
             <div className="card mt-5 mb-5">
               <div className="card-body">
@@ -223,18 +264,22 @@ const EditProfile = () => {
                   </div>
                   <div className="form-group">
                     <label htmlFor="dateOfBirth">Date of Birth</label>
-                    <input
-                      type="text"
+                    <DatePicker
+                      selected={formData.dateOfBirth}
+                      onChange={(date) => {
+                        if (date instanceof Date && !isNaN(date.getTime())) {
+                          setFormData({
+                            ...formData,
+                            dateOfBirth: date,
+                          });
+                        }
+                      }}
                       className={`form-control ${
                         errors.dateOfBirth && "is-invalid"
                       }`}
-                      name="dateOfBirth"
-                      value={formData.dateOfBirth}
-                      onChange={handleChange}
-                      autoComplete="off"
                     />
                     {errors.dateOfBirth && (
-                      <div className="invalid-feedback text-danger pt-3">
+                      <div className="invalid-feedback text-danger d-block pt-3">
                         {errors.dateOfBirth}
                       </div>
                     )}

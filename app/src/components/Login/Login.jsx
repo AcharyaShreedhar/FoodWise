@@ -118,13 +118,15 @@ const Login = () => {
         setShowSnackbar(true);
         setSnackbarSuccess(true);
         setSnackbarMessage("Login successful!");
-        setTimeout(() => {
-          if (responseData.data.loginUser.userType === "Admin") {
-            navigate("/dashboard");
-          } else {
-            navigate("/blog");
-          }
-        }, 1000);
+        if (responseData.data.loginUser.userType) {
+          setTimeout(() => {
+            if (responseData.data.loginUser.userType === "Admin") {
+              navigate("/dashboard");
+            } else {
+              navigate("/blog");
+            }
+          }, 1);
+        }
       } else {
         // Handle signup error
         setShowSnackbar(true);
@@ -132,7 +134,7 @@ const Login = () => {
         setSnackbarMessage("Login failed");
         setTimeout(() => {
           setShowSnackbar(false);
-        }, 1000);
+        }, 3000);
         console.error("Login failed.");
       }
     } catch (error) {

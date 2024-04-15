@@ -1,12 +1,4 @@
-/*
-    ---------------------------------------------------
-    Author      : Shree Dhar Acharya
-    StudentId   : 8899288
-    Date        : 4th Feb 2024
-    Application : FoodWise
-    ----------------------------------------------------
-*/
-
+/* Common styles */
 .footer {
   width: 100%;
   display: flex;
@@ -24,7 +16,7 @@
 
 .footer p {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 3.5rem; /* Use rem for text size */
 }
 
 .hero {
@@ -32,7 +24,8 @@
 }
 
 .footer-img {
-  margin: 50px 0 0 30px
+  margin: 50px 0 0 30px;
+  max-width: 100%; /* Make sure image doesn't overflow */
 }
 
 .row {
@@ -40,14 +33,14 @@
   margin-top: 1%;
 }
 
-.col-md-3 {
+.col-md-3, .col-md-2 {
   width: 17%;
-  font-size: 10px;
-  font-weight: 500
+  font-size: 1.425rem; /* Use rem for font size */
+  font-weight: 500;
 }
 
 .subscribe-btn {
-  border-radius: 0 50px 50px 0
+  border-radius: 0 50px 50px 0;
 }
 
 .input-group .form-control {
@@ -61,10 +54,62 @@ body {
 }
 
 .copyright-text {
-  font-size: 12px;
+  font-size: 1.50rem; /* Use rem for font size */
   text-align: center;
-  margin-top: 0.5%
+  margin-top: 0.5%;
 }
 .bold-text {
   font-weight: bold;
+  font-size: 1.625rem;
 }
+
+.subscribe-btn {
+  border-radius: 0 50px 50px 0;
+  width: auto; /* Adjust width as needed */
+}
+
+
+/* Media Queries for Tablet */
+@media screen and (max-width: 1024px) {
+  .col-md-3, .col-md-2 {
+    width: 50%; /* Two columns per row on tablet */
+  }
+}
+
+/* Media Queries for Mobile */
+@media screen and (max-width: 768px) {
+  .footer-header {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .row {
+    width: 100%; /* Set the width of the row to 100% */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex-wrap: wrap; /* Allow items to wrap to new lines */
+  }
+
+  .col-md-3,
+  .col-md-2 {
+    width: 90%; /* Set columns to take up 90% of the width */
+    max-width: 300px; /* Set maximum width to prevent stretching */
+    margin-bottom: 20px; /* Add some space between columns */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .input-group {
+    width: 50%; /* Set input group width to 100% for mobile */
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+

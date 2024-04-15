@@ -8,6 +8,8 @@
 */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useUser } from "../../containers/LoginContainer/UserContext";
 import Snackbar from "../Core/Snackbar/Snackbar";
 
@@ -18,7 +20,7 @@ const CreateProfile = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    dateOfBirth: "",
+    dateOfBirth: null,
     phoneNumber: "",
     address: "",
     profileImage: "default.png",
@@ -48,7 +50,6 @@ const CreateProfile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-       
         setFormData({
           ...formData,
           profileImage: data.secure_url,
@@ -79,15 +80,48 @@ const CreateProfile = () => {
     if (!formData.firstName) {
       newErrors.firstName = "First name is required";
       valid = false;
-    }
-
-    if (!formData.lastName) {
-      newErrors.lastNames = "Last Name is required";
+    } else if (!/^[A-Za-z]+$/.test(formData.firstName)) {
+      newErrors.firstName =
+        "First name should only contain alphabetic characters";
       valid = false;
     }
 
-    if (!formData.profileImage) {
-      newErrors.profileImage = "Profile Image is required";
+    if (!formData.lastName) {
+      newErrors.lastName = "Last Name is required";
+      valid = false;
+    } else if (!/^[A-Za-z]+$/.test(formData.lastName)) {
+      newErrors.lastName =
+        "Last Name should only contain alphabetic characters";
+      valid = false;
+    }
+
+    if (!formData.dateOfBirth) {
+      newErrors.dateOfBirth = "Date of Birth is required";
+      valid = false;
+    } else {
+      let dobString = formData.dateOfBirth;
+      if (formData.dateOfBirth instanceof Date) {
+        const month = formData.dateOfBirth.getMonth() + 1; // Adding 1 because getMonth() returns zero-based month index
+        const day = formData.dateOfBirth.getDate();
+        const year = formData.dateOfBirth.getFullYear();
+        dobString = `${month.toString().padStart(2, "0")}/${day
+          .toString()
+          .padStart(2, "0")}/${year}`;
+      }
+      if (
+        !dobString.match(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/)
+      ) {
+        newErrors.dateOfBirth = "Invalid Date of Birth format (MM/DD/YYYY)";
+        valid = false;
+      }
+    }
+
+    if (!formData.phoneNumber) {
+      newErrors.phoneNumber = "Phone Number is required";
+      valid = false;
+    } else if (!/^\+?\d{0,3}\d{10}$/.test(formData.phoneNumber)) {
+      newErrors.phoneNumber =
+        "Invalid Phone Number format. Please enter a valid phone number with country code (if applicable) and 10 digits after.";
       valid = false;
     }
 
@@ -95,12 +129,9 @@ const CreateProfile = () => {
       newErrors.address = "Address is required";
       valid = false;
     }
-    if (!formData.phoneNumber) {
-      newErrors.phoneNumber = "Phone Number is required";
-      valid = false;
-    }
-    if (!formData.dateOfBirth) {
-      newErrors.dateOfBirth = "Date of Birth is required";
+
+    if (!formData.profileImage) {
+      newErrors.profileImage = "Profile Image is required";
       valid = false;
     }
 
@@ -111,7 +142,6 @@ const CreateProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
-      alert("validation failed");
       return; // Do not proceed if form validation fails
     }
     try {
@@ -179,10 +209,10 @@ const CreateProfile = () => {
           <div className="col-md-4">
             <div className="card mt-5 mb-5">
               <div className="card-body">
-                <h3 className="mt-5">create profile</h3>
+                <h3 className="mt-5">Create Profile</h3>
                 <form onSubmit={handleSubmit} className="p-4">
                   <div className="form-group">
-                    <label htmlFor="firstname">first name</label>
+                    <label htmlFor="firstname">First Name</label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -200,7 +230,7 @@ const CreateProfile = () => {
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="lastName">last name</label>
+                    <label htmlFor="lastName">Last Name</label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -218,26 +248,25 @@ const CreateProfile = () => {
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="dateOfBirth">date of birth</label>
-                    <input
-                      type="text"
+                    <label htmlFor="dateOfBirth">Date Of Birth</label>
+                    <DatePicker
+                      selected={formData.dateOfBirth}
+                      onChange={(date) =>
+                        setFormData({ ...formData, dateOfBirth: date })
+                      }
                       className={`form-control ${
                         errors.dateOfBirth && "is-invalid"
                       }`}
-                      name="dateOfBirth"
-                      value={formData.dateOfBirth}
-                      onChange={handleChange}
-                      autoComplete="off"
                     />
                     {errors.dateOfBirth && (
-                      <div className="invalid-feedback text-danger pt-3">
+                      <div className="invalid-feedback text-danger pt-3 d-block">
                         {errors.dateOfBirth}
                       </div>
                     )}
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="phoneNumber">phone number</label>
+                    <label htmlFor="phoneNumber">Phone Number</label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -256,7 +285,7 @@ const CreateProfile = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="address">address</label>
+                    <label htmlFor="address">Address</label>
                     <input
                       type="text"
                       className={`form-control ${
@@ -274,7 +303,7 @@ const CreateProfile = () => {
                     )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="profileImage">profile image</label>
+                    <label htmlFor="profileImage">Profile Image</label>
                     <input
                       type="file"
                       className="form-control text-white "
@@ -286,7 +315,7 @@ const CreateProfile = () => {
                       onClick={handleImageUpload}
                       className="btn btn-lg btn-success mt-2"
                     >
-                      upload
+                      Upload
                     </button>
                   </div>
 
@@ -295,7 +324,7 @@ const CreateProfile = () => {
                   </div>
                   <div className="button text-center">
                     <button type="submit" className="btn btn-lg btn-primary">
-                      create profile
+                      Create Profile
                     </button>
                   </div>
                 </form>

@@ -35,7 +35,7 @@ const App = () => {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<SignUpContainer />} />
+            <Route path="/" element={<BlogContainer />} />
             <Route path="/signup" element={<SignUpContainer />} />
             <Route path="/viewprofile" element={<ViewProfileContainer />} />
             <Route path="/editprofile" element={<EditProfileContainer />} />

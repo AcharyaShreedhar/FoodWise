@@ -63,16 +63,27 @@ label {
 }
 
 .hero {
-    height: 450px;
+    height: 250px;
 }
 
 .signup-hero {
     background-color: #25318b;
+    padding-bottom:10px;
 }
 
 .col-md-4 {
     width: 50%
 }
+
+@media (max-width: 768px) {
+    .col-md-4 {
+      width: 80%;
+    }
+    .signup-hero {
+        padding-bottom: 40px;
+    }
+  }
+  
 
 .card {
     border-radius: 20px;
@@ -81,7 +92,7 @@ label {
 .text {
     display: flex;
     justify-content: center;
-    font-size: 12px;
+    font-size: 1.5rem;
     margin-top: 10px;
     color: #fff;
     font-weight: 600;
