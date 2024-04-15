@@ -71,7 +71,7 @@ const App = () => {
 // Define a separate LoginComponent component to encapsulate the logic for rendering LoginContainer based on user state
 const LoginComponent = () => {
   const { user } = useUser();
-  return user ? <Navigate to="/" /> : <LoginContainer />;
+  return  <LoginContainer />;
 };
 
 // Define a PrivateRoute component to conditionally render components based on user state
