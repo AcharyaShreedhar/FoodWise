@@ -17,7 +17,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
   // uri: "https://foodwise.minipixai.com/",
- uri: "http://localhost:4021/graphql",
+ uri: "https://foodwiseapi.onrender.com/graphql",
   cache: new InMemoryCache(),
   onError: (error) => {
     console.error("Apollo Client Error:", error);
