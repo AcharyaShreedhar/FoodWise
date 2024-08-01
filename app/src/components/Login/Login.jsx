@@ -18,8 +18,8 @@ const Login = () => {
   const navigate = useNavigate();
   const { setUser } = useUser();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "foodwise2024@gmail.com",
+    password: "password",
     // Add other fields if needed
   });
 
